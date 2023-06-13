@@ -41,7 +41,7 @@ app.get('/machines/:id', (request, response) => {
 app.post('/addmachine', (request, response) => {
     const newMachine = request.body
     console.log('New machine', newMachine)
-    response.send('New machine added!')
+    response.send(`New machine added! ${newMachine.brand} ${newMachine.name}`)
 })
 
 app.get('/beans', (request, response) => {
