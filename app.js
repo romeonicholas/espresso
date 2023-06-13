@@ -15,7 +15,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 app.use('/assets', express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true }))
 
-let shotsPulled = 1
 const shots = [
     {
         id: "44",
@@ -87,22 +86,6 @@ app.post('/machines/new', (request, response) => {
 
 app.get('/machines/:id', (request, response) => {
     // View specific machine
-})
-
-app.get('/beans', (request, response) => {
-    response.send('Here\'s where you can see all of the beans users have added.')
-})
-
-app.get('/beans/:id', (request, response) => {
-    response.send(`This is the page for beans ${request.params.id}`)
-})
-app.get('/newshot', (request, response) => {
-    response.send(`Total shots pulled: ${shotsPulled}`)
-})
-
-app.post('/newshot', (request, response) => {
-    shotsPulled++
-    response.send('Thanks for submitting your new shot! You\'ll see it in your dashboard later!')
 })
 
 app.all('/logout', (request, response) => {
