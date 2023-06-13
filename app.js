@@ -1,8 +1,11 @@
 import express from 'express'
 import morgan from 'morgan'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 const app = express()
 const PORT = 3000
+app.set('view engine', 'ejs')
 
 if (process.env.NODE_ENV === 'dev') {
     app.use(morgan('tiny'))
@@ -10,11 +13,12 @@ if (process.env.NODE_ENV === 'dev') {
 
 let shotsPulled = 1
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use('/assets', express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (request, response) => {
-    response.send('Welcome to Your Best Shots!')
+    response.render('index')
 })
 
 app.get('/dashboard', (request, response) => {
