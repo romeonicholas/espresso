@@ -72,17 +72,21 @@ app.get('/shots/:id', (request, response) => {
 })
 
 app.get('/machines', (request, response) => {
-    response.send('Here\'s where you can see all of the machines users have added.')
+    // View all machines
+})
+
+app.get('/machines/new', (request, response) => {
+    // View form to add machine
+})
+
+app.post('/machines/new', (request, response) => {
+    const newMachine = request.body
+    console.log('New machine', newMachine)
+    // Send to /machines after posting
 })
 
 app.get('/machines/:id', (request, response) => {
-    response.send(`This is the page for machine ${request.params.id}`)
-})
-
-app.post('/addmachine', (request, response) => {
-    const newMachine = request.body
-    console.log('New machine', newMachine)
-    response.send(`New machine added! ${newMachine.brand} ${newMachine.name}`)
+    // View specific machine
 })
 
 app.get('/beans', (request, response) => {
