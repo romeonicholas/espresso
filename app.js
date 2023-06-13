@@ -8,5 +8,5 @@ app.get('/', (request, response) => {
 })
 
 app.listen(PORT, () => {
-    console.log(`👋 Started server on port ${PORT}`)
+    console.log(`👋 Started espresso server on port ${PORT}`)
 })
