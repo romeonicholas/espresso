@@ -4,7 +4,9 @@ import morgan from 'morgan'
 const app = express()
 const PORT = 3000
 
-app.use(morgan('tiny'))
+if (process.env.NODE_ENV === 'dev') {
+    app.use(morgan('tiny'))
+}
 
 let shotsPulled = 1
 
