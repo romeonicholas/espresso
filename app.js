@@ -18,14 +18,25 @@ app.get('/shots', (request, response) => {
     response.send('Here\'s where you can see all the new shots coming in.')
 })
 
+app.get('/shots/:id', (request, response) => {
+    response.send(`This is the page for shot ${request.params.id}`)
+})
+
 app.get('/machines', (request, response) => {
     response.send('Here\'s where you can see all of the machines users have added.')
 })
 
-app.get ('/beans', (request, response) => {
+app.get('/machines/:id', (request, response) => {
+    response.send(`This is the page for machine ${request.params.id}`)
+})
+
+app.get('/beans', (request, response) => {
     response.send('Here\'s where you can see all of the beans users have added.')
 })
 
+app.get('/beans/:id', (request, response) => {
+    response.send(`This is the page for beans ${request.params.id}`)
+})
 app.get('/newshot', (request, response) => {
     response.send(`Total shots pulled: ${shotsPulled}`)
 })
