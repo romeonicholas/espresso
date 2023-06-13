@@ -10,6 +10,8 @@ if (process.env.NODE_ENV === 'dev') {
 
 let shotsPulled = 1
 
+app.use('/assets', express.static('public'))
+
 app.get('/', (request, response) => {
     response.send('Welcome to Your Best Shots!')
 })
