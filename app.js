@@ -11,6 +11,7 @@ if (process.env.NODE_ENV === 'dev') {
 let shotsPulled = 1
 
 app.use('/assets', express.static('public'))
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (request, response) => {
     response.send('Welcome to Your Best Shots!')
@@ -35,6 +36,12 @@ app.get('/machines', (request, response) => {
 
 app.get('/machines/:id', (request, response) => {
     response.send(`This is the page for machine ${request.params.id}`)
+})
+
+app.post('/addmachine', (request, response) => {
+    const newMachine = request.body
+    console.log('New machine', newMachine)
+    response.send('New machine added!')
 })
 
 app.get('/beans', (request, response) => {
