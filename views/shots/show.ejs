@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head') %>
+  <body>
+    <%- include('../includes/header') %>
+    <a href="/shots/new">New Shot</a>
+    <h2>Shot <%= shot.id %></h2>
+    <p>Date pulled: <%= shot.date %></p>
+    <p>Beans: <%= shot.beans %></p>
+    <p>Machine: <%= shot.machine %></p>
+    <p>Weight of grinds: <%= shot.grindsWeight %></p>
+    <p>Weight of shots: <%= shot.shotsWeight %></p>
+    <p>Time to pull: <%= shot.pullTime %></p>
+    <p>Comments: <%= shot.comments %></p>
+
+  </body>
+  <%- include('../includes/footer') %>
+</html>

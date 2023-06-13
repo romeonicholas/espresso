@@ -11,27 +11,64 @@ if (process.env.NODE_ENV === 'dev') {
     app.use(morgan('tiny'))
 }
 
-let shotsPulled = 1
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-app.use('/assets', express.static('public'))
+const __dirname = dirname(fileURLToPath(import.meta.url))
+app.use('/assets', express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true }))
+
+let shotsPulled = 1
+const shots = [
+    {
+        id: "44",
+        date: "06.06.13",
+        beans: "Super Roast",
+        machine: "Breville Master",
+        grindsWeight: "19 grams",
+        shotsWeight: "40 grams",
+        pullTime: "25 seconds",
+        comments: "wow so good"
+    },
+    {
+        id: "43",
+        date: "06.07.13",
+        beans: "Blonde",
+        machine: "Gaggia Classic",
+        grindsWeight: "20 grams",
+        shotsWeight: "39 grams",
+        pullTime: "20 seconds",
+        comments: "bitter!"
+    },
+    {
+        id: "42",
+        date: "06.09.13",
+        beans: "Italian Stallion",
+        machine: "Starbucks 2000",
+        grindsWeight: "16 grams",
+        shotsWeight: "32 grams",
+        pullTime: "18 seconds",
+        comments: "changed my life"
+    }
+]
 
 app.get('/', (request, response) => {
     response.render('index')
 })
 
-app.get('/dashboard', (request, response) => {
-    const IP = request.ip
-    response.send(`You\'re reaching out to us from ${IP}`)
+app.get('/shots', (request, response) => {
+    response.render('shots/index', {shots : shots})
 })
 
-app.get('/shots', (request, response) => {
-    response.send('Here\'s where you can see all the new shots coming in.')
+app.get('/shots/new', (request, response) => {
+    response.render('shots/new')
+})
+
+app.post('/shots/new', (request, response) => {
+    response.render('shots')
 })
 
 app.get('/shots/:id', (request, response) => {
-    response.send(`This is the page for shot ${request.params.id}`)
+    const shot = shots.find(shot => shot.id === request.params.id)
+
+    response.render('shots/show', {shot: shot})
 })
 
 app.get('/machines', (request, response) => {
