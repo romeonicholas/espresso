@@ -22,7 +22,8 @@ app.post('/newshot', (request, response) => {
 })
 
 app.all('/logout', (request, response) => {
-    response.send('You\'ve been logged out :(')
+    const logoutNumber = Math.floor(Math.random() * 50000)
+    response.send(`You are logout number ${logoutNumber}`)
 })
 
 app.listen(PORT, () => {
