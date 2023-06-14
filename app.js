@@ -1,10 +1,14 @@
 import express from 'express'
-import mongoose from 'mongoose'
 import morgan from 'morgan'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
+
 import { PORT } from './config/app.js'
 import './config/database.js'
+
+import { Shot } from './models/shot.js'
+import { Machine } from './models/machine.js'
+import { Bean } from './models/bean.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -15,35 +19,6 @@ app.use(express.urlencoded({ extended: true }))
 if (process.env.NODE_ENV === 'dev') {
     app.use(morgan('tiny'))
 }
-
-const shotSchema = new mongoose.Schema({
-    id: { type: Number, unique: true, required: true },
-    date: { type: Date, default: Date.now(), required: true },
-    beans: { type: String, required: true },
-    machine: { type: String, required: true },
-    grindsWeight: { type: Number, required: true },
-    shotsWeight: { type: Number, required: true },
-    comments: { type: String }
-})
-
-const Shot = mongoose.model('Shot', shotSchema)
-
-const machineSchema = new mongoose.Schema({
-    id: { type: Number, unique: true, required: true },
-    brand: { type: String, required: true },
-    name: { type: String, required: true }
-})
-
-const Machine = mongoose.model('Machine', machineSchema)
-
-const beanSchema = new mongoose.Schema({
-    id: { type: Number, unique: true, required: true },
-    company: { type: String, required: true },
-    name: { type: String, required: true },
-    roastDate: { type: Date }
-})
-
-const Bean = mongoose.model('Bean', beanSchema)
 
 app.get('/', (request, response) => {
     response.render('index')
