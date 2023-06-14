@@ -7,7 +7,7 @@
     <h2>Latest Shots</h2>
     <% shots.forEach(shot => { %>
       <ul>
-        <li><%= shot.date %>: <% shot.id%></li>
+        <li><%= shot.date %>: <a href='/shots/<%= shot.id%>'><%= shot.id%></a></li>
         <li>Input: <%= shot.grindsWeight %>, Output: <%= shot.shotsWeight %></li>
         <% if (shot.shotsWeight >= (shot.grindsWeight * 2)) { %>
           <li>[Long shot]</li>

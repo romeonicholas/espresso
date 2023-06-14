@@ -50,45 +50,18 @@ const beanSchema = new mongoose.Schema({
 
 const Bean = mongoose.model('Bean', beanSchema)
 
-const shots = [
-    {
-        id: "44",
-        date: "06.06.13",
-        beans: "Super Roast",
-        machine: "Breville Master",
-        grindsWeight: 19,
-        shotsWeight: 40,
-        pullTime: "25 seconds",
-        comments: "wow so good"
-    },
-    {
-        id: "43",
-        date: "06.07.13",
-        beans: "Blonde",
-        machine: "Gaggia Classic",
-        grindsWeight: 20,
-        shotsWeight: 39,
-        pullTime: "20 seconds",
-        comments: "bitter!"
-    },
-    {
-        id: "42",
-        date: "06.09.13",
-        beans: "Italian Stallion",
-        machine: "Starbucks 2000",
-        grindsWeight: 16,
-        shotsWeight: 32,
-        pullTime: "18 seconds",
-        comments: "changed my life"
-    }
-]
-
 app.get('/', (request, response) => {
     response.render('index')
 })
 
-app.get('/shots', (request, response) => {
-    response.render('shots/index', {shots : shots})
+app.get('/shots', async (request, response) => {
+    try {
+        const shots = await Shot.find({}).exec()
+        response.render('shots/index', { shots: shots })
+    } catch(error) {
+        console.error(error)
+        response.render('shots/index', { shots: [] })
+    }
 })
 
 app.get('/shots/new', (request, response) => {
@@ -107,17 +80,23 @@ app.post('/shots', async (request, response) => {
         })
         await shot.save()
 
-        response.render('shots/index', { shots: shots})
+        response.render('shots/show', { shot: shot })
     } catch(error) {
         console.log(error)
         response.send("This shot failed to be created.")
     }
 })
 
-app.get('/shots/:id', (request, response) => {
-    const shot = shots.find(shot => shot.id === request.params.id)
+app.get('/shots/:id', async (request, response) => {
+    try {
+        const shot = await Shot.findOne( { id: request.params.id }).exec()
+        if (!shot) throw new Error ('Shot not found.')
 
-    response.render('shots/show', {shot: shot})
+        response.render('shots/show', { shot: shot })
+    } catch(error) {
+        console.error(error)
+        response.status(404).send('Shot could not be found')
+    }
 })
 
 app.get('/machines', (request, response) => {
