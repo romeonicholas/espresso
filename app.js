@@ -61,7 +61,7 @@ app.get('/shots/new', (request, response) => {
 })
 
 app.post('/shots/new', (request, response) => {
-    response.render('shots')
+    response.render('shots', { shots: shots})
 })
 
 app.get('/shots/:id', (request, response) => {
