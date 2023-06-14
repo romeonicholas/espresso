@@ -1,26 +1,20 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import morgan from 'morgan'
-import 'dotenv/config'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
+import { PORT } from './config/app.js'
+import './config/database.js'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 const app = express()
-const PORT = 3000
-
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('💽 Database connected'))
-    .catch(error => console.error(error))
-
 app.set('view engine', 'ejs')
-
+app.use('/assets', express.static(__dirname + '/public'))
+app.use(express.urlencoded({ extended: true }))
 if (process.env.NODE_ENV === 'dev') {
     app.use(morgan('tiny'))
 }
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
-app.use('/assets', express.static(__dirname + '/public'))
-app.use(express.urlencoded({ extended: true }))
 
 const shotSchema = new mongoose.Schema({
     id: { type: Number, unique: true, required: true },
@@ -158,6 +152,6 @@ app.all('/logout', (request, response) => {
     response.send(`You are logout number ${logoutNumber}`)
 })
 
-app.listen(process.env.PORT, () => {
-    console.log(`👋 Started espresso server on port ${process.env.PORT}`)
+app.listen(PORT, () => {
+    console.log(`👋 Started espresso server on port ${PORT}`)
 })
