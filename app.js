@@ -95,8 +95,23 @@ app.get('/shots/new', (request, response) => {
     response.render('shots/new')
 })
 
-app.post('/shots/new', (request, response) => {
-    response.render('shots/index', { shots: shots})
+app.post('/shots', async (request, response) => {
+    try {
+        const shot = new Shot({
+            id: request.body.id,
+            beans: request.body.beans,
+            machine: request.body.machine,
+            grindsWeight: request.body.grindsWeight,
+            shotsWeight: request.body.shotsWeight,
+            comments: request.body.comments
+        })
+        await shot.save()
+
+        response.render('shots/index', { shots: shots})
+    } catch(error) {
+        console.log(error)
+        response.send("This shot failed to be created.")
+    }
 })
 
 app.get('/shots/:id', (request, response) => {

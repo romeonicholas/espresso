@@ -4,10 +4,13 @@
   <body>
     <%- include('../includes/header') %>
     <h2>Add Shots</h2>
-    <form action="/shots/new" method="POST">
-        <input type="text" name="beans" placeholder="beans" /><br />
-        <input type="text" name="machine" placeholder="machine" /><br />
-
+    <form action="/shots" method="POST">
+        <input type="number" name="id" placeholder="id" required min="0" step="1" /><br />
+        <input type="text" name="beans" placeholder="beans" required/><br />
+        <input type="text" name="machine" placeholder="machine" required/><br />
+        <input type="number" name="grindsWeight" placeholder="grind weight in grams" required min="0" step="1" /><br />
+        <input type="number" name="shotsWeight" placeholder="weight of pulled shots in grams" required min="0" step="1" /><br />
+        <input type="text" name="comments" placeholder="comments" /><br />
         <button>Submit</button>
     </form>
   </body>
