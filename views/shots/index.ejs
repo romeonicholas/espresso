@@ -5,7 +5,18 @@
     <%- include('../includes/header') %>
     <a href="/shots/new">New Shot</a>
     <h2>Latest Shots</h2>
-    <p><%= shots %></p>
+    <% shots.forEach(shot => { %>
+      <ul>
+        <li><%= shot.date %>: <% shot.id%></li>
+        <li>Input: <%= shot.grindsWeight %>, Output: <%= shot.shotsWeight %></li>
+        <% if (shot.shotsWeight >= (shot.grindsWeight * 2)) { %>
+          <li>[Long shot]</li>
+        <% } else { %>
+          <li>[Ristretto]</li>
+        <% } %>
+      </ul>
+    <% }) %>
+    </ul>
   </body>
   <%- include('../includes/footer') %>
 </html>

@@ -21,8 +21,8 @@ const shots = [
         date: "06.06.13",
         beans: "Super Roast",
         machine: "Breville Master",
-        grindsWeight: "19 grams",
-        shotsWeight: "40 grams",
+        grindsWeight: 19,
+        shotsWeight: 40,
         pullTime: "25 seconds",
         comments: "wow so good"
     },
@@ -31,8 +31,8 @@ const shots = [
         date: "06.07.13",
         beans: "Blonde",
         machine: "Gaggia Classic",
-        grindsWeight: "20 grams",
-        shotsWeight: "39 grams",
+        grindsWeight: 20,
+        shotsWeight: 39,
         pullTime: "20 seconds",
         comments: "bitter!"
     },
@@ -41,8 +41,8 @@ const shots = [
         date: "06.09.13",
         beans: "Italian Stallion",
         machine: "Starbucks 2000",
-        grindsWeight: "16 grams",
-        shotsWeight: "32 grams",
+        grindsWeight: 16,
+        shotsWeight: 32,
         pullTime: "18 seconds",
         comments: "changed my life"
     }
