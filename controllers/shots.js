@@ -3,7 +3,7 @@ import { Shot } from '../models/shot.js'
 
 const router = Router()
 
-router.get('/shots', async (request, response) => {
+router.get('/', async (request, response) => {
     try {
         const shots = await Shot.find({}).exec()
         response.render('shots/index', { shots: shots })
@@ -13,11 +13,11 @@ router.get('/shots', async (request, response) => {
     }
 })
 
-router.get('/shots/new', (request, response) => {
+router.get('/new', (request, response) => {
     response.render('shots/new')
 })
 
-router.post('/shots', async (request, response) => {
+router.post('/', async (request, response) => {
     try {
         const shot = new Shot({
             id: request.body.id,
@@ -36,7 +36,7 @@ router.post('/shots', async (request, response) => {
     }
 })
 
-router.get('/shots/:id', async (request, response) => {
+router.get('/:id', async (request, response) => {
     try {
         const shot = await Shot.findOne( { id: request.params.id }).exec()
         if (!shot) throw new Error ('Shot not found.')
@@ -48,7 +48,7 @@ router.get('/shots/:id', async (request, response) => {
     }
 })
 
-router.get('/shots/:id/edit', async (request, response) => {
+router.get('/:id/edit', async (request, response) => {
     try {
         const shot = await Shot.findOne( { id: request.params.id } )
         response.render('shots/edit', { shot: shot })
@@ -58,7 +58,7 @@ router.get('/shots/:id/edit', async (request, response) => {
     }
 })
 
-router.get('/shots/:id/delete', async (request, response) => {
+router.get('/:id/delete', async (request, response) => {
     try {
         await Shot.findOneAndDelete( { id: request.params.id } )
         response.redirect('/shots')
@@ -68,7 +68,7 @@ router.get('/shots/:id/delete', async (request, response) => {
     }
 })
 
-router.post('/shots/:id', async (request, response) => {
+router.post('/:id', async (request, response) => {
     try {
         const shot = await Shot.findOneAndUpdate(
             { id: request.params.id },

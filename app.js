@@ -22,9 +22,9 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 app.use(simpleRoutes)
-app.use(shotsRoutes)
-app.use(machinesRoutes)
-app.use(beansRoutes)
+app.use('/shots', shotsRoutes)
+app.use('/machines', machinesRoutes)
+app.use('/beans', beansRoutes)
 
 app.listen(PORT, () => {
     console.log(`👋 Started espresso server on port ${PORT}`)

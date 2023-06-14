@@ -3,19 +3,19 @@ import { Machine } from '../models/machine.js'
 
 const router = Router()
 
-router.get('/machines', (request, response) => {
+router.get('/', (request, response) => {
     // View all machines
 })
 
-router.get('/machines/new', (request, response) => {
+router.get('/new', (request, response) => {
     // View form to add machine
 })
 
-router.post('/machines/new', (request, response) => {
+router.post('/new', (request, response) => {
     // Send to /machines after posting
 })
 
-router.get('/machines/:id', (request, response) => {
+router.get('/:id', (request, response) => {
     // View specific machine
 })
 
