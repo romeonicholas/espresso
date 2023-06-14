@@ -99,6 +99,41 @@ app.get('/shots/:id', async (request, response) => {
     }
 })
 
+app.get('/shots/:id/edit', async (request, response) => {
+    try {
+        const shot = await Shot.findOne( { id: request.params.id } )
+        response.render('shots/edit', { shot: shot })
+    } catch(error) {
+        console.error(error)
+        response.status(404).send('Shout could not be found')
+    }
+})
+
+app.get('/shots/:id/delete', async (request, response) => {
+    try {
+        await Shot.findOneAndDelete( { id: request.params.id } )
+        response.redirect('/shots')
+    } catch(error) {
+        console.error(error)
+        response.status(404).send('Shout could not be deleted.')
+    }
+})
+
+app.post('/shots/:id', async (request, response) => {
+    try {
+        const shot = await Shot.findOneAndUpdate(
+            { id: request.params.id },
+            request.body,
+            { new: true } 
+            )
+        
+        response.redirect(`/shots/${shot.id}`)
+    } catch(error) {
+        console.error(error)
+        response.status(404).send('Shot could not be found')
+    }
+})
+
 app.get('/machines', (request, response) => {
     // View all machines
 })
