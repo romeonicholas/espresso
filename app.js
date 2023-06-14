@@ -21,6 +21,35 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 app.use('/assets', express.static(__dirname + '/public'))
 app.use(express.urlencoded({ extended: true }))
 
+const shotSchema = new mongoose.Schema({
+    id: { type: Number, unique: true, required: true },
+    date: { type: Date, default: Date.now(), required: true },
+    beans: { type: String, required: true },
+    machine: { type: String, required: true },
+    grindsWeight: { type: Number, required: true },
+    shotsWeight: { type: Number, required: true },
+    comments: { type: String }
+})
+
+const Shot = mongoose.model('Shot', shotSchema)
+
+const machineSchema = new mongoose.Schema({
+    id: { type: Number, unique: true, required: true },
+    brand: { type: String, required: true },
+    name: { type: String, required: true }
+})
+
+const Machine = mongoose.model('Machine', machineSchema)
+
+const beanSchema = new mongoose.Schema({
+    id: { type: Number, unique: true, required: true },
+    company: { type: String, required: true },
+    name: { type: String, required: true },
+    roastDate: { type: Date }
+})
+
+const Bean = mongoose.model('Bean', beanSchema)
+
 const shots = [
     {
         id: "44",
