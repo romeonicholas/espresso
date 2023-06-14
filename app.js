@@ -80,7 +80,7 @@ app.post('/shots', async (request, response) => {
         })
         await shot.save()
 
-        response.render('shots/show', { shot: shot })
+        response.redirect(`shots/${shot.id}`)
     } catch(error) {
         console.log(error)
         response.send("This shot failed to be created.")
