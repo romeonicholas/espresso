@@ -1,13 +1,14 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import morgan from 'morgan'
+import 'dotenv/config'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const app = express()
 const PORT = 3000
 
-mongoose.connect('mongodb://127.0.0.1:27017/espresso')
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('💽 Database connected'))
     .catch(error => console.error(error))
 
@@ -157,6 +158,6 @@ app.all('/logout', (request, response) => {
     response.send(`You are logout number ${logoutNumber}`)
 })
 
-app.listen(PORT, () => {
-    console.log(`👋 Started espresso server on port ${PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(`👋 Started espresso server on port ${process.env.PORT}`)
 })
