@@ -1,10 +1,16 @@
 import express from 'express'
+import mongoose from 'mongoose'
 import morgan from 'morgan'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const app = express()
 const PORT = 3000
+
+mongoose.connect('mongodb://127.0.0.1:27017/espresso')
+    .then(() => console.log('💽 Database connected'))
+    .catch(error => console.error(error))
+
 app.set('view engine', 'ejs')
 
 if (process.env.NODE_ENV === 'dev') {
@@ -61,7 +67,7 @@ app.get('/shots/new', (request, response) => {
 })
 
 app.post('/shots/new', (request, response) => {
-    response.render('shots', { shots: shots})
+    response.render('shots/index', { shots: shots})
 })
 
 app.get('/shots/:id', (request, response) => {
