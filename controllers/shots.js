@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { Shot } from '../models/shot.js'
+import { body, validationResult } from 'express-validator'
 
 const router = Router()
 
@@ -17,24 +18,31 @@ router.get('/new', (request, response) => {
     response.render('shots/new')
 })
 
-router.post('/', async (request, response) => {
-    try {
-        const shot = new Shot({
-            id: request.body.id,
-            beans: request.body.beans,
-            machine: request.body.machine,
-            grindsWeight: request.body.grindsWeight,
-            shotsWeight: request.body.shotsWeight,
-            comments: request.body.comments
-        })
-        await shot.save()
+router.post(
+    '/', 
+    body('grindsWeight').isInt(),
+    body('shotsWeight').isInt(), 
+    async (request, response) => {
+        try {
+            validationResult(request).throw()
 
-        response.redirect(`shots/${shot.id}`)
-    } catch(error) {
-        console.log(error)
-        response.send("This shot failed to be created.")
+            const shot = new Shot({
+                id: request.body.id,
+                beans: request.body.beans,
+                machine: request.body.machine,
+                grindsWeight: request.body.grindsWeight,
+                shotsWeight: request.body.shotsWeight,
+                comments: request.body.comments
+            })
+            await shot.save()
+
+            response.redirect(`shots/${shot.id}`)
+        } catch(error) {
+            console.log(error)
+            response.send("This shot failed to be created.")
+        }
     }
-})
+)
 
 router.get('/:id', async (request, response) => {
     try {
