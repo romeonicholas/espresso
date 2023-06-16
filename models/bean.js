@@ -2,8 +2,8 @@ import mongoose from 'mongoose'
 
 const beanSchema = new mongoose.Schema({
     id: { type: Number, unique: true, required: true },
-    company: { type: String, required: true },
-    name: { type: String, required: true },
+    brand: { type: String, required: true },
+    variety: { type: String, required: true },
     roastDate: { type: Date }
 })
 
