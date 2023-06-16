@@ -12,3 +12,18 @@ p {
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: black;
 }
+
+body.dark-theme {
+    background-color:#3b2b15;
+}
+
+h1.dark-theme {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(83, 137, 137);
+    
+}
+
+p.dark-theme {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(224, 213, 213);
+}
