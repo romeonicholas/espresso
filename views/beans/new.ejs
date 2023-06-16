@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head') %>
+  <body>
+    <%- include('../includes/header') %>
+    <h2>Add Beans</h2>
+    <form action="/beans" method="POST">
+        <input type="text" name="brand" placeholder="beans brand" required /><br />
+        <input type="text" name="variety" placeholder="beans name" required /><br />
+        <input type="date" name="roastDate" /><br />
+        <button>Submit</button>
+    </form>
+  </body>
+  <%- include('../includes/footer') %>
+</html>

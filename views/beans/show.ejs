@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head') %>
+  <body>
+    <%- include('../includes/header') %>
+    <a href="/beans/new">New Beans</a>
+    <h2>Beans <%= bean.id %></h2>
+    <p><a href="/beans/<%= bean.id %>/edit">Edit</a> <a href="/beans/<%= bean.id %>/delete">Delete</a></p>
+    <p>Brand: <%= bean.brand %></p>
+    <p>Variety: <%= bean.name %></p>
+    <p>Roast date: <%= bean.roastDate %></p>
+  </body>
+  <%- include('../includes/footer') %>
+</html>
