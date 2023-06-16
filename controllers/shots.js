@@ -20,17 +20,16 @@ router.get('/new', (request, response) => {
 
 router.post(
     '/', 
-    body('beans').isString().isLength({ max: 256 }).trim().escape(),
-    body('machine').isString().isLength({ max: 256 }).trim().escape(),
-    body('grindsWeight').isInt(),
-    body('shotsWeight').isInt(), 
+    body('grindsWeightGrams').isInt(),
+    body('shotsWeightGrams').isInt(), 
+    body('durationSeconds').isInt(), 
     body('comments').isString().isLength({ max: 256 }).trim().escape(),
     async (request, response) => {
         try {
             validationResult(request).throw()
 
             const shot = new Shot({
-                id: request.body.id,
+                id: Math.floor(Math.random() * 100000),
                 beans: request.body.beans,
                 machine: request.body.machine,
                 grindsWeight: request.body.grindsWeight,

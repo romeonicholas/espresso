@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head') %>
+  <body>
+    <%- include('../includes/header') %>
+    <a href="/machines/new">New Machine</a>
+    <h2>Machine <%= machine.id %></h2>
+    <p><a href="/machines/<%= machine.id %>/edit">Edit</a> <a href="/machines/<%= machine.id %>/delete">Delete</a></p>
+    <p>Brand: <%= machine.brand %></p>
+    <p>Name: <%= machine.name %></p>
+  </body>
+  <%- include('../includes/footer') %>
+</html>
