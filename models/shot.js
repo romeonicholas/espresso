@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 
+const { Schema } = mongoose
+
 const shotSchema = new mongoose.Schema({
     id: { type: Number, unique: true, required: true },
     date: { type: Date, default: Date.now(), required: true },
