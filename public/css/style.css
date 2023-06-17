@@ -18,8 +18,8 @@ html {
 }
 
 .header {
-    background-color: #9933cc;
-    color: #ffffff;
+    background-color: #faf8f6;
+    color: #513928;
     padding: 15px;
 }
 
@@ -32,27 +32,27 @@ html {
 .menu li {
     padding: 8px;
     margin-bottom: 7px;
-    background-color: #33b5e5;
-    color: #ffffff;
+    background-color: #faf8f6;
+    color: #513928;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .menu li:hover {
-    background-color: #0099cc;
+    background-color: #eaded6;
 }
 
 .aside {
-    background-color: #33b5e5;
+    background-color: #faf8f6;
     padding: 15px;
-    color: #ffffff;
+    color: #513928;
     text-align: center;
     font-size: 14px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .footer {
-    background-color: #0099cc;
-    color: #ffffff;
+    background-color: #faf8f6;
+    color: #513928;
     text-align: center;
     font-size: 12px;
     padding: 15px;
@@ -65,7 +65,6 @@ html {
 
 @media only screen and (min-width: 600px) {
 
-    /* For tablets: */
     .col-s-1 {
         width: 8.33%;
     }
@@ -117,7 +116,6 @@ html {
 
 @media only screen and (min-width: 768px) {
 
-    /* For desktop: */
     .col-1 {
         width: 8.33%;
     }
