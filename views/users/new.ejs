@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../includes/head') %>
+  <body>
+    <%- include('../includes/header') %>
+    <h2>Create Account</h2>
+    <form action="/users" method="POST">
+        <input type="text" name="username" placeholder="username" /><br />
+        <input type="text" name="password" placeholder="password" /><br />
+        <button>Submit</button>
+    </form>
+  </body>
+  <%- include('../includes/footer') %>
+</html>

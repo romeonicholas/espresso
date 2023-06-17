@@ -10,6 +10,7 @@ import simpleRoutes from './controllers/simple-pages.js'
 import shotsRoutes from './controllers/shots.js'
 import machinesRoutes from './controllers/machines.js'
 import beansRoutes from './controllers/beans.js'
+import usersRoutes from './controllers/users.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -25,6 +26,7 @@ app.use(simpleRoutes)
 app.use('/shots', shotsRoutes)
 app.use('/machines', machinesRoutes)
 app.use('/beans', beansRoutes)
+app.use('/users', usersRoutes)
 
 app.listen(PORT, () => {
     console.log(`👋 Started espresso server on port ${PORT}`)

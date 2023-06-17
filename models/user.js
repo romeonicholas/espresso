@@ -1,11 +1,17 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
+
+const { Schema } = mongoose
 
 const userSchema = new mongoose.Schema({
-    id: { type: Number, unique: true, required: true },
     username: { type: String, unique: true, required: true },
     hashedPassword: { type: String, required: true },
-    salt: { type: String, unique: true, required: true },
     prefersDarkMode: { type: Boolean, default: false }
 })
+
+userSchema.methods.comparePassword = function(password) {
+    return bcrypt.compareSync(password, this.hashedPassword);
+  };
+
 
 export const User = mongoose.model('User', userSchema)
