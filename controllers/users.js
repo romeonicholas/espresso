@@ -44,7 +44,7 @@ router.post(
 )
 
 router.get('/login', (request, response) => {
-    response.render('users/login')
+    response.render('users/login', { username: request.body.username })
 })
 
 router.post(
