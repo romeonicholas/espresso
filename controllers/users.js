@@ -48,7 +48,7 @@ router.post(
 
             bcrypt.compare(request.body.password, user.hashedPassword, function(err, result) {
                 if (result === true) { 
-                    response.redirect('/') 
+                    response.redirect('/shots') 
                 } else {
                     response.redirect('/')
                 }
