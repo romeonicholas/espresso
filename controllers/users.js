@@ -53,6 +53,9 @@ router.post(
 
             bcrypt.compare(request.body.password, user.hashedPassword, function (err, result) {
                 if (result === true) {
+                    const token = JSONWebToken.sign({ id: user._id }, process.env.SECRET_JWT_CODE, {
+                        expiresIn: process.env.JWT_EXPIRES_IN,
+                    });
                     response.redirect('/shots')
                 } else {
                     response.redirect('/')
