@@ -56,7 +56,7 @@ router.post(
                     const token = JSONWebToken.sign({ id: user._id }, process.env.SECRET_JWT_CODE, {
                         expiresIn: process.env.JWT_EXPIRES_IN,
                     });
-                    response.redirect('/shots')
+                    response.header('Authorization', 'Bearer '+ token).render('users/', { user: user })
                 } else {
                     response.redirect('/')
                 }
