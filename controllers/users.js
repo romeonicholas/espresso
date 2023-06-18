@@ -7,6 +7,10 @@ import JSONWebToken from 'jsonwebtoken'
 
 const router = Router()
 
+router.get('/', (request, response) => {
+    response.render('users/')
+})
+
 router.get('/new', (request, response) => {
     response.render('users/new')
 })
