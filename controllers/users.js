@@ -1,14 +1,15 @@
 import { Router } from 'express'
 import { User } from '../models/user.js'
 import { SECRET_JWT_CODE, JWT_EXPIRES_IN } from '../config/app.js'
+import { authenticateToken } from '../middlewares/authenticateToken.js'
 import { body, validationResult } from 'express-validator'
 import bcrypt from 'bcrypt'
 import JSONWebToken from 'jsonwebtoken'
 
 const router = Router()
 
-router.get('/', (request, response) => {
-    response.render('users/')
+router.get('/', authenticateToken, (request, response) => {
+    response.render('users/', { username: request.username })
 })
 
 router.get('/new', (request, response) => {
@@ -29,8 +30,8 @@ router.post(
                     hashedPassword: hash,
                 })
                 await user.save()
-                const token = JSONWebToken.sign({ id: user._id }, process.env.SECRET_JWT_CODE, {
-                    expiresIn: process.env.JWT_EXPIRES_IN,
+                const token = JSONWebToken.sign({ id: user._id }, SECRET_JWT_CODE, {
+                    expiresIn: JWT_EXPIRES_IN,
                 });
 
                 response.redirect('/')
@@ -57,10 +58,12 @@ router.post(
 
             bcrypt.compare(request.body.password, user.hashedPassword, function (err, result) {
                 if (result === true) {
-                    const token = JSONWebToken.sign({ id: user._id }, process.env.SECRET_JWT_CODE, {
-                        expiresIn: process.env.JWT_EXPIRES_IN,
+                    const token = JSONWebToken.sign({ id: user._id, username: user.username }, SECRET_JWT_CODE, {
+                        expiresIn: JWT_EXPIRES_IN,
                     });
-                    response.header('Authorization', 'Bearer '+ token).render('users/', { user: user })
+
+                    response.cookie("access_token", token, { httpOnly: true })
+                        .redirect('/users');
                 } else {
                     response.redirect('/')
                 }

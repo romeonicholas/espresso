@@ -1,5 +1,6 @@
 import express from 'express'
 import morgan from 'morgan'
+import cookieParser from 'cookie-parser'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }))
 if (process.env.NODE_ENV === 'dev') {
     app.use(morgan('tiny'))
 }
+app.use(cookieParser())
 
 app.use(simpleRoutes)
 app.use('/shots', shotsRoutes)
