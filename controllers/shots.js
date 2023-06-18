@@ -1,10 +1,12 @@
 import { Router } from 'express'
 import { Shot } from '../models/shot.js'
 import { body, validationResult } from 'express-validator'
+import { authenticateToken } from '../middlewares/authenticateToken.js'
+
 
 const router = Router()
 
-router.get('/', async (request, response) => {
+router.get('/', authenticateToken, async (request, response) => {
     try {
         const shots = await Shot.find({}).exec()
         response.render('shots/index', { shots: shots })
@@ -14,12 +16,13 @@ router.get('/', async (request, response) => {
     }
 })
 
-router.get('/new', (request, response) => {
+router.get('/new', authenticateToken, (request, response) => {
     response.render('shots/new')
 })
 
 router.post(
     '/', 
+    authenticateToken,
     body('grindsWeightGrams').isInt(),
     body('shotsWeightGrams').isInt(), 
     body('durationSeconds').isInt(), 
@@ -46,7 +49,7 @@ router.post(
     }
 )
 
-router.get('/:id', async (request, response) => {
+router.get('/:id', authenticateToken, async (request, response) => {
     try {
         const shot = await Shot.findOne( { id: request.params.id }).exec()
         if (!shot) throw new Error ('Shot not found.')
@@ -58,7 +61,7 @@ router.get('/:id', async (request, response) => {
     }
 })
 
-router.get('/:id/edit', async (request, response) => {
+router.get('/:id/edit', authenticateToken, async (request, response) => {
     try {
         const shot = await Shot.findOne( { id: request.params.id } )
         response.render('shots/edit', { shot: shot })
@@ -68,7 +71,7 @@ router.get('/:id/edit', async (request, response) => {
     }
 })
 
-router.get('/:id/delete', async (request, response) => {
+router.get('/:id/delete', authenticateToken, async (request, response) => {
     try {
         await Shot.findOneAndDelete( { id: request.params.id } )
         response.redirect('/shots')
@@ -78,7 +81,7 @@ router.get('/:id/delete', async (request, response) => {
     }
 })
 
-router.post('/:id', async (request, response) => {
+router.post('/:id', authenticateToken, async (request, response) => {
     try {
         const shot = await Shot.findOneAndUpdate(
             { id: request.params.id },

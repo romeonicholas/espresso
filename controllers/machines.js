@@ -1,18 +1,21 @@
 import { Router } from 'express'
 import { Machine } from '../models/machine.js'
 import { body, validationResult } from 'express-validator'
+import { authenticateToken } from '../middlewares/authenticateToken.js'
+
 
 const router = Router()
 
-router.get('/', (request, response) => {
+router.get('/', authenticateToken, (request, response) => {
     // View all machines
 })
 
-router.get('/new', (request, response) => {
+router.get('/new', authenticateToken, (request, response) => {
     response.render('machines/new')
 })
 
 router.post('/',
+    authenticateToken,
     body('brand').isString().isLength({ max: 256 }).trim().escape(),
     body('name').isString().isLength({ max: 256 }).trim().escape(),
     async (request, response) => {
@@ -34,7 +37,7 @@ router.post('/',
     }
 )
 
-router.get('/:id', async (request, response) => {
+router.get('/:id', authenticateToken, async (request, response) => {
     try {
         const machine = await Machine.findOne( { id: request.params.id }).exec()
         if (!machine) throw new Error ('Machine not found.')
