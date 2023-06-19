@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <%- include('../includes/head') %>
-  <body>
+<%- include('../includes/row-opening') %>
+  <%- include('../includes/nav') %>
+  <div class="col-6 col-s-9">
     <a href="/shots/new">New Shot</a>
     <h2>Latest Shots</h2>
     <% shots.forEach(shot => { %>
@@ -16,6 +15,6 @@
       </ul>
     <% }) %>
     </ul>
-  </body>
-  <%- include('../includes/footer') %>
-</html>
+  </div>
+  <%- include('../includes/aside-quote') %>
+<%- include('../includes/row-close') %>

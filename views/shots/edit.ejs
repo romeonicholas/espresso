@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <%- include('../includes/head') %>
-  <body>
+<%- include('../includes/row-opening') %>
+  <%- include('../includes/nav') %>
+  <div class="col-6 col-s-9">
     <h2>Add Shots</h2>
     <form action="/shots/<%= shot.id %>" method="POST">
         <input type="number" name="id" placeholder="id" value=<%= shot.id %> required min="0" step="1" /><br />
@@ -12,6 +11,6 @@
         <textarea name="comments" placeholder="comments" ><%= shot.comments %></textarea><br />
         <button>Submit</button>
     </form>
-  </body>
-  <%- include('../includes/footer') %>
-</html>
+  </div>
+  <%- include('../includes/aside-quote') %>
+<%- include('../includes/row-close') %>
