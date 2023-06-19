@@ -12,7 +12,7 @@ router.get('/new', authenticateToken, async (request, response) => {
 
 router.get('/:id', authenticateToken, async (request, response) => {
     try {
-        const bean = await Bean.findOne( { id: request.params.id }).exec()
+        const bean = await Bean.findById(request.params.id).exec()
         if (!bean) throw new Error ('Beans not found.')
 
         response.render('beans/show', { bean: bean })
@@ -31,13 +31,13 @@ router.post('/',
             validationResult(request).throw()
 
             const bean = new Bean({
-                id: Math.floor(Math.random() * 100000),
                 brand: request.body.brand,
-                variety: request.body.variety
+                variety: request.body.variety,
+                roastDate: request.body.roastDate
             })
             await bean.save()
 
-            response.redirect(`beans/${bean.id}`)
+            response.redirect(`beans/${bean._id.toString()}`)
         } catch(error) {
             console.log(error)
             response.send("These beans failed to be created.")
