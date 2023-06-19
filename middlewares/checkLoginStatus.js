@@ -3,6 +3,7 @@ import JSONWebToken from 'jsonwebtoken'
 
 export const checkLoginStatus = (request, response, next) => {
     const token = request.cookies.access_token
+    if (!token) { return next() }
     const data = JSONWebToken.verify(token, SECRET_JWT_CODE)
     response.locals.username = data.username
     return next()
