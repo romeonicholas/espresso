@@ -5,7 +5,7 @@
 body {
     margin: 0px;
     padding: 0px;
-  }
+}
 
 .row::after {
     content: "";
@@ -39,6 +39,10 @@ html {
     background-color: #faf8f6;
     color: #513928;
     max-height: 40px;
+}
+
+.header h1 {
+    font-size: 1.3rem;
 }
 
 .header.dark-theme {
@@ -172,6 +176,7 @@ html {
     text-align: center;
     font-size: 12px;
     padding: 15px;
+    height:30px;
 }
 
 .footer.dark-theme {
@@ -185,11 +190,11 @@ html {
 
 @media only screen and (min-width: 600px) {
     .row {
-        max-height: 600px;
+        height: 90vh;
     }
 
     .hidden-mobile {
-        display: block;
+        display: inline-block;
     }
 
     .col-s-1 {

@@ -2,7 +2,7 @@
     <h1>Your Best Shots</h1>
     <span class="header-links">
         <% if (typeof username !== 'undefined') { %>
-            <strong><%= username %></strong> (<a href="/users/logout">log out</a>)&nbsp;&nbsp;
+            <span class="hidden-mobile"><strong><%= username %></strong> (<a href="/users/logout">log out</a>)</span>&#32;&#32;
         <% } else { %>
             <a href="/users/new">Sign Up</a>&nbsp;&nbsp;
             <a href="/users/login">Log In</a>&nbsp;&nbsp;
