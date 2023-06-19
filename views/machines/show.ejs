@@ -2,9 +2,8 @@
   <%- include('../includes/nav') %>
   <div class="col-6 col-s-9">
     <a href="/machines/new">New Machine</a>
-    <h2>Machine <%= machine.id %></h2>
+    <h2>Machine by <%= machine.brand %></h2>
     <p><a href="/machines/<%= machine.id %>/edit">Edit</a> <a href="/machines/<%= machine.id %>/delete">Delete</a></p>
-    <p>Brand: <%= machine.brand %></p>
     <p>Name: <%= machine.name %></p>
   </div>
   <%- include('../includes/aside-quote') %>

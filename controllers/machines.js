@@ -23,13 +23,12 @@ router.post('/',
             validationResult(request).throw()
 
             const machine = new Machine({
-                id: Math.floor(Math.random() * 100000),
                 brand: request.body.brand,
                 name: request.body.name
             })
             await machine.save()
 
-            response.redirect(`machines/${machine.id}`)
+            response.redirect(`machines/${machine._id.toString()}`)
         } catch(error) {
             console.log(error)
             response.send("This machine failed to be created.")
@@ -39,7 +38,7 @@ router.post('/',
 
 router.get('/:id', authenticateToken, async (request, response) => {
     try {
-        const machine = await Machine.findOne( { id: request.params.id }).exec()
+        const machine = await Machine.findById(request.params.id).exec()
         if (!machine) throw new Error ('Machine not found.')
 
         response.render('machines/show', { machine: machine })
