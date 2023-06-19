@@ -20,8 +20,4 @@ router.get('/', async (request, response) => {
     
 })
 
-router.get('/logout', authenticateToken, (request, response) => {
-    response.send('You are logged out.')
-})
-
 export default router
