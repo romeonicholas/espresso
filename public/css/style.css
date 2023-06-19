@@ -196,6 +196,10 @@ html {
         display: inline-block;
     }
 
+    .menu li {
+        max-width: 200px;
+    }
+
     .col-s-1 {
         width: 8.33%;
     }
