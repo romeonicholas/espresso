@@ -1,0 +1,16 @@
+<%- include('../../includes/row-opening') %>
+  <%- include('../../includes/nav') %>
+  <div class="col-6 col-s-9">
+    <h2>Add Machine to My Account</h2>
+    <form action="/users/me/machines" method="POST">
+        <label for="machines">Select a machine:</label>
+        <select name="machines" id="machines" required /><br />
+        <% machines.forEach(machine => { %>
+            <option value="<%= machine._id.toString() %>"><%= machine.brand %> <%= machine.name %></option>
+        <% }) %>
+        </select>
+        <button>Submit</button>
+    </form>
+  </div>
+  <%- include('../../includes/aside-quote') %>
+<%- include('../../includes/row-close') %>

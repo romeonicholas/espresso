@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { User } from '../models/user.js'
 import { Shot } from '../models/shot.js'
+import { Machine } from '../models/machine.js'
 import { SECRET_JWT_CODE, JWT_EXPIRES_IN } from '../config/app.js'
 import { authenticateToken } from '../middlewares/authenticateToken.js'
 import { checkLoginStatus } from '../middlewares/checkLoginStatus.js'
@@ -24,6 +25,17 @@ router.get('/me', authenticateToken, async (request, response) => {
     } catch(error) {
         console.error(error)
         response.send("An error ocurred while loading the dashboard.")
+    }
+})
+
+router.get('/me/machines/new', authenticateToken, async (request, response) => {
+    try {
+        const machines = await Machine.find({}).exec()
+        console.log(machines)
+        response.render('users/machines/new', { machines: machines })
+    } catch(error) {
+        console.error(error)
+        response.send("An error ocurred.")
     }
 })
 
