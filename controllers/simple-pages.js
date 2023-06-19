@@ -1,11 +1,12 @@
 import { Router } from 'express'
 import got from 'got';
 import { authenticateToken } from '../middlewares/authenticateToken.js'
+import { checkLoginStatus } from '../middlewares/checkLoginStatus.js';
 
 
 const router = Router()
 
-router.get('/', async (request, response) => {
+router.get('/', checkLoginStatus, async (request, response) => {
     try {
         const coffeePhotoJSON = await got.get('https://coffee.alexflipnote.dev/random.json').json()
         const coffeePhotoLink = coffeePhotoJSON.file
