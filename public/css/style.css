@@ -6,10 +6,6 @@ body {
     margin: 0px;
     padding: 0px;
   }
-  
-.row {
-    max-height: 600px;
-}
 
 .row::after {
     content: "";
@@ -121,7 +117,10 @@ html {
 }
 
 @media only screen and (min-width: 600px) {
-
+    .row {
+        max-height: 600px;
+    }
+    
     .hidden-mobile {
         display: block;
     }
