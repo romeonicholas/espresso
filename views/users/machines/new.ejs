@@ -3,8 +3,8 @@
   <div class="col-6 col-s-9">
     <h2>Add Machine to My Account</h2>
     <form action="/users/me/machines" method="POST">
-        <label for="machines">Select a machine:</label>
-        <select name="machines" id="machines" required /><br />
+        <label for="machineId">Select a machine:</label>
+        <select name="machineId" required /><br />
         <% machines.forEach(machine => { %>
             <option value="<%= machine._id.toString() %>"><%= machine.brand %> <%= machine.name %></option>
         <% }) %>

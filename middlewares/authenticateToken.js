@@ -8,7 +8,7 @@ export const authenticateToken = (request, response, next) => {
     }
     try {
         const data = JSONWebToken.verify(token, SECRET_JWT_CODE)
-        response.locals._id = data._id
+        response.locals.id = data.id
         response.locals.username = data.username
         response.locals.prefersDarkMode = data.prefersDarkMode
         return next()

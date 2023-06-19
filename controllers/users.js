@@ -31,12 +31,26 @@ router.get('/me', authenticateToken, async (request, response) => {
 router.get('/me/machines/new', authenticateToken, async (request, response) => {
     try {
         const machines = await Machine.find({}).exec()
-        console.log(machines)
         response.render('users/machines/new', { machines: machines })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred.")
     }
+})
+
+router.post('/me/machines', 
+    authenticateToken, 
+    body('machineId').isString().isLength({ min: 24, max: 24 }).trim().escape(),
+    async (request, response) => {
+        try {
+            validationResult(request).throw()
+            const user = await User.findById(response.locals.id).exec()
+            user.machines.addToSet(request.body.machineId)
+            await user.save()
+        } catch (error) {
+            console.error(error)
+            response.send("Machine failed to be added to your account")
+        }
 })
 
 router.post(
