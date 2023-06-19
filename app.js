@@ -10,6 +10,7 @@ import './config/database.js'
 import simpleRoutes from './controllers/simple-pages.js'
 import shotsRoutes from './controllers/shots.js'
 import machinesRoutes from './controllers/machines.js'
+import grindersRoutes from './controllers/grinders.js'
 import beansRoutes from './controllers/beans.js'
 import usersRoutes from './controllers/users.js'
 
@@ -27,6 +28,7 @@ app.use(cookieParser())
 app.use(simpleRoutes)
 app.use('/shots', shotsRoutes)
 app.use('/machines', machinesRoutes)
+app.use('/grinders', grindersRoutes)
 app.use('/beans', beansRoutes)
 app.use('/users', usersRoutes)
 

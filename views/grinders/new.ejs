@@ -1,0 +1,12 @@
+<%- include('../includes/row-opening') %>
+  <%- include('../includes/nav') %>
+  <div class="col-6 col-s-9">
+    <h2>Add Grinder</h2>
+    <form action="/grinders" method="POST">
+        <input type="text" name="brand" placeholder="grinder brand" required /><br />
+        <input type="text" name="name" placeholder="grinder name" required /><br />
+        <button>Submit</button>
+    </form>
+  </div>
+  <%- include('../includes/aside-quote') %>
+<%- include('../includes/row-close') %>
