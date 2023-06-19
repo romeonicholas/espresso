@@ -75,10 +75,8 @@ router.post(
     }
 )
 
-// This is what you were working on. You cut this out of the simple pages route,
-// and you wanted it here to destroy the user token, and redirect to the homepage
 router.get('/logout', authenticateToken, (request, response) => {
-    response.clearCookie('access_token').redirect('/')
+    response.clearCookie('access_token').redirect('/users/login')
 })
 
 export default router
