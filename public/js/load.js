@@ -1,12 +1,6 @@
-console.log('loaded')
+const btn = document.querySelector('.slider')
 
-const btn = document.querySelector('.slider');
 btn.addEventListener('click', function() {
-    document.querySelector('.header').classList.toggle('dark-theme')
-    document.querySelector('.footer').classList.toggle('dark-theme')
-    document.querySelector('.aside').classList.toggle('dark-theme')
-    document.querySelector('.menu').classList.toggle('dark-theme')
-    document.querySelector('.main').classList.toggle('dark-theme')
-
-    console.log('Updated color theme')
+    document.querySelectorAll('.header, .footer, .aside, .menu, .main')
+        .forEach((element) => { element.classList.toggle('dark-theme') })
 })
