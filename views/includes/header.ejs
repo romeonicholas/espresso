@@ -1,11 +1,15 @@
 <header class="header">
     <h1>Your Best Shots</h1>
-    <% if (typeof username !== 'undefined') { %>
-        <p><strong><%= username %></strong> (<a href="/users/logout">log out</a>)</p>
-    <% } else { %>
-        <span>
+    <span class="header-links">
+        <% if (typeof username !== 'undefined') { %>
+            <strong><%= username %></strong> (<a href="/users/logout">log out</a>)&nbsp;&nbsp;
+        <% } else { %>
             <a href="/users/new">Sign Up</a>&nbsp;&nbsp;
-            <a href="/users/login">Log In</a>
-        </span>
-    <% } %>
+            <a href="/users/login">Log In</a>&nbsp;&nbsp;
+        <% } %>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+    </span>
 </header>

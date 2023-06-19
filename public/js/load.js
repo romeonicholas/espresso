@@ -1,6 +1,6 @@
 console.log('loaded')
 
-const btn = document.querySelector('.btn-toggle');
+const btn = document.querySelector('.slider');
 btn.addEventListener('click', function() {
     document.querySelector('.header').classList.toggle('dark-theme')
     document.querySelector('.footer').classList.toggle('dark-theme')
