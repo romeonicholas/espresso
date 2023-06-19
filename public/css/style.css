@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+.row {
+    max-height: 600px;
+}
+
 .row::after {
     content: "";
     clear: both;
@@ -11,6 +15,11 @@
 [class*="col-"] {
     float: left;
     padding: 15px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 html {

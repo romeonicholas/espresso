@@ -2,7 +2,6 @@
 <html lang="en">
   <%- include('../includes/head') %>
   <body>
-    <%- include('../includes/header') %>
     <h2>Add Shots</h2>
     <form action="/shots/<%= shot.id %>" method="POST">
         <input type="number" name="id" placeholder="id" value=<%= shot.id %> required min="0" step="1" /><br />
