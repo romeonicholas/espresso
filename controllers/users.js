@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { User } from '../models/user.js'
 import { SECRET_JWT_CODE, JWT_EXPIRES_IN } from '../config/app.js'
 import { authenticateToken } from '../middlewares/authenticateToken.js'
+import { checkLoginStatus } from '../middlewares/checkLoginStatus.js'
 import { body, validationResult } from 'express-validator'
 import bcrypt from 'bcrypt'
 import JSONWebToken from 'jsonwebtoken'
@@ -12,7 +13,7 @@ router.get('/', authenticateToken, (request, response) => {
     response.render('users/')
 })
 
-router.get('/new', (request, response) => {
+router.get('/new', checkLoginStatus, (request, response) => {
     response.render('users/new')
 })
 
@@ -43,7 +44,7 @@ router.post(
     }
 )
 
-router.get('/login', (request, response) => {
+router.get('/login', checkLoginStatus, (request, response) => {
     response.render('users/login')
 })
 
