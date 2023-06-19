@@ -10,6 +10,7 @@ export const authenticateToken = (request, response, next) => {
         const data = JSONWebToken.verify(token, SECRET_JWT_CODE)
         response.locals._id = data._id
         response.locals.username = data.username
+        response.locals.prefersDarkMode = data.prefersDarkMode
         return next()
     } catch {
         return response.redirect('/users/login')
