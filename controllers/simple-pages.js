@@ -13,12 +13,11 @@ router.get('/', checkLoginStatus, async (request, response) => {
         if(!coffeePhotoLink) {
             coffeePhotoLink = 'https://sc.mogicons.com/c/177.jpg'
         }
-        response.render('index', { coffeePhotoLink: coffeePhotoLink})
+        response.render('index', { coffeePhotoLink: coffeePhotoLink })
     } catch(error) {
         console.error(error)
-        response.send("An error ocurred while loading the dashboard.")
+        response.send("An error ocurred while loading the homepage.")
     }
-    
 })
 
 export default router

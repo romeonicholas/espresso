@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { User } from '../models/user.js'
+import { Shot } from '../models/shot.js'
 import { SECRET_JWT_CODE, JWT_EXPIRES_IN } from '../config/app.js'
 import { authenticateToken } from '../middlewares/authenticateToken.js'
 import { checkLoginStatus } from '../middlewares/checkLoginStatus.js'
@@ -15,6 +16,16 @@ router.get('/', authenticateToken, (request, response) => {
 
 router.get('/new', checkLoginStatus, (request, response) => {
     response.render('users/new')
+})
+
+router.get('/me', authenticateToken, async (request, response) => {
+    try {
+        response.send('Temporary response to dashboard url')
+    } catch(error) {
+        console.error(error)
+        response.send("An error ocurred while loading the dashboard.")
+    }
+    
 })
 
 router.post(
