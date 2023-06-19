@@ -3,6 +3,9 @@
     <% if (typeof username !== 'undefined') { %>
         <p><strong><%= username %></strong> (<a href="/users/logout">log out</a>)</p>
     <% } else { %>
-        <p><a href="/users/login">Log In</a></p>
+        <span>
+            <a href="/users/new">Sign Up</a>&nbsp;&nbsp;
+            <a href="/users/login">Log In</a>
+        </span>
     <% } %>
 </header>
