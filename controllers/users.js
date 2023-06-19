@@ -25,7 +25,6 @@ router.get('/me', authenticateToken, async (request, response) => {
         console.error(error)
         response.send("An error ocurred while loading the dashboard.")
     }
-    
 })
 
 router.post(
@@ -42,11 +41,11 @@ router.post(
                     hashedPassword: hash,
                 })
                 await user.save()
-                const token = JSONWebToken.sign({ id: user._id }, SECRET_JWT_CODE, {
+                const token = JSONWebToken.sign({ id: user._id, username: user.username }, SECRET_JWT_CODE, {
                     expiresIn: JWT_EXPIRES_IN,
                 });
-
-                response.redirect('/')
+                
+                response.cookie("access_token", token, { httpOnly: true }).redirect('/users/me');
             });
         } catch (error) {
             console.log(error)
@@ -74,8 +73,7 @@ router.post(
                         expiresIn: JWT_EXPIRES_IN,
                     });
 
-                    response.cookie("access_token", token, { httpOnly: true })
-                        .redirect('/users');
+                    response.cookie("access_token", token, { httpOnly: true }).redirect('/users/me');
                 } else {
                     response.redirect('/')
                 }

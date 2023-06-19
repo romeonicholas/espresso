@@ -8,6 +8,7 @@ export const authenticateToken = (request, response, next) => {
     }
     try {
         const data = JSONWebToken.verify(token, SECRET_JWT_CODE)
+        response.locals._id = data._id
         response.locals.username = data.username
         return next()
     } catch {
