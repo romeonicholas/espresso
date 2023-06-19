@@ -10,7 +10,7 @@ router.get('/', authenticateToken, async (request, response) => {
     try {
         const shots = await Shot.find({}).exec()
         console.print(request.body)
-        response.render('shots/index', { shots: shots, username: request.body.username })
+        response.render('shots/index', { shots: shots })
     } catch(error) {
         console.error(error)
         response.render('shots/index', { shots: [] })

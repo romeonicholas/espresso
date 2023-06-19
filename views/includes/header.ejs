@@ -1,6 +1,6 @@
 <header class="header">
     <h1>Your Best Shots</h1>
-    <% if(username) { %>
+    <% if (typeof username !== 'undefined') { %>
         <p><strong><%= username %></strong></p>
     <% } else { %>
         <p><a href="/users/login">Log In</a></p>

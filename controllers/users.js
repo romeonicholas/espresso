@@ -9,7 +9,7 @@ import JSONWebToken from 'jsonwebtoken'
 const router = Router()
 
 router.get('/', authenticateToken, (request, response) => {
-    response.render('users/', { username: request.username })
+    response.render('users/')
 })
 
 router.get('/new', (request, response) => {
@@ -44,7 +44,7 @@ router.post(
 )
 
 router.get('/login', (request, response) => {
-    response.render('users/login', { username: request.body.username })
+    response.render('users/login')
 })
 
 router.post(

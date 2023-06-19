@@ -8,7 +8,7 @@ export const authenticateToken = (request, response, next) => {
     }
     try {
         const data = JSONWebToken.verify(token, SECRET_JWT_CODE)
-        request.username = data.username
+        response.locals.username = data.username
         return next()
     } catch {
         return response.redirect('/users/login')
