@@ -45,14 +45,14 @@ router.post(
                 machine: request.body.machineId,
                 grinder: request.body.grinderId,
                 comments: request.body.comments,
-                favorite: request.body.favorite.checked
+                favorite: (request.body.favorite === 'true') ? 'true' : 'false'
             })
             await shot.save()
 
             const user = await User.findById(response.locals.id).exec()
             user.shots.addToSet(shot)
             await user.save()
-            
+
             response.redirect(`shots/${shot.id}`)
         } catch(error) {
             console.log(error)
