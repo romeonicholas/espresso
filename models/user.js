@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
     prefersDarkMode: { type: Boolean, default: false },
     machines: [{ type: Schema.Types.ObjectId, ref: 'Machine' }],
     beans: [{ type: Schema.Types.ObjectId, ref: 'Bean' }],
+    grinders: [{ type: Schema.Types.ObjectId, ref: 'Grinder' }],
 })
 
 userSchema.methods.comparePassword = function(password) {

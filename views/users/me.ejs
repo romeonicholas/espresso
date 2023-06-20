@@ -4,18 +4,24 @@
     <h3>My Last Shot</h3>
     <p>Shot here</p>
     <h3>My Beans</h2>
+      <a href="/users/me/beans/new">Add beans to my account</a>
       <ul>
         <% user.beans.forEach(bean => { %>
           <li><%= bean.brand %> <%= bean.variety %> (<a href='/beans/<%= bean.id %>/delete'>remove</a>)</li>
         <% }) %>
       </ul>
     <h3>My Machines</h2>
+      <a href="/users/me/machines/new">Add machines to my account</a>
       <ul>
         <% user.machines.forEach(machine => { %>
           <li><%= machine.brand %> <%= machine.name %> (<a href='/machines/<%= machine.id %>/delete'>remove</a>)</li>
         <% }) %>
       </ul>
     <h3>My Grinders</h2>
+      <a href="/users/me/grinders/new">Add grinders to my account</a>
+      <% user.grinders.forEach(grinder => { %>
+        <li><%= grinder.brand %> <%= grinder.name %> (<a href='/machines/<%= grinder.id %>/delete'>remove</a>)</li>
+      <% }) %>
       
   </div>
   <%- include('../includes/aside-quote') %>

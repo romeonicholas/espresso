@@ -3,6 +3,7 @@ import { User } from '../models/user.js'
 import { Shot } from '../models/shot.js'
 import { Bean } from '../models/bean.js'
 import { Machine } from '../models/machine.js'
+import { Grinder } from '../models/grinder.js'
 import { SECRET_JWT_CODE, JWT_EXPIRES_IN } from '../config/app.js'
 import { authenticateToken } from '../middlewares/authenticateToken.js'
 import { checkLoginStatus } from '../middlewares/checkLoginStatus.js'
@@ -22,7 +23,10 @@ router.get('/new', checkLoginStatus, (request, response) => {
 
 router.get('/me', authenticateToken, async (request, response) => {
     try {
-        const user = await User.findById(response.locals.id).populate('machines').populate('beans').exec()
+        const user = await User.findById(response.locals.id)
+            .populate('machines')
+            .populate('beans')
+            .populate('grinders').exec()
         response.render('users/me', { user: user })
     } catch(error) {
         console.error(error)
@@ -63,6 +67,32 @@ router.post('/me/machines',
         } catch (error) {
             console.error(error)
             response.send("Machine failed to be added to your account")
+        }
+})
+
+router.get('/me/grinders/new', authenticateToken, async (request, response) => {
+    try {
+        const grinders = await Grinder.find({}).exec()
+        response.render('users/grinders/new', { grinders: grinders })
+    } catch(error) {
+        console.error(error)
+        response.send("An error ocurred.")
+    }
+})
+
+router.post('/me/grinders', 
+    authenticateToken, 
+    body('grinderId').isString().isLength({ min: 24, max: 24 }).trim().escape(),
+    async (request, response) => {
+        try {
+            validationResult(request).throw()
+            const user = await User.findById(response.locals.id).exec()
+            user.grinders.addToSet(request.body.grinderId)
+            await user.save()
+            response.redirect('./')
+        } catch (error) {
+            console.error(error)
+            response.send("Grinder failed to be added to your account")
         }
 })
 
