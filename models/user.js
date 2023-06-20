@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
     username: { type: String, unique: true, required: true },
     hashedPassword: { type: String, required: true },
     prefersDarkMode: { type: Boolean, default: false },
-    machines: [{ type: Schema.Types.ObjectId, ref: 'Machine' }]
+    machines: [{ type: Schema.Types.ObjectId, ref: 'Machine' }],
+    beans: [{ type: Schema.Types.ObjectId, ref: 'Bean' }],
 })
 
 userSchema.methods.comparePassword = function(password) {

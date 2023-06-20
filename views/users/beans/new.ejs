@@ -1,0 +1,16 @@
+<%- include('../../includes/row-opening') %>
+  <%- include('../../includes/nav') %>
+  <div class="col-6 col-s-9">
+    <h2>Add Beans to My Account</h2>
+    <form action="/users/me/beans" method="POST">
+        <label for="beanId">Select beans:</label>
+        <select name="beanId" required /><br />
+        <% beans.forEach(bean => { %>
+            <option value="<%= bean._id.toString() %>"><%= bean.brand %> <%= bean.variety %></option>
+        <% }) %>
+        </select>
+        <button>Submit</button>
+    </form>
+  </div>
+  <%- include('../../includes/aside-quote') %>
+<%- include('../../includes/row-close') %>

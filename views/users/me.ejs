@@ -4,7 +4,11 @@
     <h3>My Last Shot</h3>
     <p>Shot here</p>
     <h3>My Beans</h2>
-    <p>Beans here</p>
+      <ul>
+        <% user.beans.forEach(bean => { %>
+          <li><%= bean.brand %> <%= bean.variety %> (<a href='/beans/<%= bean.id %>/delete'>remove</a>)</li>
+        <% }) %>
+      </ul>
     <h3>My Machines</h2>
       <ul>
         <% user.machines.forEach(machine => { %>

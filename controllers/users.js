@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { User } from '../models/user.js'
 import { Shot } from '../models/shot.js'
+import { Bean } from '../models/bean.js'
 import { Machine } from '../models/machine.js'
 import { SECRET_JWT_CODE, JWT_EXPIRES_IN } from '../config/app.js'
 import { authenticateToken } from '../middlewares/authenticateToken.js'
@@ -21,7 +22,8 @@ router.get('/new', checkLoginStatus, (request, response) => {
 
 router.get('/me', authenticateToken, async (request, response) => {
     try {
-        const user = await User.findById(response.locals.id).populate('machines').exec()
+        const user = await User.findById(response.locals.id).populate('machines').populate('beans').exec()
+        console.log(user)
         response.render('users/me', { user: user })
     } catch(error) {
         console.error(error)
@@ -59,10 +61,36 @@ router.post('/me/machines',
             const user = await User.findById(response.locals.id).exec()
             user.machines.addToSet(request.body.machineId)
             await user.save()
-            response.redirect('machines')
+            response.redirect('./')
         } catch (error) {
             console.error(error)
             response.send("Machine failed to be added to your account")
+        }
+})
+
+router.get('/me/beans/new', authenticateToken, async (request, response) => {
+    try {
+        const beans = await Bean.find({}).exec()
+        response.render('users/beans/new', { beans: beans })
+    } catch(error) {
+        console.error(error)
+        response.send("An error ocurred.")
+    }
+})
+
+router.post('/me/beans', 
+    authenticateToken, 
+    body('beanId').isString().isLength({ min: 24, max: 24 }).trim().escape(),
+    async (request, response) => {
+        try {
+            validationResult(request).throw()
+            const user = await User.findById(response.locals.id).exec()
+            user.beans.addToSet(request.body.beanId)
+            await user.save()
+            response.redirect('./')
+        } catch (error) {
+            console.error(error)
+            response.send("Beans failed to be added to your account")
         }
 })
 
