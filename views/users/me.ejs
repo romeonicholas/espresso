@@ -1,0 +1,18 @@
+<%- include('../includes/row-opening') %>
+  <%- include('../includes/nav') %>
+  <div class="col-6 col-s-9">
+    <h3>My Last Shot</h3>
+    <p>Shot here</p>
+    <h3>My Beans</h2>
+    <p>Beans here</p>
+    <h3>My Machines</h2>
+      <ul>
+        <% user.machines.forEach(machine => { %>
+          <li><%= machine.brand %> <%= machine.name %> (<a href='/machines/<%= machine.id %>/delete'>remove</a>)</li>
+        <% }) %>
+      </ul>
+    <h3>My Grinders</h2>
+      
+  </div>
+  <%- include('../includes/aside-quote') %>
+<%- include('../includes/row-close') %>

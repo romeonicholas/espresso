@@ -21,7 +21,8 @@ router.get('/new', checkLoginStatus, (request, response) => {
 
 router.get('/me', authenticateToken, async (request, response) => {
     try {
-        response.send('Temporary response to dashboard url')
+        const user = await User.findById(response.locals.id).populate('machines').exec()
+        response.render('users/me', { user: user })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred while loading the dashboard.")
