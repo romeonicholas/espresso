@@ -32,12 +32,15 @@ router.post(
             validationResult(request).throw()
 
             const shot = new Shot({
-                id: Math.floor(Math.random() * 100000),
-                beans: request.body.beans,
-                machine: request.body.machine,
-                grindsWeight: request.body.grindsWeight,
-                shotsWeight: request.body.shotsWeight,
-                comments: request.body.comments
+                grindsWeightGrams: request.body.grindsWeightGrams,
+                shotsWeightGrams: request.body.shotsWeightGrams,
+                durationSeconds: request.body.durationSeconds,
+                user: response.locals.id,
+                bean: request.body.beanId,
+                machine: request.body.machineId,
+                grinder: request.body.grinderId,
+                comments: request.body.comments,
+                favorite: request.body.favorite
             })
             await shot.save()
 
