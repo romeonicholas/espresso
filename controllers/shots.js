@@ -2,6 +2,7 @@ import { Router } from 'express'
 import { Shot } from '../models/shot.js'
 import { body, validationResult } from 'express-validator'
 import { authenticateToken } from '../middlewares/authenticateToken.js'
+import { User } from '../models/user.js'
 
 
 const router = Router()
@@ -16,8 +17,12 @@ router.get('/', authenticateToken, async (request, response) => {
     }
 })
 
-router.get('/new', authenticateToken, (request, response) => {
-    response.render('shots/new')
+router.get('/new', authenticateToken, async (request, response) => {
+    const user = await User.findById(response.locals.id)
+        .populate('machines')
+        .populate('beans')
+        .populate('grinders').exec()
+    response.render('shots/new', { user: user })
 })
 
 router.post(
@@ -40,7 +45,7 @@ router.post(
                 machine: request.body.machineId,
                 grinder: request.body.grinderId,
                 comments: request.body.comments,
-                favorite: request.body.favorite
+                favorite: request.body.favorite.checked
             })
             await shot.save()
 
@@ -54,7 +59,7 @@ router.post(
 
 router.get('/:id', authenticateToken, async (request, response) => {
     try {
-        const shot = await Shot.findOne( { id: request.params.id }).exec()
+        const shot = await Shot.findById(request.params.id).exec()
         if (!shot) throw new Error ('Shot not found.')
 
         response.render('shots/show', { shot: shot })
