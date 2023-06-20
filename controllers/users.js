@@ -23,7 +23,6 @@ router.get('/new', checkLoginStatus, (request, response) => {
 router.get('/me', authenticateToken, async (request, response) => {
     try {
         const user = await User.findById(response.locals.id).populate('machines').populate('beans').exec()
-        console.log(user)
         response.render('users/me', { user: user })
     } catch(error) {
         console.error(error)
@@ -35,7 +34,6 @@ router.get('/me/machines', authenticateToken, async (request, response) => {
     try {
         const user = await User.findById(response.locals.id).populate('machines').exec()
         response.send(user.machines)
-        // response.render('users/machines', { machines: user.machines })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred.")
@@ -115,7 +113,7 @@ router.post(
                 response.cookie("access_token", token, { httpOnly: true }).redirect('/users/me');
             });
         } catch (error) {
-            console.log(error)
+            console.error(error)
             response.send("User failed to be created")
         }
     }
