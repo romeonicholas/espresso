@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     machines: [{ type: Schema.Types.ObjectId, ref: 'Machine' }],
     beans: [{ type: Schema.Types.ObjectId, ref: 'Bean' }],
     grinders: [{ type: Schema.Types.ObjectId, ref: 'Grinder' }],
+    shots: [{ type: Schema.Types.ObjectId, ref: 'Shot' }],
 })
 
 userSchema.methods.comparePassword = function(password) {

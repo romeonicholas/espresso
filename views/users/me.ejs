@@ -2,7 +2,12 @@
   <%- include('../includes/nav') %>
   <div class="col-6 col-s-9">
     <h3>My Last Shot</h3>
-    <p>Shot here</p>
+      <a href="/shots/new">Pull a new shot!</a>
+      <ul>
+        <% user.shots.forEach(shot => { %>
+          <li><%= shot.date %> <%= shot.shotsWeightGrams %> (<a href='/shots/<%= shot.id %>/delete'>remove</a>)</li>
+        <% }) %>
+      </ul>
     <h3>My Beans</h2>
       <a href="/users/me/beans/new">Add beans to my account</a>
       <ul>

@@ -26,7 +26,8 @@ router.get('/me', authenticateToken, async (request, response) => {
         const user = await User.findById(response.locals.id)
             .populate('machines')
             .populate('beans')
-            .populate('grinders').exec()
+            .populate('grinders')
+            .populate('shots').exec()
         response.render('users/me', { user: user })
     } catch(error) {
         console.error(error)
