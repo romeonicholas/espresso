@@ -27,9 +27,10 @@ router.post('/unpublished',
     authenticateToken, 
     async (request, response) => {
         try {
-            const user = await User.findById(response.locals.id).exec()
-            await user.save()
-            response.redirect('/unpublished')
+            console.log(request.body)
+            // const user = await User.findById(response.locals.id).exec()
+            // await user.save()
+            response.redirect('/admin/unpublished')
         } catch (error) {
             console.error(error)
             response.send("Failed to publish resources")
