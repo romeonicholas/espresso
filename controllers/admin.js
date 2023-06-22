@@ -11,25 +11,36 @@ router.get('/unpublished', authenticateToken, async (request, response) => {
     if (!response.locals.isAdmin) {
         response.redirect('/')
     }
-    const unpublishedBeans = await Bean.find( { isPublished: false }).exec()
-    const unpublishedMachines = await Machine.find( { isPublished: false }).exec()
-    const unpublishedGrinders = await Grinder.find( { isPublished: false }).exec()
-
-    response.render('admin/unpublished', 
-    { 
-        unpublishedBeans: unpublishedBeans,
-        unpublishedMachines: unpublishedMachines,
-        unpublishedGrinders: unpublishedGrinders
-    })
+    try {
+        const unpublishedBeans = await Bean.find( { isPublished: false }).exec()
+        const unpublishedMachines = await Machine.find( { isPublished: false }).exec()
+        const unpublishedGrinders = await Grinder.find( { isPublished: false }).exec()
+    
+        response.render('admin/unpublished', 
+        { 
+            unpublishedBeans: unpublishedBeans,
+            unpublishedMachines: unpublishedMachines,
+            unpublishedGrinders: unpublishedGrinders
+        })
+    } catch (error) {
+        console.error(error)
+        response.send("Failed to get unpublished resources")
+    }
+    
 })
 
 router.post('/unpublished', 
     authenticateToken, 
     async (request, response) => {
+        if (!response.locals.isAdmin) {
+            response.redirect('/')
+        }
+
         try {
-            console.log(request.body)
-            // const user = await User.findById(response.locals.id).exec()
-            // await user.save()
+            await Bean.updateMany( { _id: {$in : request.body.beans }}, { isPublished: true})
+            await Machine.updateMany( { _id: {$in : request.body.machines }}, { isPublished: true})
+            await Grinder.updateMany( { _id: {$in : request.body.grinders }}, { isPublished: true})
+
             response.redirect('/admin/unpublished')
         } catch (error) {
             console.error(error)

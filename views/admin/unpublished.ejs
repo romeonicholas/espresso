@@ -7,19 +7,19 @@
         <form action="/admin/unpublished" method="POST">
           <p>Select beans to publish: </p>
           <% unpublishedBeans.forEach(bean => { %>
-            <input type="checkbox" name="bean" value="<%= bean._id %>">
+            <input type="checkbox" name="beans" value="<%= bean._id %>">
             <label for="<%= bean.id %>"><%= bean.brand %> || <%= bean.variety %></label><br />
           <% }) %>
 
           <p>Select machines to publish: </p>
           <% unpublishedMachines.forEach(machine => { %>
-            <input type="checkbox" name="machine" value="<%= machine._id %>">
+            <input type="checkbox" name="machines" value="<%= machine._id %>">
             <label for="<%= machine.id %>"><%= machine.brand %> || <%= machine.name %></label><br />
           <% }) %>
 
           <p>Select grinders to publish: </p>
           <% unpublishedGrinders.forEach(grinder => { %>
-            <input type="checkbox" name="grinder" value="<%= grinder._id %>">
+            <input type="checkbox" name="grinders" value="<%= grinder._id %>">
             <label for="<%= grinder.id %>"><%= grinder.brand %> || <%= grinder.name %></label><br />
           <% }) %>
           <br />
