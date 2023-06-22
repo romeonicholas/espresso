@@ -47,7 +47,7 @@ router.get('/me/machines', authenticateToken, async (request, response) => {
 
 router.get('/me/machines/new', authenticateToken, async (request, response) => {
     try {
-        const machines = await Machine.find({}).exec()
+        const machines = await Machine.find({ isPublished: true }).exec()
         response.render('users/machines/new', { machines: machines })
     } catch(error) {
         console.error(error)
@@ -73,7 +73,7 @@ router.post('/me/machines',
 
 router.get('/me/grinders/new', authenticateToken, async (request, response) => {
     try {
-        const grinders = await Grinder.find({}).exec()
+        const grinders = await Grinder.find({ isPublished: true }).exec()
         response.render('users/grinders/new', { grinders: grinders })
     } catch(error) {
         console.error(error)
@@ -99,7 +99,7 @@ router.post('/me/grinders',
 
 router.get('/me/beans/new', authenticateToken, async (request, response) => {
     try {
-        const beans = await Bean.find({}).exec()
+        const beans = await Bean.find({ isPublished: true }).exec()
         response.render('users/beans/new', { beans: beans })
     } catch(error) {
         console.error(error)
