@@ -166,8 +166,8 @@ router.get('/login', checkLoginStatus, (request, response) => {
 
 router.post(
     '/login',
-    body('username').isString().isLength({ max: 36 }).trim().escape(),
-    body('password').isString().isLength({ max: 256 }).trim().escape(),
+    body('username').isString().trim().escape(),
+    body('password').isString().trim().escape(),
     async (request, response) => {
         try {
             const user = await User.findOne({ username: request.body.username }).exec()
