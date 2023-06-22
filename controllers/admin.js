@@ -8,7 +8,7 @@ router.get('/unpublished', authenticateToken, (request, response) => {
     if (!response.locals.isAdmin) {
         response.redirect('/')
     }
-    response.render('admin/')
+    response.render('admin/unpublished')
 })
 
 router.post('/unpublished', 

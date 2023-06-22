@@ -175,7 +175,7 @@ router.post(
 
             bcrypt.compare(request.body.password, user.hashedPassword, function (err, result) {
                 if (result === true) {
-                    const token = JSONWebToken.sign({ id: user._id, username: user.username }, SECRET_JWT_CODE, {
+                    const token = JSONWebToken.sign({ id: user._id, username: user.username, isAdmin: user.isAdmin }, SECRET_JWT_CODE, {
                         expiresIn: JWT_EXPIRES_IN,
                     });
 
