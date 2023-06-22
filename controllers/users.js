@@ -125,8 +125,18 @@ router.post('/me/beans',
 
 router.post(
     '/',
-    body('username').isString().isLength({ max: 36 }).trim().escape(),
-    body('password').isString().isLength({ max: 256 }).trim().escape(),
+    body('username').custom(async value => {
+        const usernameRegex = /^[a-zA-Z0-9]{4,16}$/
+        if (!usernameRegex.test(value)) {
+            throw new Error('Username does not meet requirements.')
+        }
+    }).trim().escape(),
+    body('password').custom(async value => {
+        const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}/
+        if (!passwordRegex.test(value)) {
+            throw new Error('Password does not meet requirements.')
+        }
+    }).trim().escape(),
     async (request, response) => {
         try {
             validationResult(request).throw()
