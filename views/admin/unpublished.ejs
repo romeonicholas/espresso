@@ -4,7 +4,7 @@
         <h2>Welcome ADMIN</h2>
         <p>Make admin changes</p>
 
-        <form action="/admin/unpublished" method="POST">
+        <form method="POST">
           <p>Select beans to publish: </p>
           <% unpublishedBeans.forEach(bean => { %>
             <input type="checkbox" name="beans" value="<%= bean._id %>">
@@ -23,7 +23,8 @@
             <label for="<%= grinder.id %>"><%= grinder.brand %> || <%= grinder.name %></label><br />
           <% }) %>
           <br />
-          <button>Publish Selected Items</button>
+          <button formaction="/admin/unpublished/update">Publish Selected Items</button>
+          <button formaction="/admin/unpublished/delete">Delete Selected Items</button>
       </form>
       </div>
     <%- include('../includes/aside-quote') %>

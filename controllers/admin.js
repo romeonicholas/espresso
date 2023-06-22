@@ -29,7 +29,7 @@ router.get('/unpublished', authenticateToken, async (request, response) => {
     
 })
 
-router.post('/unpublished', 
+router.post('/unpublished/update', 
     authenticateToken, 
     async (request, response) => {
         if (!response.locals.isAdmin) {
@@ -45,6 +45,25 @@ router.post('/unpublished',
         } catch (error) {
             console.error(error)
             response.send("Failed to publish resources")
+        }
+})
+
+router.post('/unpublished/delete', 
+    authenticateToken, 
+    async (request, response) => {
+        if (!response.locals.isAdmin) {
+            response.redirect('/')
+        }
+
+        try {
+            await Bean.deleteMany( { _id: {$in : request.body.beans }}, { isPublished: true})
+            await Machine.deleteMany( { _id: {$in : request.body.machines }}, { isPublished: true})
+            await Grinder.deleteMany( { _id: {$in : request.body.grinders }}, { isPublished: true})
+
+            response.redirect('/admin/unpublished')
+        } catch (error) {
+            console.error(error)
+            response.send("Failed to delete resources")
         }
 })
 
