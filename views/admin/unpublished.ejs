@@ -3,6 +3,28 @@
       <div class="col-6 col-s-9">
         <h2>Welcome ADMIN</h2>
         <p>Make admin changes</p>
+
+        <form action="admin/unpublished" method="POST">
+          <p>Select beans to publish: </p>
+          <% unpublishedBeans.forEach(bean => { %>
+            <input type="checkbox" name="<%= bean._id %>" value="<%= bean._id %>">
+            <label for="<%= bean.id %>"> <%= bean.brand %> <%= bean.name %></label><br>
+          <% }) %>
+
+          <p>Select machines to publish: </p>
+          <% unpublishedMachines.forEach(machine => { %>
+            <input type="checkbox" name="<%= machine._id %>" value="<%= machine._id %>">
+            <label for="<%= machine.id %>"> <%= machine.brand %> <%= machine.name %></label><br>
+          <% }) %>
+
+          <p>Select grinders to publish: </p>
+          <% unpublishedGrinders.forEach(grinder => { %>
+            <input type="checkbox" name="<%= grinder._id %>" value="<%= grinder._id %>">
+            <label for="<%= grinder.id %>"> <%= grinder.brand %> <%= grinder.name %></label><br>
+          <% }) %>
+
+          <button>Submit</button>
+      </form>
       </div>
     <%- include('../includes/aside-quote') %>
 <%- include('../includes/row-close') %>
