@@ -1,10 +1,27 @@
 <%- include('../includes/row-opening') %>
   <%- include('../includes/nav') %>
   <div class="col-6 col-s-9">
-    <h2>Create Account</h2>
+    <h2>Create An Account</h2>
     <form action="/users" method="POST">
-      <input type="text" name="username" placeholder="username" /><br />
-      <input type="text" name="password" placeholder="password" /><br />
+      <label for="username">Username:</label><br />
+      <input type="text" name="username" minlength="4" maxlength="16" autocomplete="username" required /><br />
+      <span></span><br />
+      
+      <label for="password">Password:</label><br/>
+      <input type="password" name="password" autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" required/>
+      <p><i>Must contain 8-64 characters and one or more</i></p>
+      <ul>
+        <li><i>Uppercase letter (A-Z)</i></li>
+        <li><i>Lowercase letter (a-z)</i></li>
+        <li><i>and Number (0-9)</i></li>
+      </ul>
+      <span></span><br />
+
+      <!-- Requires additional code to confirm match -->
+      <!-- <label for="confirm-password">Confirm Password:</label><br/>
+      <input type="password" name="confirm-password" autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" required/><br />
+      <span></span> <br /> -->
+      
       <button>Submit</button>
     </form>
   </div>
