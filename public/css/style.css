@@ -46,7 +46,7 @@ html {
 }
 
 .header.dark-theme {
-    background-color:#3b2b15;
+    background-color: #3b2b15;
     color: rgb(224, 213, 213);
 }
 
@@ -59,15 +59,15 @@ html {
     display: inline-block;
     width: 30px;
     height: 17px;
-  }
-  
-  .switch input {
+}
+
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  .slider {
+}
+
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -78,9 +78,9 @@ html {
     background-size: cover;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 13px;
@@ -90,30 +90,30 @@ html {
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  input:checked + .slider {
+}
+
+input:checked+.slider {
     background-image: url('/assets/sunslider.png');
     background-size: cover;
-  }
-  
-  input:focus + .slider {
+}
+
+input:focus+.slider {
     box-shadow: 0 0 1px darkslategray;
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked+.slider:before {
     -webkit-transform: translateX(13px);
     -ms-transform: translateX(13px);
     transform: translateX(13px);
-  }
-  
-  .slider.round {
+}
+
+.slider.round {
     border-radius: 17px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
+}
 
 .menu ul {
     list-style-type: none;
@@ -123,34 +123,53 @@ html {
 
 .menu li {
     padding: 8px;
-    margin-bottom: 7px;
-    background-color: #faf8f6;
+    margin-bottom: 3px;
     color: #513928;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .menu.dark-theme li {
     background-color: #3b2b15;
     color: rgb(224, 213, 213);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .menu li:hover {
     background-color: #eaded6;
 }
 
-.menu li:hover {
-    background-color: #eaded6;
+.collapse-button {
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    background-color: rgb(184, 126, 39);
+    color: rgb(24, 16, 5);
 }
 
-.main{
+.active,
+.collapse-button:hover {
+    background-color: #5e3d27;
+}
+
+.collapse-content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
     background-color: tan;
-    color:darkslategray;
+    color: #513928;
+}
+
+.main {
+    background-color: tan;
+    color: darkslategray;
 }
 
 .main.dark-theme {
     background-color: darkslategrey;
-    color:#eaded6;
+    color: #eaded6;
 }
 
 .aside {
@@ -173,7 +192,7 @@ html {
     color: #513928;
     font-size: 12px;
     padding: 10px;
-    height:30px;
+    height: 30px;
     text-align: center;
     vertical-align: middle;
 }
@@ -194,10 +213,6 @@ html {
 
     .hidden-mobile {
         display: inline-block;
-    }
-
-    .menu li {
-        max-width: 200px;
     }
 
     .col-s-1 {
