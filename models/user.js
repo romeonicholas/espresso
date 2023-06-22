@@ -4,7 +4,13 @@ import bcrypt from 'bcrypt'
 const { Schema } = mongoose
 
 const userSchema = new mongoose.Schema({
-    username: { type: String, unique: true, required: true },
+    username: { type: String, unique: true, required: true, 
+      validate: {
+        validator: function(v) {
+          return /^[a-zA-Z0-9]{4,16}$/.test(v); 
+        }, 
+      },
+    },
     hashedPassword: { type: String, required: true },
     prefersDarkMode: { type: Boolean, default: false },
     machines: [{ type: Schema.Types.ObjectId, ref: 'Machine' }],

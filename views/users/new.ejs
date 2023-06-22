@@ -4,7 +4,8 @@
     <h2>Create An Account</h2>
     <form action="/users" method="POST">
       <label for="username">Username:</label><br />
-      <input type="text" name="username" minlength="4" maxlength="16" autocomplete="username" required /><br />
+      <input type="text" name="username" autocomplete="username" pattern="^[a-zA-Z0-9]{4,16}$" required /><br />
+      <p><i>Must contain 4-16 characters (any a-z, A-Z, 0-9)</i></p>
       <span></span><br />
       
       <label for="password">Password:</label><br/>
