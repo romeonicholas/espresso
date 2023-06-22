@@ -45,6 +45,11 @@ html {
     font-size: 1.3rem;
 }
 
+.header h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .header.dark-theme {
     background-color: #3b2b15;
     color: rgb(224, 213, 213);
