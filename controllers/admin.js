@@ -5,6 +5,9 @@ import { authenticateToken } from '../middlewares/authenticateToken.js'
 const router = Router()
 
 router.get('/unpublished', authenticateToken, (request, response) => {
+    if (!response.locals.isAdmin) {
+        response.redirect('/')
+    }
     response.render('admin/')
 })
 

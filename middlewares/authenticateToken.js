@@ -11,6 +11,7 @@ export const authenticateToken = (request, response, next) => {
         response.locals.id = data.id
         response.locals.username = data.username
         response.locals.prefersDarkMode = data.prefersDarkMode
+        response.locals.isAdmin = data.isAdmin
         return next()
     } catch {
         return response.redirect('/users/login')
