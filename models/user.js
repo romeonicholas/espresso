@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     beans: [{ type: Schema.Types.ObjectId, ref: 'Bean' }],
     grinders: [{ type: Schema.Types.ObjectId, ref: 'Grinder' }],
     shots: [{ type: Schema.Types.ObjectId, ref: 'Shot' }],
-    isAdmin: { type: Boolean, default: false }
+    isAdmin: { type: Boolean, default: false, required: true }
 })
 
 userSchema.methods.comparePassword = function(password) {
