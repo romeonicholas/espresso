@@ -22,10 +22,14 @@ collapseButtons.forEach((collapseButton) => {
         collapseButton.classList.toggle("active");
 
         let collapsibleContent = collapseButton.nextElementSibling;
+        let arrow = collapseButton.childNodes[1];
+
         if (collapsibleContent.style.maxHeight) {
             collapsibleContent.style.maxHeight = null;
+            arrow.innerText = `⇣`
         } else {
             collapsibleContent.style.maxHeight = `${collapsibleContent.scrollHeight}px`;
+            arrow.innerText = `⇡`
         }
     });
 })
