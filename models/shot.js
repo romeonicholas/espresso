@@ -11,6 +11,7 @@ const shotSchema = new mongoose.Schema({
     favorite: { type: Boolean },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     bean: { type: Schema.Types.ObjectId, ref: 'Bean', required: true },
+    beanRoastDate: { type: Date },
     machine: { type: Schema.Types.ObjectId, ref: 'Machine', required: true },
     grinder: { type: Schema.Types.ObjectId, ref: 'Grinder' },
 
