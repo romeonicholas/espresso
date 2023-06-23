@@ -60,13 +60,6 @@ router.post(
             user.shots.addToSet(shot)
             await user.save()
 
-            if (request.body.roastDate !== '') {
-                const roastDate = new Date(request.body.roastDate)
-                const bean = await Bean.findById(request.body.beanId)
-                bean.roastDates.addToSet(roastDate)
-                await bean.save()
-            }
-
             response.redirect(`shots/${shot.id}`)
         } catch(error) {
             console.error(error)
