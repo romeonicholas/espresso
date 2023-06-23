@@ -24,6 +24,17 @@ router.get('/new', authenticateToken, async (request, response) => {
         .populate('beans')
         .populate('grinders').exec()
     
+    if (user.shots.length === 0) {
+        response.render('shots/new', { 
+            user: user, 
+            shot: {
+                shotsWeightGrams: 0,
+                grindsWeightGrams: 0,
+                durationSeconds: 0
+            }
+        })
+    }
+    
     const shot = await Shot.findById(user.shots[user.shots.length - 1])
     .populate('machine')
     .populate('bean')
@@ -63,7 +74,7 @@ router.post(
 
             response.redirect(`shots/${shot.id}`)
         } catch(error) {
-            console.error(error)
+                error(error)
             response.send("This shot failed to be created.")
         }
     }
