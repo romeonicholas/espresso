@@ -3,30 +3,47 @@
   <div class="col-6 col-s-9">
     <h2>Add Shots</h2>
     <form action="/shots" method="POST">
+
       <label for="beanId">Select beans:</label>
       <select name="beanId" required /><br />
         <% user.beans.forEach(bean => { %>
           <option value="<%= bean._id.toString() %>"><%= bean.brand %> <%= bean.variety %></option>
         <% }) %>
-      </select><br />
+      </select><br /><br />
+
+      <label for="roastDate">(Optional) Roast date of beans:</label>
+      <input type="date" name="roastDate" /><br /><br />
+
       <label for="machineId">Select machine:</label>
       <select name="machineId" required /><br />
         <% user.machines.forEach(machine => { %>
           <option value="<%= machine._id.toString() %>"><%= machine.brand %> <%= machine.name %></option>
         <% }) %>
-      </select><br />
+      </select><br /><br />
+
+      <label for="grinderId">Select grinder:</label>
       <select name="grinderId" required /><br />
         <% user.grinders.forEach(grinder => { %>
           <option value="<%= grinder._id.toString() %>"><%= grinder.brand %> <%= grinder.name %></option>
         <% }) %>
-      </select><br />
-      <input type="number" name="grindsWeightGrams" placeholder="grind weight in grams" required min="0" step="1" /><br />
-      <input type="number" name="durationSeconds" placeholder="shot duration in seconds" required min="0" step="1" /><br />
-      <input type="number" name="shotsWeightGrams" placeholder="weight of pulled shots in grams" required min="0" step="1" /><br />
-      <input type="text" name="comments" placeholder="comments" /><br />
-      <input type="checkbox" name="favorite" value="true"/><br />
-      <label for="favorite">Favorite</label>
-      <button>Submit</button>
+      </select><br /><br />
+
+      <label for="grindsWeightGrams">Weight of grounds (grams):</label>
+      <input type="number" name="grindsWeightGrams" required min="0" step="1" /><br /><br />
+
+      <label for="durationSeconds">Duration of shot pull (seconds):</label>
+      <input type="number" name="durationSeconds" required min="0" step="1" /><br /><br />
+
+      <label for="shotsWeightGrams">Weight of pulled shots (grams):</label>
+      <input type="number" name="shotsWeightGrams" required min="0" step="1" /><br /><br />
+
+      <label for="comments">(Optional) Comments:</label>
+      <input type="text" name="comments" /><br /><br />
+
+      <label for="favorite">Mark this shot as my last favorite: </label>
+      <input type="checkbox" name="favorite" value="true"/><br /><br />
+
+      <button>Submit New Shot</button>
     </form>
   </div>
   <%- include('../includes/aside-quote') %>
