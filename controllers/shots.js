@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { Shot } from '../models/shot.js'
+import { Bean } from '../models/bean.js'
 import { body, validationResult } from 'express-validator'
 import { authenticateToken } from '../middlewares/authenticateToken.js'
 import { User } from '../models/user.js'
@@ -33,6 +34,7 @@ router.post(
     body('durationSeconds').isInt(), 
     body('comments').isString().isLength({ max: 256 }).trim().escape(),
     async (request, response) => {
+        console.log(request.body)
         try {
             validationResult(request).throw()
 
@@ -52,6 +54,13 @@ router.post(
             const user = await User.findById(response.locals.id).exec()
             user.shots.addToSet(shot)
             await user.save()
+
+            if (request.body.roastDate !== '') {
+                const roastDate = new Date(request.body.roastDate)
+                const bean = await Bean.findById(request.body.beanId)
+                bean.roastDates.addToSet(roastDate)
+                await bean.save()
+            }
 
             response.redirect(`shots/${shot.id}`)
         } catch(error) {
