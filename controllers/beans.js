@@ -33,7 +33,6 @@ router.post('/',
             const bean = new Bean({
                 brand: request.body.brand,
                 variety: request.body.variety,
-                roastDate: request.body.roastDate
             })
             await bean.save()
 
