@@ -16,7 +16,16 @@ router.get('/', checkLoginStatus, async (request, response) => {
         response.render('index', { coffeePhotoLink: coffeePhotoLink })
     } catch(error) {
         console.error(error)
-        response.send("An error ocurred while loading the homepage.")
+        response.redirect('/error')
+    }
+})
+
+router.get('/error', checkLoginStatus, (request, response) => {
+    try {
+        response.render('error/error')
+    } catch(error) {
+        console.error(error)
+        response.send("Something went terribly wrong!")
     }
 })
 
