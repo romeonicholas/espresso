@@ -34,7 +34,6 @@ router.post(
     body('durationSeconds').isInt(), 
     body('comments').isString().isLength({ max: 256 }).trim().escape(),
     async (request, response) => {
-        console.log(request.body)
         try {
             validationResult(request).throw()
 
@@ -64,7 +63,7 @@ router.post(
 
             response.redirect(`shots/${shot.id}`)
         } catch(error) {
-            console.log(error)
+            console.error(error)
             response.send("This shot failed to be created.")
         }
     }
