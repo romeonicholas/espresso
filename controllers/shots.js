@@ -49,6 +49,7 @@ router.post(
                 durationSeconds: request.body.durationSeconds,
                 user: response.locals.id,
                 bean: request.body.beanId,
+                beanRoastDate: request.body.roastDate,
                 machine: request.body.machineId,
                 grinder: request.body.grinderId,
                 comments: request.body.comments,
