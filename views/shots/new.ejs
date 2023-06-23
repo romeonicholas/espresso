@@ -12,7 +12,7 @@
       </select><br /><br />
 
       <label for="roastDate">(Optional) Roast date of beans:</label>
-      <input type="date" name="roastDate" /><br /><br />
+      <input type="date" name="roastDate"/><br /><br />
 
       <label for="machineId">Select machine:</label>
       <select name="machineId" required /><br />
@@ -29,13 +29,13 @@
       </select><br /><br />
 
       <label for="grindsWeightGrams">Weight of grounds (grams):</label>
-      <input type="number" name="grindsWeightGrams" required min="0" step="1" /><br /><br />
+      <input type="number" name="grindsWeightGrams" value="<%= shot.grindsWeightGrams %>" required min="0" step="1" /><br /><br />
 
       <label for="durationSeconds">Duration of shot pull (seconds):</label>
-      <input type="number" name="durationSeconds" required min="0" step="1" /><br /><br />
+      <input type="number" name="durationSeconds" value="<%= shot.durationSeconds %>" required min="0" step="1" /><br /><br />
 
       <label for="shotsWeightGrams">Weight of pulled shots (grams):</label>
-      <input type="number" name="shotsWeightGrams" required min="0" step="1" /><br /><br />
+      <input type="number" name="shotsWeightGrams" value="<%= shot.shotsWeightGrams %>" required min="0" step="1" /><br /><br />
 
       <label for="comments">(Optional) Comments:</label>
       <input type="text" name="comments" /><br /><br />
