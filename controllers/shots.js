@@ -23,7 +23,9 @@ router.get('/new', authenticateToken, async (request, response) => {
         .populate('machines')
         .populate('beans')
         .populate('grinders').exec()
-    response.render('shots/new', { user: user })
+    
+    const shot = await Shot.findById(user.shots[user.shots.length - 1])
+    response.render('shots/new', { user: user, shot: shot })
 })
 
 router.post(
