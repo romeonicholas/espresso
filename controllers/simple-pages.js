@@ -22,7 +22,7 @@ router.get('/', checkLoginStatus, async (request, response) => {
 
 router.get('/error', checkLoginStatus, (request, response) => {
     try {
-        response.render('error/error')
+        response.render('error/error', { pageTitle: 'Error' })
     } catch(error) {
         console.error(error)
         response.send("Something went terribly wrong!")
