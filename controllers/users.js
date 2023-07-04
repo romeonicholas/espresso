@@ -18,7 +18,7 @@ router.get('/', authenticateToken, (request, response) => {
 })
 
 router.get('/new', checkLoginStatus, (request, response) => {
-    response.render('users/new')
+    response.render('users/new', { pageTitle: 'Sign Up' })
 })
 
 router.get('/me', authenticateToken, async (request, response) => {
@@ -28,7 +28,7 @@ router.get('/me', authenticateToken, async (request, response) => {
             .populate('beans')
             .populate('grinders')
             .populate('shots').exec()
-        response.render('users/me', { user: user })
+        response.render('users/me', { pageTitle: 'Dashboard', user: user })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred while loading the dashboard.")
@@ -49,7 +49,7 @@ router.get('/me/machines/new', authenticateToken, async (request, response) => {
     try {
         const user = await User.findById(response.locals.id).exec()
         const machines = await Machine.find({ isPublished: true, _id: { $nin: user.machines } }).exec()
-        response.render('users/machines/new', { machines: machines })
+        response.render('users/machines/new', { pageTitle: 'Add Machines', machines: machines })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred.")
@@ -76,7 +76,7 @@ router.get('/me/grinders/new', authenticateToken, async (request, response) => {
     try {
         const user = await User.findById(response.locals.id).exec()
         const grinders = await Grinder.find({ isPublished: true, _id: { $nin: user.grinders } }).exec()
-        response.render('users/grinders/new', { grinders: grinders })
+        response.render('users/grinders/new', { pageTitle: 'Add Grinders', grinders: grinders })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred.")
@@ -103,7 +103,7 @@ router.get('/me/beans/new', authenticateToken, async (request, response) => {
     try {
         const user = await User.findById(response.locals.id).exec()
         const beans = await Bean.find({ isPublished: true, _id: { $nin: user.beans } }).exec()
-        response.render('users/beans/new', { beans: beans })
+        response.render('users/beans/new', { pageTitle: 'Add Beans',  beans: beans })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred.")
@@ -164,7 +164,7 @@ router.post(
 )
 
 router.get('/login', checkLoginStatus, (request, response) => {
-    response.render('users/login')
+    response.render('users/login', { pageTitle: 'Log In' })
 })
 
 router.post(
