@@ -17,7 +17,13 @@
       <label for="machineId">Select machine:</label>
       <select name="machineId" required /><br />
         <% user.machines.forEach(machine => { %>
-          <option value="<%= machine._id.toString() %>"><%= machine.brand %> <%= machine.name %></option>
+          <% if (machine._id.equals(shot.machine._id)) { %>
+            <option selected value="<%= machine._id.toString() %>">
+          <% } else { %>
+            <option value="<%= machine._id.toString() %>">
+          <% } %>
+              <%= machine.brand %> <%= machine.name %>
+            </option>
         <% }) %>
       </select><br /><br />
 
