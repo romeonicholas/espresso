@@ -28,10 +28,15 @@
       </select><br /><br />
 
       <label for="grinderId">Select grinder:</label>
-      <select name="grinderId" required /><br />
-        <% user.grinders.forEach(grinder => { %>
-          <option value="<%= grinder._id.toString() %>"><%= grinder.brand %> <%= grinder.name %></option>
-        <% }) %>
+      <% user.grinders.forEach(grinder => { %>
+        <% if (grinder._id.equals(shot.grinder._id)) { %>
+          <option selected value="<%= grinder._id.toString() %>">
+        <% } else { %>
+          <option value="<%= grinder._id.toString() %>">
+        <% } %>
+            <%= grinder.brand %> <%= grinder.name %>
+          </option>
+      <% }) %>
       </select><br /><br />
 
       <label for="grindsWeightGrams">Weight of grounds (grams):</label>
