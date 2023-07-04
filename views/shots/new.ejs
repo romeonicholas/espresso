@@ -7,7 +7,13 @@
       <label for="beanId">Select beans:</label>
       <select name="beanId" required /><br />
         <% user.beans.forEach(bean => { %>
-          <option value="<%= bean._id.toString() %>"><%= bean.brand %> <%= bean.variety %></option>
+          <% if (bean._id.equals(shot.bean._id)) { %>
+            <option selected value="<%= bean._id.toString() %>">
+          <% } else { %>
+            <option value="<%= bean._id.toString() %>">
+          <% } %>
+              <%= bean.brand %> <%= bean.variety %>
+            </option>
         <% }) %>
       </select><br /><br />
 
@@ -28,6 +34,7 @@
       </select><br /><br />
 
       <label for="grinderId">Select grinder:</label>
+      <select name="grinderId" required /><br />
       <% user.grinders.forEach(grinder => { %>
         <% if (grinder._id.equals(shot.grinder._id)) { %>
           <option selected value="<%= grinder._id.toString() %>">
