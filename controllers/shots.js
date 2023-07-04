@@ -25,7 +25,8 @@ router.get('/new', authenticateToken, async (request, response) => {
         .populate('grinders').exec()
     
     if (user.shots.length === 0) {
-        response.render('shots/new', { 
+        response.render('shots/new', {
+            pageTitle: 'New Shots', 
             user: user, 
             shot: {
                 shotsWeightGrams: 0,
@@ -40,7 +41,7 @@ router.get('/new', authenticateToken, async (request, response) => {
     .populate('bean')
     .populate('grinder').exec()
 
-    response.render('shots/new', { user: user, shot: shot })
+    response.render('shots/new', { pageTitle: 'New Shots', user: user, shot: shot })
 })
 
 router.post(
@@ -85,7 +86,7 @@ router.get('/:id', authenticateToken, async (request, response) => {
         const shot = await Shot.findById(request.params.id).exec()
         if (!shot) throw new Error ('Shot not found.')
 
-        response.render('shots/show', { shot: shot })
+        response.render('shots/show', { pageTitle: 'Shot Details', shot: shot })
     } catch(error) {
         console.error(error)
         response.status(404).send('Shot could not be found')
@@ -94,11 +95,11 @@ router.get('/:id', authenticateToken, async (request, response) => {
 
 router.get('/:id/edit', authenticateToken, async (request, response) => {
     try {
-        const shot = await Shot.findOne( { id: request.params.id } )
-        response.render('shots/edit', { shot: shot })
+        const shot = await Shot.findById(request.params.id).exec()
+        response.render('shots/edit', { pageTitle: 'Edit Shot', shot: shot })
     } catch(error) {
         console.error(error)
-        response.status(404).send('Shout could not be found')
+        response.status(404).send('Shot could not be found')
     }
 })
 
