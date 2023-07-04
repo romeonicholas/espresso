@@ -11,7 +11,7 @@ router.get('/', authenticateToken, (request, response) => {
 })
 
 router.get('/new', authenticateToken, (request, response) => {
-    response.render('machines/new')
+    response.render('machines/new', { pageTitle: 'Submit Machine' })
 })
 
 router.post('/',
