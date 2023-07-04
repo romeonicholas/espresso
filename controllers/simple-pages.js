@@ -13,7 +13,7 @@ router.get('/', checkLoginStatus, async (request, response) => {
         if(!coffeePhotoLink) {
             coffeePhotoLink = 'https://sc.mogicons.com/c/177.jpg'
         }
-        response.render('index', { coffeePhotoLink: coffeePhotoLink })
+        response.render('index', { pageTitle: 'Home', coffeePhotoLink: coffeePhotoLink })
     } catch(error) {
         console.error(error)
         response.redirect('/error')
