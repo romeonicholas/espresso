@@ -7,7 +7,7 @@ import { authenticateToken } from '../middlewares/authenticateToken.js'
 const router = Router()
 
 router.get('/new', authenticateToken, async (request, response) => {
-    response.render('grinders/new')
+    response.render('grinders/new', { pageTitle: 'Submit Grinder' })
 })
 
 router.get('/:id', authenticateToken, async (request, response) => {
