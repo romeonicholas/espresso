@@ -52,12 +52,7 @@
 
 ## About
 
-> **[?]**
-> Provide general information about your project here.
-> What problem does it (intend to) solve?
-> What is the purpose of your project?
-> Why did you undertake it?
-> You don't have to answer all the questions -- just the ones relevant to your project.
+Your Best Shots is a great way to dial in your espresso pulls. Log your shots so that you can easily make adjustments as needed, without forgetting what you changed. Create your setup by adding your espresso machines, grinders, and even beans to your account, then using those to generate new shot entries with all the nitty gritty details that led to your successes and failures. 
 
 <details>
 <summary>Screenshots</summary>
@@ -74,8 +69,7 @@
 
 ### Built With
 
-> **[?]**
-> Please provide the technologies that are used in the project.
+Node, MongoDB, Express
 
 ## Getting Started
 
@@ -151,6 +145,5 @@ See [LICENSE](LICENSE) for more information.
 
 ## Acknowledgements
 
-> **[?]**
-> If your work was funded by any organization or institution, acknowledge their support here.
-> In addition, if your work relies on other software libraries, or was inspired by looking at other work, it is appropriate to acknowledge this intellectual debt too.
+CODE University of Applied Sciences
+codecookies.xyz
