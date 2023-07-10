@@ -126,6 +126,18 @@ router.post('/me/beans',
         }
 })
 
+router.get('/me/beans/:id/delete', authenticateToken, async (request, response) => {
+    try {
+        const user = await User.findById(response.locals.id)
+        let updatedBeans = user.beans.filter(bean => bean._id.toString() !== request.params.id)
+        await user.set('beans', updatedBeans).save()
+        response.redirect('/users/me')
+    } catch(error) {
+        console.error(error)
+        response.status(404).send('Beans could not be deleted')
+    }
+})
+
 router.post(
     '/',
     body('username').custom(async value => {

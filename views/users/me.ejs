@@ -12,7 +12,7 @@
       <a href="/users/me/beans/new">Add beans to my account</a>
       <ul>
         <% user.beans.forEach(bean => { %>
-          <li><%= bean.brand %> <%= bean.variety %> (<a href='/beans/<%= bean.id %>/delete'>remove</a>)</li>
+          <li><%= bean.brand %> <%= bean.variety %> (<a href='beans/<%= bean.id %>/delete'>remove</a>)</li>
         <% }) %>
       </ul>
     <h3>My Machines</h2>
