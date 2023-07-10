@@ -36,8 +36,8 @@ html {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: #faf8f6;
-    color: #513928;
+    background-color: #fff;
+    color: #222;
     max-height: 40px;
 }
 
@@ -149,7 +149,7 @@ input:checked+.slider:before {
     text-align: left;
     outline: none;
     font-size: 15px;
-    background-color: rgb(184, 126, 39);
+    background-color: rgb(147, 112, 49);
     color: rgb(24, 16, 5);
 }
 
@@ -168,8 +168,16 @@ input:checked+.slider:before {
 }
 
 .main {
-    background-color: tan;
-    color: darkslategray;
+    background-color: #f7f6f1;
+    color: #937031;
+}
+
+.main h2 {
+    color: #937031;
+}
+
+.main p {
+    color: #222;
 }
 
 .main.dark-theme {
@@ -178,7 +186,7 @@ input:checked+.slider:before {
 }
 
 .aside {
-    background-color: #faf8f6;
+    background-color: rgb(147, 112, 49);
     padding: 15px;
     color: #513928;
     text-align: center;
@@ -193,8 +201,8 @@ input:checked+.slider:before {
 }
 
 .footer {
-    background-color: #faf8f6;
-    color: #513928;
+    background-color: #fff;
+    color: #222;
     font-size: 12px;
     padding: 10px;
     height: 30px;
