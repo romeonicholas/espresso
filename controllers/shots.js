@@ -19,19 +19,25 @@ router.get('/', authenticateToken, async (request, response) => {
 })
 
 router.get('/new', authenticateToken, async (request, response) => {
-    const user = await User.findById(response.locals.id)
+    try {
+        const user = await User.findById(response.locals.id)
         .populate('machines')
         .populate('beans')
         .populate('grinders').exec()
         
-    const shot = (user.shots.length === 0) 
-        ? { grindsWeightGrams: 0, shotsWeightGrams: 0, durationSeconds: 0}
+        if (!user.machines.length || !user.beans.length || !user.grinders.length) {
+            response.redirect('/users/me')
+        }
+
+        const shot = (user.shots.length === 0) 
+        ? { bean: {_id: null}, machine: {_id: null}, grinder: {_id: null}, grindsWeightGrams: 0, shotsWeightGrams: 0, durationSeconds: 0}
         : await Shot.findById(user.shots[user.shots.length - 1])
-            .populate('machine')
-            .populate('bean')
-            .populate('grinder').exec()
-            
-    response.render('shots/new', { pageTitle: 'New Shots', user: user, shot: shot })
+    
+        response.render('shots/new', { pageTitle: 'New Shots', user: user, shot: shot })
+    } catch {
+        console.error(error)
+        response.status(404).send('Could not create new shot')
+    }
 })
 
 router.post(
