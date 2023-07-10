@@ -194,7 +194,7 @@ router.post(
     }
 )
 
-router.get('/logout', authenticateToken, (request, response) => {
+router.get('/logout', (request, response) => {
     response.clearCookie('access_token').redirect('/users/login')
 })
 

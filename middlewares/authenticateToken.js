@@ -14,6 +14,6 @@ export const authenticateToken = (request, response, next) => {
         response.locals.isAdmin = data.isAdmin
         return next()
     } catch {
-        return response.redirect('/users/login')
+        return response.redirect('/users/logout')
     }
 }
