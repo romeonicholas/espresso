@@ -195,7 +195,7 @@ router.post(
 )
 
 router.get('/logout', (request, response) => {
-    response.clearCookie('access_token').redirect('/users/login')
+    response.clearCookie('access_token').redirect('/')
 })
 
 export default router
