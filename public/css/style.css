@@ -176,7 +176,7 @@ input:checked+.slider:before {
 
 .collapse-button {
     cursor: pointer;
-    padding: 18px;
+    padding: 10px;
     width: 100%;
     text-align: left;
     outline: none;
@@ -184,7 +184,7 @@ input:checked+.slider:before {
     background-color: #B9901D;
     color: #000000;
     border-style:solid;
-    border-width: 0px 0px 1px 0px;
+    border-width: 1px 0px 1px 0px;
     border-color: #927218;
 }
 
@@ -195,7 +195,7 @@ input:checked+.slider:before {
 }
 
 .collapse-content {
-    padding: 0 18px;
+    padding: 0 10px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
