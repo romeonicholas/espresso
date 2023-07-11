@@ -156,13 +156,14 @@ input:checked+.slider:before {
     text-align: left;
     outline: none;
     font-size: 15px;
-    background-color: rgb(147, 112, 49);
-    color: rgb(24, 16, 5);
+    background-color: #B9901D;
+    color: #000000;
 }
 
 .active,
 .collapse-button:hover {
-    background-color: #5e3d27;
+    color:#FFFFFF;
+    background-color: #6E5511;
 }
 
 .collapse-content {
