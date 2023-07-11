@@ -255,14 +255,22 @@ input:checked+.slider:before {
     color: #937031;
 }
 
-.main h3::after {
-    content: "";
-    display: block;
-    border-bottom: 1px solid #222;
+.dashboard-section-header {
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    position: relative;
-    bottom: -2px;
-  }
+}
+
+.section-underline {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #222;
+    margin: -17px 0 0 0;
+    padding: 0;
+}
 
 .main p {
     color: #222;

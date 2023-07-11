@@ -18,13 +18,19 @@
       </ul>
     </div>
     
-    <h3>My Beans</h2>
-      <a href="/users/me/beans/new">Add beans to my account</a>
-      <ul>
+    <header class="dashboard-section-header">
+      <h3>My Beans</h3>
+      <span class="header-links"><a href="/users/me/beans/new">Add beans</a></span>
+    </header>
+    <div class="section-underline"></div>
+      <% if (user.beans.length) { %>
         <% user.beans.forEach(bean => { %>
-          <li><%= bean.brand %> <%= bean.variety %> (<a href='beans/<%= bean.id %>/delete'>remove</a>)</li>
+          <p><%= bean.brand %> <%= bean.variety %> (<a href='beans/<%= bean.id %>/delete'>remove</a>)</p>
         <% }) %>
-      </ul>
+      <% } else { %>
+        <p>No beans here :(</p>
+      <% } %>
+
     <h3>My Machines</h2>
       <a href="/users/me/machines/new">Add machines to my account</a>
       <ul>
