@@ -178,12 +178,14 @@ input:checked+.slider:before {
     cursor: pointer;
     padding: 18px;
     width: 100%;
-    border: none;
     text-align: left;
     outline: none;
     font-size: 15px;
     background-color: #B9901D;
     color: #000000;
+    border-style:solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #927218;
 }
 
 .active,
