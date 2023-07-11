@@ -13,6 +13,26 @@ body {
     margin: 0;
 }
 
+a:link {
+    color:#B9901D;
+    text-decoration: none;
+}
+
+a:visited {
+    color:#6E5511;
+    text-decoration: none;
+}
+
+a:hover {
+    color:#6E5511;
+    text-decoration: underline;
+}
+
+a:active {
+    color:#B9901D;
+    text-decoration: underline;
+}
+
 .row::after {
     content: "";
     clear: both;
@@ -231,9 +251,8 @@ input:checked+.slider:before {
 }
 
 .footer {
-    width: 100%;
-    display: table-row;
-    background-color: rgb(34,34,34);
+    display: table-cell;
+    background-color: #222;
     color: #fff;
     font-size: 12px;
     height: 40px;
