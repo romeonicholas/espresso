@@ -71,7 +71,7 @@ html {
 }
 
 .header h1 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
 
 .header h1 a {
@@ -284,6 +284,10 @@ input:checked+.slider:before {
 @media only screen and (min-width: 800px) {
     .hidden-mobile {
         display: inline-block;
+    }
+
+    .header h1 {
+        font-size: 1.3rem;
     }
 
     .col-s-1 {
