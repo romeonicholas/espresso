@@ -3,27 +3,27 @@
   <div class="center col-6 col-s-9">
     <h2>Create An Account</h2>
     <form action="/users" method="POST">
-      <label for="username">Username:</label><br />
-      <input type="text" name="username" autocomplete="username" pattern="^[a-zA-Z0-9]{4,16}$" required /><br />
+      <input class="text-input" type="text" name="username" autocomplete="username" pattern="^[a-zA-Z0-9]{4,16}$" required /><br />
+      <label for="username"><strong>Username</strong></label>
       <p><i>Must contain 4-16 characters (any a-z, A-Z, 0-9)</i></p>
       <span></span><br />
       
-      <label for="password">Password:</label><br/>
-      <input type="password" name="password" autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" required/>
-      <p><i>Must contain 8-64 characters and one or more</i></p>
+      <input class="text-input" type="password" name="password" autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" required/><br />
+      <label for="password"><strong>Password</strong></label>
+      <p><i>Must contain 8-64 characters and one or more:</i></p>
       <ul>
         <li><i>uppercase letter (A-Z)</i></li>
         <li><i>lowercase letter (a-z)</i></li>
         <li><i>and Number (0-9)</i></li>
       </ul>
-      <span></span><br />
 
+      <span></span><br />
       <!-- Requires additional code to confirm match -->
       <!-- <label for="confirm-password">Confirm Password:</label><br/>
       <input type="password" name="confirm-password" autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" required/><br />
       <span></span> <br /> -->
-      
-      <button>Submit</button>
+      <span></span> <br />
+      <button class="submit-button">Submit</button>
     </form>
   </div>
   <%- include('../includes/aside-quote') %>
