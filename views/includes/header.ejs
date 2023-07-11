@@ -4,7 +4,7 @@
         <% if (typeof username !== 'undefined') { %>
             <span class="hidden-mobile"><strong><%= username %></strong> (<a href="/users/logout">log out</a>)</span>&#32;&#32;
         <% } else { %>
-            <a href="/users/new">Sign Up</a>&nbsp;&nbsp;
+            <a href="/users/new" class="hidden-mobile">Sign Up</a>&nbsp;&nbsp;
             <a href="/users/login">Log In</a>&nbsp;&nbsp;
         <% } %>
 
