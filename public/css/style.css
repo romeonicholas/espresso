@@ -2,9 +2,15 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
-    margin: 0px;
-    padding: 0px;
+    display: table;
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 .row::after {
@@ -15,7 +21,6 @@ body {
 
 [class*="col-"] {
     float: left;
-    padding: 15px;
 }
 
 img {
@@ -35,10 +40,11 @@ html {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
     background-color: #fff;
     color: #222;
     max-height: 40px;
+    width: 100%;
+    box-shadow: 0 0 .5rem #00000026;
 }
 
 .header h1 {
@@ -168,8 +174,10 @@ input:checked+.slider:before {
 }
 
 .main {
+    display: table-row;
     background-color: #f7f6f1;
     color: #937031;
+    height: 100%;
 }
 
 .main h2 {
@@ -183,6 +191,10 @@ input:checked+.slider:before {
 .main.dark-theme {
     background-color: darkslategrey;
     color: #eaded6;
+}
+
+.center {
+    padding: 15px 15px 30px 15px;
 }
 
 .aside {
@@ -201,11 +213,12 @@ input:checked+.slider:before {
 }
 
 .footer {
-    background-color: #fff;
-    color: #222;
+    width: 100%;
+    display: table-row;
+    background-color: rgb(34,34,34);
+    color: #fff;
     font-size: 12px;
-    padding: 10px;
-    height: 30px;
+    height: 40px;
     text-align: center;
     vertical-align: middle;
 }
@@ -220,10 +233,6 @@ input:checked+.slider:before {
 }
 
 @media only screen and (min-width: 600px) {
-    .row {
-        height: 90vh;
-    }
-
     .hidden-mobile {
         display: inline-block;
     }
