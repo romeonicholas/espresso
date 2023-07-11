@@ -3,46 +3,70 @@
   <div class="center col-6 col-s-9">
     <h2>My Dashboard</h2>
     <div>
-      <h3>My Shots</h3>
+      <header class="dashboard-section-header">
+        <h3>My Shots</h3>
+        <span class="header-links"><a href="/users/me/beans/new"><strong>Pull a New Shot</strong></a></span>
+      </header>
+      <div class="section-underline"></div>
+    <div>
       
       <% if (!user.beans.length || !user.machines.length || !user.grinders.length) { %>
         <p>You can't record a shot without equipment! Add at least one variety of <a href="/users/me/beans/new">beans</a>, one <a href="/users/me/machines/new">machine</a>, and one <a href="/users/me/grinders/new">grinder</a> to your account, then try again.</p>
-      <% } else { %>
-        <a href="/shots/new">Pull a new shot!</a>
       <% } %>
 
-      <ul>
+      <% if (user.shots.length) { %>
         <% user.shots.forEach(shot => { %>
-          <li><%= shot.date.toLocaleDateString() %>: <%= shot.comments %> (<a href='/shots/<%= shot.id %>/delete'>remove</a>)</li>
-        <% }) %>
-      </ul>
-    </div>
-    
-    <header class="dashboard-section-header">
-      <h3>My Beans</h3>
-      <span class="header-links"><a href="/users/me/beans/new">Add beans</a></span>
-    </header>
-    <div class="section-underline"></div>
-      <% if (user.beans.length) { %>
-        <% user.beans.forEach(bean => { %>
-          <p><%= bean.brand %> <%= bean.variety %> (<a href='beans/<%= bean.id %>/delete'>remove</a>)</p>
+          <p><strong><%= shot.date.toLocaleString() %></strong> <%= shot.comment %> [<a href='/shots/<%= shot.id %>/delete'>x</a>]</p>
         <% }) %>
       <% } else { %>
         <p>No beans here :(</p>
       <% } %>
-
-    <h3>My Machines</h2>
-      <a href="/users/me/machines/new">Add machines to my account</a>
-      <ul>
-        <% user.machines.forEach(machine => { %>
-          <li><%= machine.brand %> <%= machine.name %> (<a href='/machines/<%= machine.id %>/delete'>remove</a>)</li>
+    </div>
+    
+    <header class="dashboard-section-header">
+      <h3>My Beans</h3>
+      <span class="header-links"><a href="/users/me/beans/new">Add Beans</a></span>
+    </header>
+    <div class="section-underline"></div>
+    <div>
+      <% if (user.beans.length) { %>
+        <% user.beans.forEach(bean => { %>
+          <p><strong><%= bean.brand %></strong> <%= bean.variety %> [<a href='beans/<%= bean.id %>/delete'>x</a>]</p>
         <% }) %>
-      </ul>
-    <h3>My Grinders</h2>
-      <a href="/users/me/grinders/new">Add grinders to my account</a>
-      <% user.grinders.forEach(grinder => { %>
-        <li><%= grinder.brand %> <%= grinder.name %> (<a href='/machines/<%= grinder.id %>/delete'>remove</a>)</li>
-      <% }) %>
+      <% } else { %>
+        <p>No beans here :(</p>
+      <% } %>
+    </div>
+
+      <header class="dashboard-section-header">
+        <h3>My Machines</h3>
+        <span class="header-links"><a href="/users/me/machines/new">Add Machines</a></span>
+      </header>
+      <div class="section-underline"></div>
+      <div>
+        <% if (user.machines.length) { %>
+          <% user.machines.forEach(machine => { %>
+            <p><strong><%= machine.brand %></strong> <%= machine.name %> [<a href='machines/<%= machine.id %>/delete'>x</a>]</p>
+          <% }) %>
+        <% } else { %>
+          <p>No machines here :(</p>
+        <% } %>
+      </div>
+
+      <header class="dashboard-section-header">
+        <h3>My Grinders</h3>
+        <span class="header-links"><a href="/users/me/grinders/new">Add Grinders</a></span>
+      </header>
+      <div class="section-underline"></div>
+      <div>
+        <% if (user.grinders.length) { %>
+          <% user.grinders.forEach(grinder => { %>
+            <p><strong><%= grinder.brand %></strong> <%= grinder.name %> [<a href='grinders/<%= grinder.id %>/delete'>x</a>]</p>
+          <% }) %>
+        <% } else { %>
+          <p>No grinders here :(</p>
+        <% } %>
+      </div>
       
   </div>
   <%- include('../includes/aside-quote') %>
