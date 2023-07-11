@@ -197,8 +197,11 @@ input:checked+.slider:before {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    background-color: tan;
-    color: #513928;
+    background-color: #ECD38F;
+}
+
+.collapse-content a {
+    color: #4D3C0A;
 }
 
 .main {
