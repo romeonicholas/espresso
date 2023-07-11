@@ -216,6 +216,15 @@ input:checked+.slider:before {
     color: #937031;
 }
 
+.main h3::after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid #222;
+    width: 100%;
+    position: relative;
+    bottom: -2px; /* your padding + border-width */
+  }
+
 .main p {
     color: #222;
 }
