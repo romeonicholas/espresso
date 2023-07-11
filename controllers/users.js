@@ -27,7 +27,7 @@ router.get('/me', authenticateToken, async (request, response) => {
             .populate('machines')
             .populate('beans')
             .populate('grinders')
-            .populate({ path: 'shots', options: { limit: 5 } } ).exec()
+            .populate({ path: 'shots', options: { sort: { date: -1 }, limit: 5 } } ).exec()
         response.render('users/me', { pageTitle: 'Dashboard', user: user })
     } catch(error) {
         console.error(error)
