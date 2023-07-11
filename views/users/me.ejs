@@ -2,13 +2,22 @@
   <%- include('../includes/nav') %>
   <div class="center col-6 col-s-9">
     <h2>My Dashboard</h2>
-    <h3>My Last Shots</h3>
-      <a href="/shots/new">Pull a new shot!</a>
+    <div>
+      <h3>My Shots</h3>
+      
+      <% if (!user.beans.length || !user.machines.length || !user.grinders.length) { %>
+        <p>You can't record a shot without equipment! Add at least one variety of <a href="/users/me/beans/new">beans</a>, one <a href="/users/me/machines/new">machine</a>, and one <a href="/users/me/grinders/new">grinder</a> to your account, then try again.</p>
+      <% } else { %>
+        <a href="/shots/new">Pull a new shot!</a>
+      <% } %>
+
       <ul>
         <% user.shots.forEach(shot => { %>
           <li><%= shot.date.toLocaleDateString() %>: <%= shot.comments %> (<a href='/shots/<%= shot.id %>/delete'>remove</a>)</li>
         <% }) %>
       </ul>
+    </div>
+    
     <h3>My Beans</h2>
       <a href="/users/me/beans/new">Add beans to my account</a>
       <ul>
