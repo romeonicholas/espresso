@@ -272,7 +272,7 @@ input:checked+.slider:before {
     width: 100%;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
     .hidden-mobile {
         display: inline-block;
     }
