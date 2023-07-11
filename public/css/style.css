@@ -177,7 +177,7 @@ input:checked+.slider:before {
 .main {
     display: table-row;
     background-color: #f7f6f1;
-    color: #937031;
+    color: #222;
     height: 100%;
 }
 
