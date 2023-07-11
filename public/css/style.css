@@ -238,6 +238,23 @@ input:checked+.slider:before {
     padding: 0px 15px 30px 15px;
 }
 
+.landing-quote-figure {
+    margin:10px 0px 10px 0px;
+    background:#fff;
+    border: 0.2rem outset #B9901D;
+    border-radius: 10px;
+}
+
+.landing-quote {
+    margin: 10px 10px 0px 10px;
+    font-family: cursive;
+    font-weight: bold;
+}
+
+.landing-quote-caption {
+    margin: 0px 10px 10px 10px;
+}
+
 .aside {
     background-color: #B9901D;
     padding: 15px 15px 5px 15px;
