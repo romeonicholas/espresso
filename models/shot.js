@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const { Schema } = mongoose
 
 const shotSchema = new mongoose.Schema({
-    date: { type: Date, default: Date.now(), required: true },
+    date: { type: Date, default: Date.now, required: true },
     grindsWeightGrams: { type: Number, required: true },
     shotsWeightGrams: { type: Number, required: true },
     durationSeconds: { type: Number, required: true },
