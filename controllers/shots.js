@@ -101,8 +101,14 @@ router.get('/:id/edit', authenticateToken, async (request, response) => {
 
 router.get('/:id/delete', authenticateToken, async (request, response) => {
     try {
-        await Shot.findOneAndDelete( { id: request.params.id } )
-        response.redirect('/shots')
+        const shot = await Shot.findById(request.params.id)
+        
+        if (shot.user.equals(response.locals.id) || response.locals.isAdmin) {
+            await shot.deleteOne()
+            response.redirect('/users/me')
+        } else {
+            response.status(403).send('Access denied')
+        }
     } catch(error) {
         console.error(error)
         response.status(404).send('Shout could not be deleted.')
