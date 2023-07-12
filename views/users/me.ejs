@@ -15,7 +15,7 @@
 
           <% if (user.shots.length) { %>
             <% user.shots.forEach(shot => { %>
-              <p><strong><%= shot.date.toLocaleString() %></strong> <%= shot.comment %> [<a href='/shots/<%= shot.id %>/delete'>x</a>]</p>
+              <p><strong><%= shot.date.toLocaleString("en-US", { dateStyle: "short", timeStyle: "short"}) %></strong> <%= shot.comment %> [<a href='/shots/<%= shot.id %>/delete'>x</a>]</p>
             <% }) %>
           <% } else { %>
             <p>No beans here :(</p>
