@@ -126,54 +126,21 @@ router.post('/me/beans',
         }
 })
 
-router.get('/me/beans/:id/delete', authenticateToken, async (request, response) => {
+router.get('/me/:resource/:id/delete', authenticateToken, async (request, response) => {
     try {
-        const user = await User.findById(response.locals.id)
-        
-        if (user._id.equals(response.locals.id)) {
-            let updatedBeans = user.beans.filter(bean => bean._id.toString() !== request.params.id)
-            await user.set('beans', updatedBeans).save()
-            response.redirect('/users/me')
-        } else {
-            response.status(403).send('Access denied')
-        }
-    } catch(error) {
-        console.error(error)
-        response.status(404).send('Beans could not be deleted')
-    }
-})
+        const resource = request.params.resource
 
-router.get('/me/machines/:id/delete', authenticateToken, async (request, response) => {
-    try {
-        const user = await User.findById(response.locals.id)
-        
-        if (user._id.equals(response.locals.id)) {
-            let updatedMachines = user.machines.filter(machine => machine._id.toString() !== request.params.id)
-            await user.set('machines', updatedMachines).save()
-            response.redirect('/users/me')
+        if (resource !== 'beans' && resource !== 'machines' && resource !== 'grinders') {
+            response.status(404).send('Page not found')
         } else {
-            response.status(403).send('Access denied')
+            const user = await User.findById(response.locals.id)
+            let updatedResource = user[resource].filter(resource => resource._id.toString() !== request.params.id)
+            await user.set(resource, updatedResource).save()
+            response.redirect('/users/me')
         }
     } catch(error) {
         console.error(error)
-        response.status(404).send('Machine could not be deleted')
-    }
-})
-
-router.get('/me/grinders/:id/delete', authenticateToken, async (request, response) => {
-    try {
-        const user = await User.findById(response.locals.id)
-        
-        if (user._id.equals(response.locals.id)) {
-            let updatedGrinders = user.grinders.filter(grinder => grinder._id.toString() !== request.params.id)
-            await user.set('grinders', updatedGrinders).save()
-            response.redirect('/users/me')
-        } else {
-            response.status(403).send('Access denied')
-        }
-    } catch(error) {
-        console.error(error)
-        response.status(404).send('Grinder could not be deleted')
+        response.send('Resource could not be deleted')
     }
 })
 
