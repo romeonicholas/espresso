@@ -31,7 +31,7 @@
         <div>
           <% if (user.beans.length) { %>
             <% user.beans.forEach(bean => { %>
-              <p><strong><%= bean.brand %></strong> <%= bean.variety %> [<a href='beans/<%= bean.id %>/delete'>x</a>]</p>
+              <p><strong><%= bean.brand %></strong> <%= bean.variety %> [<a href='/users/me/beans/<%= bean.id %>/delete'>x</a>]</p>
             <% }) %>
           <% } else { %>
             <p>No beans here :(</p>
@@ -47,7 +47,7 @@
         <div>
           <% if (user.machines.length) { %>
             <% user.machines.forEach(machine => { %>
-              <p><strong><%= machine.brand %></strong> <%= machine.name %> [<a href='machines/<%= machine.id %>/delete'>x</a>]</p>
+              <p><strong><%= machine.brand %></strong> <%= machine.name %> [<a href='/users/me/machines/<%= machine.id %>/delete'>x</a>]</p>
             <% }) %>
           <% } else { %>
             <p>No machines here :(</p>
@@ -63,7 +63,7 @@
         <div>
           <% if (user.grinders.length) { %>
             <% user.grinders.forEach(grinder => { %>
-              <p><strong><%= grinder.brand %></strong> <%= grinder.name %> [<a href='grinders/<%= grinder.id %>/delete'>x</a>]</p>
+              <p><strong><%= grinder.brand %></strong> <%= grinder.name %> [<a href='/users/me/grinders/<%= grinder.id %>/delete'>x</a>]</p>
             <% }) %>
           <% } else { %>
             <p>No grinders here :(</p>
