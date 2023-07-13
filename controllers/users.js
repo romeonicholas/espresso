@@ -143,6 +143,23 @@ router.get('/me/beans/:id/delete', authenticateToken, async (request, response) 
     }
 })
 
+router.get('/me/machines/:id/delete', authenticateToken, async (request, response) => {
+    try {
+        const user = await User.findById(response.locals.id)
+        
+        if (user._id.equals(response.locals.id)) {
+            let updatedMachines = user.machines.filter(machine => machine._id.toString() !== request.params.id)
+            await user.set('machines', updatedMachines).save()
+            response.redirect('/users/me')
+        } else {
+            response.status(403).send('Access denied')
+        }
+    } catch(error) {
+        console.error(error)
+        response.status(404).send('Machine could not be deleted')
+    }
+})
+
 router.post(
     '/',
     body('username').custom(async value => {
