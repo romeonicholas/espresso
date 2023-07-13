@@ -160,6 +160,23 @@ router.get('/me/machines/:id/delete', authenticateToken, async (request, respons
     }
 })
 
+router.get('/me/grinders/:id/delete', authenticateToken, async (request, response) => {
+    try {
+        const user = await User.findById(response.locals.id)
+        
+        if (user._id.equals(response.locals.id)) {
+            let updatedGrinders = user.grinders.filter(grinder => grinder._id.toString() !== request.params.id)
+            await user.set('grinders', updatedGrinders).save()
+            response.redirect('/users/me')
+        } else {
+            response.status(403).send('Access denied')
+        }
+    } catch(error) {
+        console.error(error)
+        response.status(404).send('Grinder could not be deleted')
+    }
+})
+
 router.post(
     '/',
     body('username').custom(async value => {
