@@ -1,113 +1,99 @@
 <%- include('../includes/row-opening') %>
   <%- include('../includes/nav') %>
-  <div class="center col-6 col-s-9">
-    <h2>Add Shots</h2>
-    <form action="/shots" method="POST">
+    <div class="center col-6 col-s-9">
 
-      <label for="beanId">Select beans:</label>
-      <select name="beanId" required /><br />
-        <% user.beans.forEach(bean => { %>
-          <% if (bean._id.equals(shot.bean._id)) { %>
-            <option selected value="<%= bean._id.toString() %>">
-          <% } else { %>
-            <option value="<%= bean._id.toString() %>">
-          <% } %>
-              <%= bean.brand %> <%= bean.variety %>
-            </option>
-        <% }) %>
-      </select><br /><br />
+      <h2>Add Shots</h2>
 
-      <label for="roastDate">(Optional) Roast date of beans:</label>
-      <input type="date" name="roastDate"/><br /><br />
+      <form action="/shots" method="POST">
 
-      <label for="machineId">Select machine:</label>
-      <select name="machineId" required /><br />
-        <% user.machines.forEach(machine => { %>
-          <% if (machine._id.equals(shot.machine._id)) { %>
-            <option selected value="<%= machine._id.toString() %>">
-          <% } else { %>
-            <option value="<%= machine._id.toString() %>">
-          <% } %>
-              <%= machine.brand %> <%= machine.name %>
-            </option>
-        <% }) %>
-      </select><br /><br />
+        <label for="beanId">Select beans:</label>
+        <select name="beanId" required><br />
+          <% user.beans.forEach(bean=> { %>
+            <% if (bean._id.equals(shot.bean._id)) { %>
+              <option selected value="<%= bean._id.toString() %>">
+                <%= `${bean.brand} ${bean.variety}`%>
+              </option>
+            <% } else { %>
+              <option value="<%= bean._id.toString() %>">
+                <%= `${bean.brand} ${bean.variety}` %>
+              </option>
+            <% } %>
+          <% }) %>
+        </select><br /><br />
 
-      <label for="grinderId">Select grinder:</label>
-      <select name="grinderId" required /><br />
-      <% user.grinders.forEach(grinder => { %>
-        <% if (grinder._id.equals(shot.grinder._id)) { %>
-          <option selected value="<%= grinder._id.toString() %>">
-        <% } else { %>
-          <option value="<%= grinder._id.toString() %>">
-        <% } %>
-            <%= grinder.brand %> <%= grinder.name %>
-          </option>
-      <% }) %>
-      </select><br /><br />
+        <label for="roastDate">(Optional) Roast date of beans:</label>
+        <input type="date" name="roastDate" /><br /><br />
 
-      <label for="grindsWeightGrams">Weight of grounds (grams):</label>
-      <input type="number" name="grindsWeightGrams" value="<%= shot.grindsWeightGrams %>" required min="0" step="1" /><br /><br />
+        <label for="machineId">Select machine:</label>
+        <select name="machineId" required><br />
+          <% user.machines.forEach(machine=> { %>
+            <% if (machine._id.equals(shot.machine._id)) { %>
+              <option selected value="<%= machine._id.toString() %>">
+                <%= `${machine.brand} ${machine.name}` %>
+              </option>
+            <% } else { %>
+              <option value="<%= machine._id.toString() %>">
+                <%= `${machine.brand} ${machine.name}` %>
+              </option>
+            <% } %>
+          <% }) %>
+        </select><br /><br />
 
-      <label for="durationSeconds">Duration of shot pull (seconds):</label>
-      <input type="number" name="durationSeconds" value="<%= shot.durationSeconds %>" required min="0" step="1" /><br /><br />
+        <label for="grinderId">Select grinder:</label>
+        <select name="grinderId" required><br />
+          <% user.grinders.forEach(grinder=> { %>
+            <% if (grinder._id.equals(shot.grinder._id)) { %>
+              <option selected value="<%= grinder._id.toString() %>">
+                <%= `${grinder.brand} ${grinder.name}` %>
+              </option>
+            <% } else { %>
+              <option value="<%= grinder._id.toString() %>">
+                <%= `${grinder.brand} ${grinder.name}` %>
+              </option>
+            <% } %>
+          <% }) %>
+        </select><br /><br />
 
-      <label for="shotsWeightGrams">Weight of pulled shots (grams):</label>
-      <input type="number" name="shotsWeightGrams" value="<%= shot.shotsWeightGrams %>" required min="0" step="1" /><br /><br />
+        <label for="grindsWeightGrams">Weight of grounds (grams):</label>
+        <input type="number" name="grindsWeightGrams" value="<%= shot.grindsWeightGrams %>" required min="0"
+          step="1" /><br /><br />
 
-      <div>
-        <legend>Body (more info):</legend>
+        <label for="durationSeconds">Duration of shot pull (seconds):</label>
+        <input type="number" name="durationSeconds" value="<%= shot.durationSeconds %>" required min="0"
+          step="1" /><br /><br />
+
+        <label for="shotsWeightGrams">Weight of pulled shots (grams):</label>
+        <input type="number" name="shotsWeightGrams" value="<%= shot.shotsWeightGrams %>" required min="0"
+          step="1" /><br /><br />
+
         <div>
-          <input
-            type="radio"
-            id="bodyRatingChoice1"
-            name="bodyRating"
-            value="1"
-          />
-          <label for="bodyRatingChoice1">1</label>
-    
-          <input
-            type="radio"
-            id="bodyRatingChoice2"
-            name="bodyRating"
-            value="2"
-          />
-          <label for="bodyRatingChoice2">2</label>
+          <legend>Body (more info):</legend>
+          <div>
+            <input type="radio" id="bodyRatingChoice1" name="bodyRating" value="1" />
+            <label for="bodyRatingChoice1">1</label>
 
-          <input
-            type="radio"
-            id="bodyRatingChoice3"
-            name="bodyRating"
-            value="3"
-            checked />
-          <label for="bodyRatingChoice3">3</label>
+            <input type="radio" id="bodyRatingChoice2" name="bodyRating" value="2" />
+            <label for="bodyRatingChoice2">2</label>
 
-          <input
-            type="radio"
-            id="bodyRatingChoice4"
-            name="bodyRating"
-            value="4"
-          />
-          <label for="bodyRatingChoice4">4</label>
+            <input type="radio" id="bodyRatingChoice3" name="bodyRating" value="3" checked />
+            <label for="bodyRatingChoice3">3</label>
 
-          <input
-            type="radio"
-            id="bodyRatingChoice5"
-            name="bodyRating"
-            value="5"
-          />
-          <label for="bodyRatingChoice5">5</label>
+            <input type="radio" id="bodyRatingChoice4" name="bodyRating" value="4" />
+            <label for="bodyRatingChoice4">4</label>
+
+            <input type="radio" id="bodyRatingChoice5" name="bodyRating" value="5" />
+            <label for="bodyRatingChoice5">5</label>
+          </div>
         </div>
-      </div>
 
-      <label for="comments">(Optional) Comments:</label>
-      <input type="text" name="comments" /><br /><br />
+        <label for="comments">(Optional) Comments:</label>
+        <input type="text" name="comments" /><br /><br />
 
-      <label for="favorite">Mark this shot as a favorite: </label>
-      <input type="checkbox" name="favorite" value="true"/><br /><br />
+        <label for="favorite">Mark this shot as a favorite: </label>
+        <input type="checkbox" name="favorite" value="true" /><br /><br />
 
-      <button>Submit New Shot</button>
-    </form>
-  </div>
+        <button>Submit New Shot</button>
+      </form>
+    </div>
   <%- include('../includes/aside-quote') %>
 <%- include('../includes/row-close') %>
