@@ -59,108 +59,67 @@ router.get('/me/machines', authenticateToken, async (request, response) => {
     }
 })
 
-router.get('/me/machines/new', authenticateToken, async (request, response) => {
+router.get('/me/:resourceType/new', authenticateToken, async (request, response) => {
+    // Move route validation to middleware
+    // Create object with necessary references in helpers instead of here
+    const resourceType = request.params.resourceType.toLowerCase()
+    const schemasFromResourceType = {
+        'beans': Bean,
+        'machines': Machine,
+        'grinders': Grinder
+    }
+    const schema = schemasFromResourceType[`${resourceType}`]
+
     try {
         const user = await User.findById(response.locals.id)
-        const newMachines = await Machine.find({ isPublished: true, _id: { $nin: user.machines } })
+        const newResources = await schema.find({ isPublished: true, _id: { $nin: user[`${resourceType}`] } })
             .sort( { brand: 1 })
             .lean()
         
-        const machineMap = new Map()
-        newMachines.forEach(machine => {
-            if (!machineMap.has(machine.brand)) {
-                machineMap.set(`${machine.brand}`, [[machine.name, machine._id]])
+        const resourceMap = new Map()
+        newResources.forEach(resource => {
+            if (!resourceMap.has(resource.brand)) {
+                resourceMap.set(`${resource.brand}`, [[resource.name, resource._id]])
             } else {
-                machineMap.get(`${machine.brand}`).push([machine.name, machine._id])
-            }
-        }) 
-
-        response.render('users/machines/new', { pageTitle: 'Add Machines', machineMap: machineMap })
-    } catch(error) {
-        console.error(error)
-        response.send("An error ocurred.")
-    }
-})
-
-router.post('/me/machines', 
-    authenticateToken, 
-    body('machineId').isString().isLength({ min: 24, max: 24 }).trim().escape(),
-    async (request, response) => {
-        try {
-            validationResult(request).throw()
-            const user = await User.findById(response.locals.id).exec()
-            user.machines.addToSet(request.body.machineId)
-            await user.save()
-            response.redirect('./')
-        } catch (error) {
-            console.error(error)
-            response.send("Machine failed to be added to your account")
-        }
-})
-
-router.get('/me/grinders/new', authenticateToken, async (request, response) => {
-    try {
-        const user = await User.findById(response.locals.id).exec()
-        const grinders = await Grinder.find({ isPublished: true, _id: { $nin: user.grinders } }).exec()
-        response.render('users/grinders/new', { pageTitle: 'Add Grinders', grinders: grinders })
-    } catch(error) {
-        console.error(error)
-        response.send("An error ocurred.")
-    }
-})
-
-router.post('/me/grinders', 
-    authenticateToken, 
-    body('grinderId').isString().isLength({ min: 24, max: 24 }).trim().escape(),
-    async (request, response) => {
-        try {
-            validationResult(request).throw()
-            const user = await User.findById(response.locals.id).exec()
-            user.grinders.addToSet(request.body.grinderId)
-            await user.save()
-            response.redirect('./')
-        } catch (error) {
-            console.error(error)
-            response.send("Grinder failed to be added to your account")
-        }
-})
-
-router.get('/me/beans/new', authenticateToken, async (request, response) => {
-    try {
-        const user = await User.findById(response.locals.id)
-        const newBeans = await Bean.find({ isPublished: true, _id: { $nin: user.beans } })
-            .sort( { brand: 1 })
-            .lean()
-        
-        const beanMap = new Map()
-        newBeans.forEach(bean => {
-            if (!beanMap.has(bean.brand)) {
-                beanMap.set(`${bean.brand}`, [[bean.variety, bean._id]])
-            } else {
-                beanMap.get(`${bean.brand}`).push([bean.variety, bean._id])
+                resourceMap.get(`${resource.brand}`).push([resource.name, resource._id])
             }
         }) 
         
-        response.render('users/beans/new', { pageTitle: 'Add Beans', beanMap: beanMap })
+        const upperCaseResource = resourceType.charAt(0).toUpperCase().concat('', resourceType.slice(1))
+        response.render('users/shared/new', { 
+            pageTitle: `Add ${upperCaseResource}`, 
+            resourceType: upperCaseResource,
+            resourceMap: resourceMap,
+            url: `/users/me/${resourceType}`
+         })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred.")
     }
 })
 
-router.post('/me/beans', 
+
+router.post('/me/:resourceType', 
     authenticateToken, 
-    body('beanId').isString().isLength({ min: 24, max: 24 }).trim().escape(),
+    body('resourceId').isString().isLength({ min: 24, max: 24 }).trim().escape(),
     async (request, response) => {
         try {
+            const resourceType = request.params.resourceType.toLowerCase()
+            const schemasFromResourceType = {
+                'beans': Bean,
+                'machines': Machine,
+                'grinders': Grinder
+            }
+            const schema = schemasFromResourceType[`${resourceType}`]
+
             validationResult(request).throw()
             const user = await User.findById(response.locals.id).exec()
-            user.beans.addToSet(request.body.beanId)
+            user[`${resourceType}`].addToSet(request.body.resourceId)
             await user.save()
             response.redirect('./')
         } catch (error) {
             console.error(error)
-            response.send("Beans failed to be added to your account")
+            response.send("Resource failed to be added to your account")
         }
 })
 

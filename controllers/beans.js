@@ -25,14 +25,14 @@ router.get('/:id', authenticateToken, async (request, response) => {
 router.post('/',
     authenticateToken, 
     body('brand').isString().isLength({ max: 256 }).trim().escape(),
-    body('variety').isString().isLength({ max: 256 }).trim().escape(),
+    body('name').isString().isLength({ max: 256 }).trim().escape(),
     async (request, response) => {
         try {
             validationResult(request).throw()
 
             const bean = new Bean({
                 brand: request.body.brand,
-                variety: request.body.variety,
+                name: request.body.name,
             })
             await bean.save()
 

@@ -39,21 +39,24 @@ const secondarySelector = document.querySelector('.secondary-selector')
 
 if (primarySelector && secondarySelector) {
     primarySelector.addEventListener('change', (e) => {
-        const beanVarieties = e.target.options[e.target.selectedIndex].dataset.varieties.split(',')
+        const resourceVarieties = e.target.options[e.target.selectedIndex].dataset.varieties.split(',')
     
         while (secondarySelector.options.length > 0) {
             secondarySelector.remove(0);
         }
         
         const newOptions = []
-        for (let i = 0; i < beanVarieties.length; i+=2) {
-            newOptions.push(new Option(beanVarieties[i], beanVarieties[i+1]))
+        for (let i = 0; i < resourceVarieties.length; i+=2) {
+            newOptions.push(new Option(resourceVarieties[i], resourceVarieties[i+1]))
+            
         }
-        
+        console.log(newOptions)
+
         newOptions.sort((a,b) => {
-            return(a[0] < b[0]) ? -1 : 1
+            return(a.text < b.text) ? -1 : 1
         })
 
+        console.log(newOptions)
         newOptions.forEach( option => {
             secondarySelector.add(option)
         })
