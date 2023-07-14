@@ -30,7 +30,7 @@
         <div>
           <% if (user.beans.length) { %>
             <% user.beans.forEach(bean => { %>
-              <p><strong><%= bean.brand %></strong> <%= bean.variety %> [<a href='/users/me/beans/<%= bean.id %>/delete'>x</a>]</p>
+              <p><strong><%= bean.brand %></strong> <%= bean.name %> [<a href='/users/me/beans/<%= bean.id %>/delete'>x</a>]</p>
             <% }) %>
           <% } else { %>
             <p>No beans here :(</p>

@@ -8,7 +8,7 @@
           <p>Select beans to publish: </p>
           <% unpublishedBeans.forEach(bean => { %>
             <input type="checkbox" name="beans" value="<%= bean._id %>">
-            <label for="<%= bean.id %>"><%= bean.brand %> || <%= bean.variety %></label><br />
+            <label for="<%= bean.id %>"><%= bean.brand %> || <%= bean.name %></label><br />
           <% }) %>
 
           <p>Select machines to publish: </p>

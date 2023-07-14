@@ -11,11 +11,11 @@
           <% user.beans.forEach(bean=> { %>
             <% if (bean._id.equals(shot.bean._id)) { %>
               <option selected value="<%= bean._id.toString() %>">
-                <%= `${bean.brand} ${bean.variety}`%>
+                <%= `${bean.brand} ${bean.name}`%>
               </option>
             <% } else { %>
               <option value="<%= bean._id.toString() %>">
-                <%= `${bean.brand} ${bean.variety}` %>
+                <%= `${bean.brand} ${bean.name}` %>
               </option>
             <% } %>
           <% }) %>
