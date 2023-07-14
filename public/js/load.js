@@ -1,64 +1,72 @@
+if (localStorage.prefersDarkMode == "true") {
+  document
+    .querySelectorAll(".header, .footer, .aside, .menu, .main")
+    .forEach((element) => {
+      element.classList.toggle("dark-theme")
+    })
 
-if (localStorage.prefersDarkMode == 'true') {
-    document.querySelectorAll('.header, .footer, .aside, .menu, .main')
-        .forEach((element) => { element.classList.toggle('dark-theme') })
-
-    document.querySelector('.check').checked = true
+  document.querySelector(".check").checked = true
 }
 
-const darkModeButton = document.querySelector('.slider')
+const darkModeButton = document.querySelector(".slider")
 
-darkModeButton.addEventListener('click', () => {
-    document.querySelectorAll('.header, .footer, .aside, .menu, .main')
-        .forEach((element) => { element.classList.toggle('dark-theme') })
+darkModeButton.addEventListener("click", () => {
+  document
+    .querySelectorAll(".header, .footer, .aside, .menu, .main")
+    .forEach((element) => {
+      element.classList.toggle("dark-theme")
+    })
 
-    localStorage.prefersDarkMode = (localStorage.prefersDarkMode == 'true') ? 'false' : 'true'
+  localStorage.prefersDarkMode =
+    localStorage.prefersDarkMode == "true" ? "false" : "true"
 })
 
-const collapseButtons = document.querySelectorAll(".collapse-button");
+const collapseButtons = document.querySelectorAll(".collapse-button")
 
 collapseButtons.forEach((collapseButton) => {
-    collapseButton.addEventListener('click', () => {
-        collapseButton.classList.toggle("active");
+  collapseButton.addEventListener("click", () => {
+    collapseButton.classList.toggle("active")
 
-        let collapsibleContent = collapseButton.nextElementSibling;
-        let arrow = collapseButton.childNodes[1];
+    let collapsibleContent = collapseButton.nextElementSibling
+    let arrow = collapseButton.childNodes[1]
 
-        if (collapsibleContent.style.maxHeight) {
-            collapsibleContent.style.maxHeight = null;
-            arrow.innerText = `⇣`
-        } else {
-            collapsibleContent.style.maxHeight = `${collapsibleContent.scrollHeight}px`;
-            arrow.innerText = `⇡`
-        }
-    });
+    if (collapsibleContent.style.maxHeight) {
+      collapsibleContent.style.maxHeight = null
+      arrow.innerText = `⇣`
+    } else {
+      collapsibleContent.style.maxHeight = `${collapsibleContent.scrollHeight}px`
+      arrow.innerText = `⇡`
+    }
+  })
 })
 
-const primarySelector = document.querySelector('.primary-selector')
-const secondarySelector = document.querySelector('.secondary-selector')
+const primarySelector = document.querySelector(".primary-selector")
+const secondarySelector = document.querySelector(".secondary-selector")
 
 if (primarySelector && secondarySelector) {
-    primarySelector.addEventListener('change', (e) => {
-        const resourceVarieties = e.target.options[e.target.selectedIndex].dataset.varieties.split(',')
-    
-        while (secondarySelector.options.length > 0) {
-            secondarySelector.remove(0);
-        }
-        
-        const newOptions = []
-        for (let i = 0; i < resourceVarieties.length; i+=2) {
-            newOptions.push(new Option(resourceVarieties[i], resourceVarieties[i+1]))
-            
-        }
-        console.log(newOptions)
+  primarySelector.addEventListener("change", (e) => {
+    const resourceVarieties =
+      e.target.options[e.target.selectedIndex].dataset.varieties.split(",")
 
-        newOptions.sort((a,b) => {
-            return(a.text < b.text) ? -1 : 1
-        })
+    while (secondarySelector.options.length > 0) {
+      secondarySelector.remove(0)
+    }
 
-        console.log(newOptions)
-        newOptions.forEach( option => {
-            secondarySelector.add(option)
-        })
+    const newOptions = []
+    for (let i = 0; i < resourceVarieties.length; i += 2) {
+      newOptions.push(
+        new Option(resourceVarieties[i], resourceVarieties[i + 1])
+      )
+    }
+    console.log(newOptions)
+
+    newOptions.sort((a, b) => {
+      return a.text < b.text ? -1 : 1
     })
+
+    console.log(newOptions)
+    newOptions.forEach((option) => {
+      secondarySelector.add(option)
+    })
+  })
 }

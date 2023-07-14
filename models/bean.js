@@ -1,11 +1,11 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose"
 
 const beanSchema = new mongoose.Schema({
-    brand: { type: String, required: true },
-    name: { type: String, required: true },
-    isPublished: { type: Boolean, default: false, required: true }
+  brand: { type: String, required: true },
+  name: { type: String, required: true },
+  isPublished: { type: Boolean, default: false, required: true },
 })
 
-beanSchema.index({ brand: 1, name:1 }, { })
+beanSchema.index({ brand: 1, name: 1 }, {})
 
-export const Bean = mongoose.model('Bean', beanSchema)
+export const Bean = mongoose.model("Bean", beanSchema)
