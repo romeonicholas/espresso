@@ -16,13 +16,9 @@ const shotSchema = new mongoose.Schema({
     grinder: { type: Schema.Types.ObjectId, ref: 'Grinder' },
     bodyRating: { 
         type: Schema.Types.Number,
-        min: 0.0,
-        max: 5.0,
-        validate: {
-            validator: (v) => {
-              return v % .5 === 0; 
-            }
-        }
+        min: 1,
+        max: 5,
+        validate: { validator: Number.isInteger, message: "Ratings must be an integer." }
     }
 })
 

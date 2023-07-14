@@ -72,7 +72,7 @@ router.post(
 
             response.redirect(`shots/${shot.id}`)
         } catch(error) {
-                error(error)
+                console.error(error)
             response.send("This shot failed to be created.")
         }
     }
