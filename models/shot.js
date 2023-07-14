@@ -14,7 +14,16 @@ const shotSchema = new mongoose.Schema({
     beanRoastDate: { type: Date },
     machine: { type: Schema.Types.ObjectId, ref: 'Machine', required: true },
     grinder: { type: Schema.Types.ObjectId, ref: 'Grinder' },
-
+    bodyRating: { 
+        type: Schema.Types.Number,
+        min: 0.0,
+        max: 5.0,
+        validate: {
+            validator: (v) => {
+              return v % .5 === 0; 
+            }
+        }
+    }
 })
 
 export const Shot = mongoose.model('Shot', shotSchema)

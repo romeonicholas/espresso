@@ -61,7 +61,8 @@ router.post(
                 machine: request.body.machineId,
                 grinder: request.body.grinderId,
                 comments: request.body.comments,
-                favorite: (request.body.favorite === 'true') ? 'true' : 'false'
+                favorite: (request.body.favorite === 'true') ? 'true' : 'false',
+                bodyRating: (request.body.bodyRating)
             })
             await shot.save()
 
