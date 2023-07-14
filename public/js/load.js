@@ -33,3 +33,20 @@ collapseButtons.forEach((collapseButton) => {
         }
     });
 })
+
+const primarySelector = document.querySelector('.primary-selector')
+const secondarySelector = document.querySelector('.secondary-selector')
+
+if (primarySelector && secondarySelector) {
+    primarySelector.addEventListener('change', (e) => {
+        const beanVarieties = e.target.options[e.target.selectedIndex].dataset.varieties.split(',')
+    
+        while (secondarySelector.options.length > 0) {
+            secondarySelector.remove(0);
+        }
+        
+        for (let i = 0; i < beanVarieties.length; i+=2) {
+            secondarySelector.add(new Option(beanVarieties[i], beanVarieties[i+1]))
+        }
+    })
+}

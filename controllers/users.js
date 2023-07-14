@@ -117,18 +117,17 @@ router.get('/me/beans/new', authenticateToken, async (request, response) => {
     try {
         const user = await User.findById(response.locals.id).exec()
         const beans = await Bean.find({ isPublished: true, _id: { $nin: user.beans } }).lean().exec()
-
+        
         const beanMap = new Map()
         beans.forEach(bean => {
             if (!beanMap.has(bean.brand)) {
-                beanMap.set(`${bean.brand}`, [bean.variety])
+                beanMap.set(`${bean.brand}`, [[bean.variety, bean._id]])
             } else {
-                beanMap.get(`${bean.brand}`).push(bean.variety)
+                beanMap.get(`${bean.brand}`).push([bean.variety, bean._id])
             }
         }) 
-        console.log(beanMap)
-
-        response.render('users/beans/new', { pageTitle: 'Add Beans', beanMap: beanMap, beans: beans })
+        
+        response.render('users/beans/new', { pageTitle: 'Add Beans', beanMap: beanMap })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred.")
