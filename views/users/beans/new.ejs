@@ -9,6 +9,20 @@
             <option value="<%= bean._id.toString() %>"><%= bean.brand %> <%= bean.variety %></option>
         <% }) %>
         </select>
+
+        <label for="beanBrand">Select bean brand:</label>
+        <select name="beanBrand" required /><br />
+        <% beanMap.forEach( (value, key) => { %>
+            <option><%= key %></option>
+        <% }) %>
+        </select>
+
+        <label for="beanId">Select variety:</label>
+        <select name="beanId" disabled required /><br />
+        <% beans.forEach(bean => { %>
+            <option value="<%= bean._id.toString() %>"><%= bean.variety %></option>
+        <% }) %>
+        </select>
         <button>Submit</button>
     </form>
   </div>
