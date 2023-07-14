@@ -45,8 +45,17 @@ if (primarySelector && secondarySelector) {
             secondarySelector.remove(0);
         }
         
+        const newOptions = []
         for (let i = 0; i < beanVarieties.length; i+=2) {
-            secondarySelector.add(new Option(beanVarieties[i], beanVarieties[i+1]))
+            newOptions.push(new Option(beanVarieties[i], beanVarieties[i+1]))
         }
+        
+        newOptions.sort((a,b) => {
+            return(a[0] < b[0]) ? -1 : 1
+        })
+
+        newOptions.forEach( option => {
+            secondarySelector.add(option)
+        })
     })
 }

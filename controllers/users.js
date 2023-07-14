@@ -115,11 +115,13 @@ router.post('/me/grinders',
 
 router.get('/me/beans/new', authenticateToken, async (request, response) => {
     try {
-        const user = await User.findById(response.locals.id).exec()
-        const beans = await Bean.find({ isPublished: true, _id: { $nin: user.beans } }).lean().exec()
+        const user = await User.findById(response.locals.id)
+        const newBeans = await Bean.find({ isPublished: true, _id: { $nin: user.beans } })
+            .sort( { brand: 1 })
+            .lean()
         
         const beanMap = new Map()
-        beans.forEach(bean => {
+        newBeans.forEach(bean => {
             if (!beanMap.has(bean.brand)) {
                 beanMap.set(`${bean.brand}`, [[bean.variety, bean._id]])
             } else {
