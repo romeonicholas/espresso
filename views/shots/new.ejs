@@ -55,8 +55,50 @@
       <label for="shotsWeightGrams">Weight of pulled shots (grams):</label>
       <input type="number" name="shotsWeightGrams" value="<%= shot.shotsWeightGrams %>" required min="0" step="1" /><br /><br />
 
-      <label for="bodyRating">Body (0-5, .5 increments):</label>
-      <input type="number" name="bodyRating" required min="0" max="5" step=".5" /><br /><br />
+      <div>
+        <legend>Body (more info):</legend>
+        <div>
+          <input
+            type="radio"
+            id="bodyRatingChoice1"
+            name="bodyRating"
+            value="1"
+          />
+          <label for="bodyRatingChoice1">1</label>
+    
+          <input
+            type="radio"
+            id="bodyRatingChoice2"
+            name="bodyRating"
+            value="2"
+          />
+          <label for="bodyRatingChoice2">2</label>
+
+          <input
+            type="radio"
+            id="bodyRatingChoice3"
+            name="bodyRating"
+            value="3"
+            checked />
+          <label for="bodyRatingChoice3">3</label>
+
+          <input
+            type="radio"
+            id="bodyRatingChoice4"
+            name="bodyRating"
+            value="4"
+          />
+          <label for="bodyRatingChoice4">4</label>
+
+          <input
+            type="radio"
+            id="bodyRatingChoice5"
+            name="bodyRating"
+            value="5"
+          />
+          <label for="bodyRatingChoice5">5</label>
+        </div>
+      </div>
 
       <label for="comments">(Optional) Comments:</label>
       <input type="text" name="comments" /><br /><br />
