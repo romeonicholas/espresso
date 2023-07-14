@@ -29,7 +29,7 @@ router.get('/me', authenticateToken, async (request, response) => {
             .populate('grinders')
             .populate({ path: 'shots', options: { sort: { date: -1 }, limit: 5 } }).exec()
         response.render('users/me', { pageTitle: 'Dashboard', user: user })
-    } catch(error) {
+    } catch (error) {
         console.error(error)
         response.send("An error ocurred while loading the dashboard.")
     }
@@ -38,12 +38,12 @@ router.get('/me', authenticateToken, async (request, response) => {
 router.get('/me/shots', authenticateToken, async (request, response) => {
     try {
         console.log(response.locals)
-        const shots = await Shot.find( { user: response.locals.id }).exec()
+        const shots = await Shot.find({ user: response.locals.id }).exec()
         console.log(shots)
         const user = await User.findById(response.locals.id)
-            .populate({ path: 'shots', options: { sort: { date: -1 } } } ).exec()
+            .populate({ path: 'shots', options: { sort: { date: -1 } } }).exec()
         response.render('users/shots/index', { pageTitle: 'My Shot History', shots: user.shots })
-    } catch(error) {
+    } catch (error) {
         console.error(error)
         response.send("An error ocurred.")
     }
@@ -53,7 +53,7 @@ router.get('/me/machines', authenticateToken, async (request, response) => {
     try {
         const user = await User.findById(response.locals.id).populate('machines').exec()
         response.send(user.machines)
-    } catch(error) {
+    } catch (error) {
         console.error(error)
         response.send("An error ocurred.")
     }
@@ -73,9 +73,9 @@ router.get('/me/:resourceType/new', authenticateToken, async (request, response)
     try {
         const user = await User.findById(response.locals.id)
         const newResources = await schema.find({ isPublished: true, _id: { $nin: user[`${resourceType}`] } })
-            .sort( { brand: 1 })
+            .sort({ brand: 1 })
             .lean()
-        
+
         const resourceMap = new Map()
         newResources.forEach(resource => {
             if (!resourceMap.has(resource.brand)) {
@@ -83,24 +83,24 @@ router.get('/me/:resourceType/new', authenticateToken, async (request, response)
             } else {
                 resourceMap.get(`${resource.brand}`).push([resource.name, resource._id])
             }
-        }) 
-        
+        })
+
         const upperCaseResource = resourceType.charAt(0).toUpperCase().concat('', resourceType.slice(1))
-        response.render('users/shared/new', { 
-            pageTitle: `Add ${upperCaseResource}`, 
+        response.render('users/shared/new', {
+            pageTitle: `Add ${upperCaseResource}`,
             resourceType: upperCaseResource,
             resourceMap: resourceMap,
             url: `/users/me/${resourceType}`
-         })
-    } catch(error) {
+        })
+    } catch (error) {
         console.error(error)
         response.send("An error ocurred.")
     }
 })
 
 
-router.post('/me/:resourceType', 
-    authenticateToken, 
+router.post('/me/:resourceType',
+    authenticateToken,
     body('resourceId').isString().isLength({ min: 24, max: 24 }).trim().escape(),
     async (request, response) => {
         try {
@@ -121,7 +121,7 @@ router.post('/me/:resourceType',
             console.error(error)
             response.send("Resource failed to be added to your account")
         }
-})
+    })
 
 router.get('/me/:resource/:id/delete', authenticateToken, async (request, response) => {
     try {
@@ -135,7 +135,7 @@ router.get('/me/:resource/:id/delete', authenticateToken, async (request, respon
             await user.set(resource, updatedResource).save()
             response.redirect('/users/me')
         }
-    } catch(error) {
+    } catch (error) {
         console.error(error)
         response.send('Resource could not be deleted')
     }
@@ -168,7 +168,7 @@ router.post(
                 const token = JSONWebToken.sign({ id: user._id, username: user.username }, SECRET_JWT_CODE, {
                     expiresIn: JWT_EXPIRES_IN,
                 });
-                
+
                 response.cookie("access_token", token, { httpOnly: true }).redirect('/users/me');
             });
         } catch (error) {
