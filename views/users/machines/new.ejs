@@ -3,13 +3,22 @@
   <div class="center col-6 col-s-9">
     <h2>Add Machine to My Account</h2>
     <form action="/users/me/machines" method="POST">
-        <label for="machineId">Select a machine:</label>
-        <select name="machineId" required /><br />
-        <% machines.forEach(machine => { %>
-            <option value="<%= machine._id.toString() %>"><%= machine.brand %> <%= machine.name %></option>
+        <label for="machineBrand">Select machine brand:</label>
+        <select name="machineBrand" class="primary-selector" required /><br />
+        <% machineMap.forEach( (value, key) => { %>
+            <option data-varieties="<%= value %>" value="<%= key %>"><%= key %></option>
         <% }) %>
-        </select>
+        </select><br /><br />
+
+        <label for="machineId">Select model:</label>
+        <select name="machineId" class="secondary-selector" required /><br />
+          <% machineMap.values().next().value.forEach( (value) => { %>
+            <option value="<%= value[1] %>"><%= value[0] %></option>
+          <% }) %>
+        </select><br /><br />
+        
         <button>Submit</button>
+
     </form>
   </div>
   <%- include('../../includes/aside-quote') %>

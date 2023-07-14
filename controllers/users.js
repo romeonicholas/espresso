@@ -61,9 +61,21 @@ router.get('/me/machines', authenticateToken, async (request, response) => {
 
 router.get('/me/machines/new', authenticateToken, async (request, response) => {
     try {
-        const user = await User.findById(response.locals.id).exec()
-        const machines = await Machine.find({ isPublished: true, _id: { $nin: user.machines } }).exec()
-        response.render('users/machines/new', { pageTitle: 'Add Machines', machines: machines })
+        const user = await User.findById(response.locals.id)
+        const newMachines = await Machine.find({ isPublished: true, _id: { $nin: user.machines } })
+            .sort( { brand: 1 })
+            .lean()
+        
+        const machineMap = new Map()
+        newMachines.forEach(machine => {
+            if (!machineMap.has(machine.brand)) {
+                machineMap.set(`${machine.brand}`, [[machine.name, machine._id]])
+            } else {
+                machineMap.get(`${machine.brand}`).push([machine.name, machine._id])
+            }
+        }) 
+
+        response.render('users/machines/new', { pageTitle: 'Add Machines', machineMap: machineMap })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred.")
