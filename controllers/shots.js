@@ -62,7 +62,11 @@ router.post(
                 grinder: request.body.grinderId,
                 comments: request.body.comments,
                 favorite: (request.body.favorite === 'true') ? 'true' : 'false',
-                bodyRating: (request.body.bodyRating)
+                bodyRating: (request.body.bodyRating),
+                acidityRating: (request.body.bodyRating),
+                aromaticsRating: (request.body.bodyRating),
+                sweetnessRating: (request.body.bodyRating),
+                aftertasteRating: (request.body.bodyRating)
             })
             await shot.save()
 
