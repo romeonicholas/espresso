@@ -27,11 +27,25 @@ router.get('/me', authenticateToken, async (request, response) => {
             .populate('machines')
             .populate('beans')
             .populate('grinders')
-            .populate({ path: 'shots', options: { sort: { date: -1 }, limit: 5 } } ).exec()
+            .populate({ path: 'shots', options: { sort: { date: -1 }, limit: 5 } }).exec()
         response.render('users/me', { pageTitle: 'Dashboard', user: user })
     } catch(error) {
         console.error(error)
         response.send("An error ocurred while loading the dashboard.")
+    }
+})
+
+router.get('/me/shots', authenticateToken, async (request, response) => {
+    try {
+        console.log(response.locals)
+        const shots = await Shot.find( { user: response.locals.id }).exec()
+        console.log(shots)
+        const user = await User.findById(response.locals.id)
+            .populate({ path: 'shots', options: { sort: { date: -1 } } } ).exec()
+        response.render('users/shots/index', { pageTitle: 'My Shot History', shots: user.shots })
+    } catch(error) {
+        console.error(error)
+        response.send("An error ocurred.")
     }
 })
 

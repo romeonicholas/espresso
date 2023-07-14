@@ -1,0 +1,13 @@
+<%- include('../../includes/row-opening') %>
+  <%- include('../../includes/nav') %>
+  <div class="center col-6 col-s-9">
+    <h2>Shots History</h2>
+    <% shots.forEach(shot => { %>
+      <ul>
+        <li><%= shot.date %>: <a href='/shots/<%= shot.id%>'><%= shot.id%></a></li>
+      </ul>
+    <% }) %>
+    </ul>
+  </div>
+  <%- include('../../includes/aside-quote') %>
+<%- include('../../includes/row-close') %>
