@@ -14,6 +14,7 @@ const darkModeElementsByClass = [
   ".landing-quote-figure",
   ".landing-photo",
   ".dashboard-table",
+  ".shots-body",
 ]
 
 if (localStorage.prefersDarkMode == "true") {

@@ -256,7 +256,7 @@ input:checked+.slider:before {
     border-bottom: 1px solid #4f5257;
 }
 
-.dashboard-table tbody tr:first-of-type {
+.shots-body tr:first-of-type {
     background-color: #eaded6;
 }
 
@@ -527,7 +527,7 @@ a.dark-theme:active {
     filter: brightness(.8) contrast(1.2);
 }
 
-.dashboard-table.dark-theme tbody tr:first-of-type {
+.shots-body.dark-theme tr:first-of-type {
     background-color: rgb(30, 37, 47);
 }
 
