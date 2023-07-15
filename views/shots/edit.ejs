@@ -1,11 +1,8 @@
 <%- include('../includes/row-opening') %>
   <%- include('../includes/nav') %>
   <div class="center col-6 col-s-9">
-    <h2>Add Shots</h2>
+    <h2 class="subheader">Edit Shot</h2>
     <form action="/shots/<%= shot.id %>" method="POST">
-        <input type="number" name="id" placeholder="id" value=<%= shot.id %> required min="0" step="1" /><br />
-        <input type="text" name="beans" placeholder="beans" value=<%= shot.beans %> required/><br />
-        <input type="text" name="machine" placeholder="machine" value=<%= shot.machine %> required/><br />
         <input type="number" name="grindsWeight" placeholder="grind weight in grams" value=<%= shot.grindsWeight %> required min="0" step="1" /><br />
         <input type="number" name="shotsWeight" placeholder="weight of pulled shots in grams" value=<%= shot.shotsWeight %> required min="0" step="1" /><br />
         <textarea name="comments" placeholder="comments" ><%= shot.comments %></textarea><br />
