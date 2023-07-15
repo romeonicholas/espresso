@@ -257,7 +257,7 @@ input:checked+.slider:before {
 }
 
 .dashboard-table tbody tr:first-of-type {
-    background-color: rgb(30, 37, 47);
+    background-color: #eaded6;
 }
 
 .dashboard-date {
@@ -525,6 +525,10 @@ a.dark-theme:active {
 
 .landing-photo.dark-theme {
     filter: brightness(.8) contrast(1.2);
+}
+
+.dashboard-table.dark-theme tbody tr:first-of-type {
+    background-color: rgb(30, 37, 47);
 }
 
 @media only screen and (min-width: 800px) {

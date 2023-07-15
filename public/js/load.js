@@ -13,6 +13,7 @@ const darkModeElementsByClass = [
   ".submit-button",
   ".landing-quote-figure",
   ".landing-photo",
+  ".dashboard-table",
 ]
 
 if (localStorage.prefersDarkMode == "true") {
