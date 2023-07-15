@@ -201,7 +201,7 @@ input:checked+.slider:before {
     font-size: 18px;
     min-width: 270px;
     border: none;
-    border-bottom: 2px solid #927218;
+    border-bottom: 3px solid #927218;
     margin-bottom: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
@@ -465,6 +465,14 @@ a.dark-theme:active {
     text-decoration: underline;
 }
 
+.text-input.dark-theme {
+    background-color: rgb(38,46,52);
+    outline: 1px solid rgb(233,182,135);
+    border-color: rgb(233,182,135);
+    border-bottom: none;
+    color: rgb(200,200,200);
+}
+
 .submit-button.dark-theme {
     outline: rgb(250, 203, 159);
     background-color: rgb(233,182,135);
@@ -475,6 +483,7 @@ a.dark-theme:active {
 .active,
 .submit-button.dark-theme:hover {
     background-color: rgb(185, 139, 102);
+    border-color: rgb(154, 117, 86);
     color: #fff;
 }
 
