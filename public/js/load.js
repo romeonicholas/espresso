@@ -18,6 +18,7 @@ const darkModeElementsByClass = [
   ".new-shot-link",
   ".section-underline",
   ".shots-table-head",
+  ".ratings-info",
 ]
 
 if (localStorage.prefersDarkMode == "true") {

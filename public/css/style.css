@@ -422,6 +422,31 @@ input[class="rating-radio-button"]:focus + svg {
     width: 100%;
 }
 
+.ratings-info {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.ratings-info .ratings-info-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    width: 200px;
+    bottom: 100%;
+    left: 50%; 
+    margin-left: -100px;    
+    position: absolute;
+    z-index: 1;
+}
+
+.ratings-info:hover .ratings-info-text {
+    visibility: visible;
+}
 /* DARK THEME */
 
 .header.dark-theme {
@@ -572,6 +597,10 @@ a.dark-theme:active {
 .new-shot-link.dark-theme:visited {
     color: #E9B686;
     font-weight: bold;
+}
+
+.ratings-info.dark-theme {
+    border-color: #E9B686;
 }
 
 @media only screen and (min-width: 800px) {
