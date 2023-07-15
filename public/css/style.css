@@ -33,10 +33,6 @@ a.link:active {
     text-decoration: underline;
 }
 
-.delete {
-    float: right;
-}
-
 .row::after {
     content: "";
     clear: both;
@@ -247,6 +243,25 @@ input:checked+.slider:before {
 
 .subheader {
     color: #937031;
+}
+
+.dashboard-table {
+    width:100%;
+    border-spacing: 0px;
+}
+
+.dashboard-table th, td {
+    padding: 3px;
+    text-align: center;
+    border-bottom: 1px solid #4f5257;
+}
+
+.dashboard-table tbody tr:first-of-type {
+    background-color: rgb(30, 37, 47);
+}
+
+.dashboard-date {
+    text-align: left;
 }
 
 .dashboard-section-header {
