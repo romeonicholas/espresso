@@ -414,7 +414,7 @@ input[class="rating-radio-button"]:focus + svg {
     box-shadow: none;
 }
 
-.menu li:hover {
+.menu.dark-theme li:hover {
     background-color:rgb(46, 55, 62);
 }
 
@@ -480,7 +480,6 @@ a.dark-theme:active {
     border-color: rgb(250, 203, 159);
 }
 
-.active,
 .submit-button.dark-theme:hover {
     background-color: rgb(185, 139, 102);
     border-color: rgb(154, 117, 86);
