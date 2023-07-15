@@ -161,7 +161,6 @@ input:checked+.slider:before {
 .menu li {
     padding: 8px;
     margin-bottom: 3px;
-    color: #513928;
 }
 
 .menu li:hover {
@@ -178,7 +177,7 @@ input:checked+.slider:before {
     background-color: #B9901D;
     color: #000000;
     border-style:solid;
-    border-width: 1px 0px 1px 0px;
+    border-width: 0px 0px 1px 0px;
     border-color: #927218;
 }
 
@@ -189,6 +188,7 @@ input:checked+.slider:before {
 }
 
 .collapse-content {
+    font-size: 15px;
     padding: 0 10px;
     max-height: 0;
     overflow: hidden;
@@ -390,8 +390,8 @@ input[class="rating-radio-button"]:focus + svg {
 /* DARK THEME */
 
 .header.dark-theme {
-    background-color: rgb(25,31, 39);
-    color:rgb(233,182,135);
+    background-color: #1B1F22;
+    color:#E9B686;
     box-shadow: none;
 }
 
@@ -400,7 +400,7 @@ input[class="rating-radio-button"]:focus + svg {
 }
 
 .aside.dark-theme {
-    background-color: rgb(25,31, 39);
+    background-color: #1B1F22;
     color: #A3A9B2;
     box-shadow: none;
 }
@@ -410,19 +410,19 @@ input[class="rating-radio-button"]:focus + svg {
 }
 
 .aside-quote.dark-theme {
-    background-color: rgb(25,31, 39);
+    background-color: #1B1F22;
     color: #A3A9B2;
     box-shadow: none;
 }
 
 .menu.dark-theme li {
-    background-color: rgb(38,46,52);
+    background-color: #1B1F22;
     color: #A3A9B2;
     box-shadow: none;
 }
 
 .menu.dark-theme li:hover {
-    background-color:rgb(46, 55, 62);
+    background-color:#2E373E;
 }
 
 .main.dark-theme {
@@ -432,18 +432,23 @@ input[class="rating-radio-button"]:focus + svg {
 }
 
 .collapse-button.dark-theme {
-    background-color: rgb(25,31, 39);
+    background-color: #1B1F22;
     color: #A3A9B2;
-    border-color: rgb(38,46,52);
+    border-width: 1px 0px 1px 0px;
+    border-style: solid;
+    border-color: #A3A9B2;
 }
 
 .collapse-button.dark-theme:hover {
     background-color: rgb(30, 37, 47);
-    color: #A3A9B2;
+}
+
+.active.collapse-button.dark-theme {
+    background-color: rgb(30, 37, 47);
 }
 
 .collapse-content.dark-theme {
-    background-color: rgb(38,46,52);
+    background-color: #1B1F22;
     color: #A3A9B2;
 }
 
@@ -473,16 +478,16 @@ a.dark-theme:active {
 }
 
 .text-input.dark-theme {
-    background-color: rgb(38,46,52);
-    outline: 1px solid rgb(233,182,135);
-    border-color: rgb(233,182,135);
+    background-color: #1B1F22;
+    outline: 1px solid #E9B686;
+    border-color: #E9B686;
     border-bottom: none;
     color: rgb(200,200,200);
 }
 
 .submit-button.dark-theme {
     outline: rgb(250, 203, 159);
-    background-color: rgb(233,182,135);
+    background-color: #E9B686;
     color: #222;
     border-color: rgb(250, 203, 159);
 }
@@ -494,8 +499,8 @@ a.dark-theme:active {
 }
 
 .landing-quote-figure.dark-theme {
-    background:rgb(35,35,35);
-    border-color: rgb(63, 77, 88);
+    background:#1B1F22;
+    border-color: #2E373E;
 }
 
 @media only screen and (min-width: 800px) {
