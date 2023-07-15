@@ -95,7 +95,11 @@ router.post(
 
 router.get("/:id", authenticateToken, async (request, response) => {
   try {
-    const shot = await Shot.findById(request.params.id).exec()
+    const shot = await Shot.findById(request.params.id)
+      .populate("bean")
+      .populate("machine")
+      .populate("grinder")
+      .exec()
     if (!shot) throw new Error("Shot not found.")
 
     response.render("shots/show", { pageTitle: "Shot Details", shot: shot })
