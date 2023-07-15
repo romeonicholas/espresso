@@ -335,6 +335,7 @@ input[type="radio"] + svg {
 }
 
 input + svg {
+    padding-top: 4px;
 	cursor: pointer;
 }
 
@@ -342,6 +343,7 @@ input[class="rating-radio-button"]:hover + svg,
 input[class="rating-radio-button"]:checked + svg,
 input[class="rating-radio-button"]:focus + svg {
 	fill: #B9901D;
+    outline: 2px solid #B9901D;
 }
 
 .aside {
