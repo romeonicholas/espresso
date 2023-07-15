@@ -15,6 +15,9 @@ const darkModeElementsByClass = [
   ".landing-photo",
   ".dashboard-table",
   ".shots-body",
+  ".new-shot-link",
+  ".section-underline",
+  ".shots-table-head",
 ]
 
 if (localStorage.prefersDarkMode == "true") {

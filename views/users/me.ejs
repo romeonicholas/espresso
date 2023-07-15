@@ -4,19 +4,19 @@
       <h2 class="subheader">My Dashboard</h2>
         <header class="dashboard-section-header">
           <h3 class="subheader">My Shots</h3>
-          <span class="header-links"><a class="link" href="/shots/new"><strong>Pull a New Shot</strong></a></span>
+          <span class="header-links"><a class="new-shot-link" href="/shots/new">Pull a New Shot</a></span>
         </header>
-        <div class="section-underline"></div><br />
+        <div class="section-underline"></div>
       
         <div>  
           <% if (!user.beans.length || !user.machines.length || !user.grinders.length) { %>
-            <p>You can't record a shot without equipment! Add at least one variety of <a class="link" href="/users/me/beans/new">beans</a>, one <a class="link" href="/users/me/machines/new">machine</a>, and one <a class="link" href="/users/me/grinders/new">grinder</a> to your account, then try again.</p>
-            <br />
+            <p><strong>You can't record a shot without equipment!</strong></p>
+            <p>Add at least one variety of <a class="link" href="/users/me/beans/new">beans</a>, one <a class="link" href="/users/me/machines/new">machine</a>, and one <a class="link" href="/users/me/grinders/new">grinder</a> to your account, then try again.</p>
           <% } %>
 
           <% if (user.shots.length) { %>
             <table class="dashboard-table">
-              <thead>
+              <thead class="shots-table-head">
                 <tr>
                   <th>Details</th>
                   <th>Date</th>
@@ -50,15 +50,15 @@
         </div>
       
         <header class="dashboard-section-header">
-          <h3>My Beans</h3>
+          <h3 class="subheader">My Beans</h3>
           <span class="header-links"><a class="link" href="/users/me/beans/new">Add Beans</a></span>
         </header>
-        <div class="section-underline"></div><br />
+        <div class="section-underline"></div>
         
         <div>
           <% if (user.beans.length) { %>
             <table class="dashboard-table">
-              <thead>
+              <thead class="shots-table-head">
                 <tr>
                   <th>Brand</th>
                   <th>Name</th>
@@ -81,15 +81,15 @@
         </div>
 
         <header class="dashboard-section-header">
-          <h3>My Machines</h3>
+          <h3 class="subheader">My Machines</h3>
           <span class="header-links"><a class="link" href="/users/me/machines/new">Add Machines</a></span>
         </header>
-        <div class="section-underline"></div><br />
+        <div class="section-underline"></div>
         
         <div>
           <% if (user.machines.length) { %>
             <table class="dashboard-table">
-              <thead>
+              <thead class="shots-table-head">
                 <tr>
                   <th>Brand</th>
                   <th>Name</th>
@@ -112,15 +112,15 @@
         </div>
 
         <header class="dashboard-section-header">
-          <h3>My Grinders</h3>
+          <h3 class="subheader">My Grinders</h3>
           <span class="header-links"><a class="link" href="/users/me/grinders/new">Add Grinders</a></span>
         </header>
-        <div class="section-underline"></div><br />
+        <div class="section-underline"></div>
         
         <div>
           <% if (user.grinders.length) { %>
             <table class="dashboard-table">
-              <thead>
+              <thead class="shots-table-head">
                 <tr>
                   <th>Brand</th>
                   <th>Name</th>
