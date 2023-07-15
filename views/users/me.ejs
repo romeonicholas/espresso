@@ -47,13 +47,15 @@
                   </tr>
                 <% }) %>
               </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan="9">
-                    <a class="link" href="/users/me/shots">See entire shot history</a>
-                  </td>
-                </tr>
-              </tfoot>
+              <% if (user.shots.length > 5) { %>
+                <tfoot>
+                  <tr>
+                    <td colspan="9">
+                      <a class="link" href="/users/me/shots">See entire shot history</a>
+                    </td>
+                  </tr>
+                </tfoot>
+              <% } %>
             </table>
           <% } else { %>
             <p>You don't have any shots yet :(</p>
