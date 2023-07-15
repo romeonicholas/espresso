@@ -11,11 +11,11 @@
           <% user.beans.forEach(bean => { %>
             <% if (bean._id.equals(shot.bean._id)) { %>
               <option selected value="<%= bean._id.toString() %>">
-                <%= `${bean.brand} ${bean.name}`%>
+                <%- `${bean.brand} ${bean.name}`%>
               </option>
             <% } else { %>
               <option value="<%= bean._id.toString() %>">
-                <%= `${bean.brand} ${bean.name}` %>
+                <%- `${bean.brand} ${bean.name}` %>
               </option>
             <% } %>
           <% }) %>
@@ -29,11 +29,11 @@
           <% user.machines.forEach(machine=> { %>
             <% if (machine._id.equals(shot.machine._id)) { %>
               <option selected value="<%= machine._id.toString() %>">
-                <%= `${machine.brand} ${machine.name}` %>
+                <%- `${machine.brand} ${machine.name}` %>
               </option>
             <% } else { %>
               <option value="<%= machine._id.toString() %>">
-                <%= `${machine.brand} ${machine.name}` %>
+                <%- `${machine.brand} ${machine.name}` %>
               </option>
             <% } %>
           <% }) %>
@@ -44,11 +44,11 @@
           <% user.grinders.forEach(grinder=> { %>
             <% if (grinder._id.equals(shot.grinder._id)) { %>
               <option selected value="<%= grinder._id.toString() %>">
-                <%= `${grinder.brand} ${grinder.name}` %>
+                <%- `${grinder.brand} ${grinder.name}` %>
               </option>
             <% } else { %>
               <option value="<%= grinder._id.toString() %>">
-                <%= `${grinder.brand} ${grinder.name}` %>
+                <%- `${grinder.brand} ${grinder.name}` %>
               </option>
             <% } %>
           <% }) %>

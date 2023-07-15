@@ -2,8 +2,8 @@
   <%- include('../includes/nav') %>
   <div class="center col-6 col-s-9">
     <a href="/beans/new">New Beans</a>
-    <h2>Beans from <%= bean.brand %></h2>
-    <p>name: <%= bean.name %></p>
+    <h2>Beans from <%- bean.brand %></h2>
+    <p>name: <%- bean.name %></p>
     <% if (bean.roastDate) { %>
       <p>Roast Date: <%= bean.roastDate.toLocaleDateString() %></p>
     <% } %>

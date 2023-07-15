@@ -75,8 +75,8 @@
               <tbody>
                 <% user.beans.forEach(bean => { %>
                   <tr>
-                    <td><%= bean.brand %></a></td>
-                    <td><%= bean.name %></td>
+                    <td><%- bean.brand %></a></td>
+                    <td><%- bean.name %></td>
                     <td><a class="link" href='/users/me/beans/<%= bean.id %>/delete'>[x]</a></td>
                   </tr>
                 <% }) %>
@@ -106,8 +106,8 @@
               <tbody>
                 <% user.machines.forEach(machine => { %>
                   <tr>
-                    <td><%= machine.brand %></a></td>
-                    <td><%= machine.name %></td>
+                    <td><%- machine.brand %></a></td>
+                    <td><%- machine.name %></td>
                     <td><a class="link" href='/users/me/machines/<%= machine.id %>/delete'>[x]</a></td>
                   </tr>
                 <% }) %>
@@ -137,8 +137,8 @@
               <tbody>
                 <% user.grinders.forEach(grinder => { %>
                   <tr>
-                    <td><%= grinder.brand %></a></td>
-                    <td><%= grinder.name %></td>
+                    <td><%- grinder.brand %></a></td>
+                    <td><%- grinder.name %></td>
                     <td><a class="link" href='/users/me/grinders/<%= grinder.id %>/delete'>[x]</a></td>
                   </tr>
                 <% }) %>

@@ -13,9 +13,9 @@
     <div class="section-underline"></div>
 
     <p><strong>Date:</strong> <%= shot.date.toLocaleString("en-US", { dateStyle: "short", timeStyle: "short"}) %></p>
-    <p><strong>Beans:</strong> <%= shot.bean.brand + ' ' + shot.bean.name%></p>
-    <p><strong>Machine:</strong> <%= shot.machine.brand + ' ' + shot.machine.name%></p>
-    <p><strong>Grinder:</strong> <%= shot.grinder.brand + ' ' + shot.grinder.name%></p>
+    <p><strong>Beans:</strong> <%- shot.bean.brand + ' ' + shot.bean.name%></p>
+    <p><strong>Machine:</strong> <%- shot.machine.brand + ' ' + shot.machine.name%></p>
+    <p><strong>Grinder:</strong> <%- shot.grinder.brand + ' ' + shot.grinder.name%></p>
     <p><strong>Weight of grinds:</strong> <%= shot.grindsWeightGrams %> grams</p>
     <p><strong>Weight of shots:</strong> <%= shot.shotsWeightGrams %> grams</p>
     <br />
@@ -28,7 +28,7 @@
     <p><strong>Acidity:</strong> <%= shot.acidityRating %></p>
     <p><strong>Sweetness:</strong> <%= shot.sweetnessRating %></p>
     <p><strong>Aftertaste:</strong> <%= shot.aftertasteRating %></p>
-    <p><strong>Comments:</strong> <%= shot.comments %></p>
+    <p><strong>Comments:</strong> <%- shot.comments %></p>
 
   </div>
   <%- include('../includes/aside-quote') %>

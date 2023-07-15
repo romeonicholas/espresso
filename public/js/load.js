@@ -77,13 +77,11 @@ if (primarySelector && secondarySelector) {
         new Option(resourceVarieties[i], resourceVarieties[i + 1])
       )
     }
-    console.log(newOptions)
 
     newOptions.sort((a, b) => {
       return a.text < b.text ? -1 : 1
     })
 
-    console.log(newOptions)
     newOptions.forEach((option) => {
       secondarySelector.add(option)
     })
