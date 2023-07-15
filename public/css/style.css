@@ -478,7 +478,7 @@ a.dark-theme:active {
     color: #fff;
 }
 
-.landing-quote-figure {
+.landing-quote-figure.dark-theme {
     background:rgb(35,35,35);
     border-color: rgb(63, 77, 88);
 }
