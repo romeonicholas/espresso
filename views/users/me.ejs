@@ -11,13 +11,41 @@
         <div>  
           <% if (!user.beans.length || !user.machines.length || !user.grinders.length) { %>
             <p>You can't record a shot without equipment! Add at least one variety of <a class="link" href="/users/me/beans/new">beans</a>, one <a class="link" href="/users/me/machines/new">machine</a>, and one <a class="link" href="/users/me/grinders/new">grinder</a> to your account, then try again.</p>
+            <br />
           <% } %>
 
           <% if (user.shots.length) { %>
-            <% user.shots.forEach(shot => { %>
-              <p><strong><%= shot.date.toLocaleString("en-US", { dateStyle: "short", timeStyle: "short"}) %></strong> <%= shot.comment %> <a class="link delete" href='/shots/<%= shot.id %>/delete'>[x]</a></p>
-            <% }) %>
-            <a class="link" href="/users/me/shots">See entire shot history</a>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Ratings</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% user.shots.forEach(shot => { %>
+                  <tr>
+                    <td><%= shot.date.toLocaleString("en-US", { dateStyle: "short", timeStyle: "short"}) %></td>
+                    <td>
+                      <%= shot.aromaticsRating %>
+                      <%= shot.bodyRating %>
+                      <%= shot.acidityRating %>
+                      <%= shot.sweetnessRating %>
+                      <%= shot.aftertasteRating %>
+                    </td>
+                    <td><a class="link delete" href='/shots/<%= shot.id %>/delete'>[x]</a></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>
+                    <a class="link" href="/users/me/shots">See entire shot history</a>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
           <% } %>
         </div>
       
