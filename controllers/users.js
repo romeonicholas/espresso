@@ -121,18 +121,14 @@ router.post(
   body("resourceId").isString().isLength({ min: 24, max: 24 }).trim().escape(),
   async (request, response) => {
     try {
-      const resourceType = request.params.resourceType.toLowerCase()
-      const schemasFromResourceType = {
-        beans: Bean,
-        machines: Machine,
-        grinders: Grinder,
-      }
-      const schema = schemasFromResourceType[`${resourceType}`]
-
       validationResult(request).throw()
+
+      const resourceType = request.params.resourceType.toLowerCase()
+
       const user = await User.findById(response.locals.id).exec()
       user[`${resourceType}`].addToSet(request.body.resourceId)
       await user.save()
+
       response.redirect("./")
     } catch (error) {
       console.error(error)

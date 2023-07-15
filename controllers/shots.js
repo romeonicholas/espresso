@@ -1,6 +1,5 @@
 import { Router } from "express"
 import { Shot } from "../models/shot.js"
-import { Bean } from "../models/bean.js"
 import { body, validationResult } from "express-validator"
 import { authenticateToken } from "../middlewares/authenticateToken.js"
 import { User } from "../models/user.js"
@@ -46,7 +45,7 @@ router.get("/new", authenticateToken, async (request, response) => {
       user: user,
       shot: shot,
     })
-  } catch {
+  } catch (error) {
     console.error(error)
     response.status(404).send("Could not create new shot")
   }

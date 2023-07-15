@@ -5,10 +5,6 @@ import { authenticateToken } from "../middlewares/authenticateToken.js"
 
 const router = Router()
 
-router.get("/", authenticateToken, (request, response) => {
-  // View all machines
-})
-
 router.get("/new", authenticateToken, (request, response) => {
   response.render("machines/new", { pageTitle: "Submit Machine" })
 })
