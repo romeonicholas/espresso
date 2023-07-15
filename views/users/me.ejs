@@ -1,36 +1,36 @@
 <%- include('../includes/row-opening') %>
   <%- include('../includes/nav') %>
     <div class="center col-6 col-s-9">
-      <h2>My Dashboard</h2>
+      <h2 class="subheader">My Dashboard</h2>
         <header class="dashboard-section-header">
-          <h3>My Shots</h3>
-          <span class="header-links"><a href="/shots/new"><strong>Pull a New Shot</strong></a></span>
+          <h3 class="subheader">My Shots</h3>
+          <span class="header-links"><a class="link" href="/shots/new"><strong>Pull a New Shot</strong></a></span>
         </header>
         <div class="section-underline"></div>
       
         <div>  
           <% if (!user.beans.length || !user.machines.length || !user.grinders.length) { %>
-            <p>You can't record a shot without equipment! Add at least one variety of <a href="/users/me/beans/new">beans</a>, one <a href="/users/me/machines/new">machine</a>, and one <a href="/users/me/grinders/new">grinder</a> to your account, then try again.</p>
+            <p>You can't record a shot without equipment! Add at least one variety of <a class="link" href="/users/me/beans/new">beans</a>, one <a class="link" href="/users/me/machines/new">machine</a>, and one <a class="link" href="/users/me/grinders/new">grinder</a> to your account, then try again.</p>
           <% } %>
 
           <% if (user.shots.length) { %>
             <% user.shots.forEach(shot => { %>
-              <p><strong><%= shot.date.toLocaleString("en-US", { dateStyle: "short", timeStyle: "short"}) %></strong> <%= shot.comment %> [<a href='/shots/<%= shot.id %>/delete'>x</a>]</p>
+              <p><strong><%= shot.date.toLocaleString("en-US", { dateStyle: "short", timeStyle: "short"}) %></strong> <%= shot.comment %> <a class="link delete" href='/shots/<%= shot.id %>/delete'>[x]</a></p>
             <% }) %>
-            <a href="/users/me/shots">See entire shot history</a>
+            <a class="link" href="/users/me/shots">See entire shot history</a>
           <% } %>
         </div>
       
         <header class="dashboard-section-header">
           <h3>My Beans</h3>
-          <span class="header-links"><a href="/users/me/beans/new">Add Beans</a></span>
+          <span class="header-links"><a class="link" href="/users/me/beans/new">Add Beans</a></span>
         </header>
         <div class="section-underline"></div>
         
         <div>
           <% if (user.beans.length) { %>
             <% user.beans.forEach(bean => { %>
-              <p><strong><%= bean.brand %></strong> <%= bean.name %> [<a href='/users/me/beans/<%= bean.id %>/delete'>x</a>]</p>
+              <p><strong><%= bean.brand %></strong> <%= bean.name %> <a class="link delete" href='/users/me/beans/<%= bean.id %>/delete'>[x]</a></p>
             <% }) %>
           <% } else { %>
             <p>No beans here :(</p>
@@ -39,14 +39,14 @@
 
         <header class="dashboard-section-header">
           <h3>My Machines</h3>
-          <span class="header-links"><a href="/users/me/machines/new">Add Machines</a></span>
+          <span class="header-links"><a class="link" href="/users/me/machines/new">Add Machines</a></span>
         </header>
         <div class="section-underline"></div>
         
         <div>
           <% if (user.machines.length) { %>
             <% user.machines.forEach(machine => { %>
-              <p><strong><%= machine.brand %></strong> <%= machine.name %> [<a href='/users/me/machines/<%= machine.id %>/delete'>x</a>]</p>
+              <p><strong><%= machine.brand %></strong> <%= machine.name %> <a class="link delete" href='/users/me/machines/<%= machine.id %>/delete'>[x]</a></p>
             <% }) %>
           <% } else { %>
             <p>No machines here :(</p>
@@ -55,14 +55,14 @@
 
         <header class="dashboard-section-header">
           <h3>My Grinders</h3>
-          <span class="header-links"><a href="/users/me/grinders/new">Add Grinders</a></span>
+          <span class="header-links"><a class="link" href="/users/me/grinders/new">Add Grinders</a></span>
         </header>
         <div class="section-underline"></div>
         
         <div>
           <% if (user.grinders.length) { %>
             <% user.grinders.forEach(grinder => { %>
-              <p><strong><%= grinder.brand %></strong> <%= grinder.name %> [<a href='/users/me/grinders/<%= grinder.id %>/delete'>x</a>]</p>
+              <p><strong><%= grinder.brand %></strong> <%= grinder.name %> <a class="link delete" href='/users/me/grinders/<%= grinder.id %>/delete'>[x]</a></p>
             <% }) %>
           <% } else { %>
             <p>No grinders here :(</p>
