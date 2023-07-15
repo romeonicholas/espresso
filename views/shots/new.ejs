@@ -8,7 +8,7 @@
 
         <label for="beanId">Select beans:</label>
         <select name="beanId" required><br />
-          <% user.beans.forEach(bean=> { %>
+          <% user.beans.forEach(bean => { %>
             <% if (bean._id.equals(shot.bean._id)) { %>
               <option selected value="<%= bean._id.toString() %>">
                 <%= `${bean.brand} ${bean.name}`%>

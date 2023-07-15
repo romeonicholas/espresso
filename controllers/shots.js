@@ -40,6 +40,8 @@ router.get("/new", authenticateToken, async (request, response) => {
           }
         : await Shot.findById(user.shots[user.shots.length - 1])
 
+    console.log(shot)
+
     response.render("shots/new", {
       pageTitle: "New Shots",
       user: user,
@@ -111,7 +113,12 @@ router.get("/:id", authenticateToken, async (request, response) => {
 
 router.get("/:id/edit", authenticateToken, async (request, response) => {
   try {
-    const shot = await Shot.findById(request.params.id).exec()
+    const shot = await Shot.findById(request.params.id)
+      .populate("bean")
+      .populate("machine")
+      .populate("grinder")
+      .exec()
+
     response.render("shots/edit", { pageTitle: "Edit Shot", shot: shot })
   } catch (error) {
     console.error(error)
@@ -122,9 +129,15 @@ router.get("/:id/edit", authenticateToken, async (request, response) => {
 router.get("/:id/delete", authenticateToken, async (request, response) => {
   try {
     const shot = await Shot.findById(request.params.id)
+    const user = await User.findById(response.locals.id)
 
     if (shot.user.equals(response.locals.id) || response.locals.isAdmin) {
+      let updatedShotsList = user.shots.filter(
+        (shot) => shot._id.toString() !== request.params.id
+      )
+      await user.set("shots", updatedShotsList).save()
       await shot.deleteOne()
+
       response.redirect("/users/me")
     } else {
       response.status(403).send("Access denied")
