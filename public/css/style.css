@@ -434,9 +434,13 @@ input[class="rating-radio-button"]:focus + svg {
 .collapse-button.dark-theme {
     background-color: #1B1F22;
     color: #A3A9B2;
-    border-width: 1px 0px 1px 0px;
+    border-width: 1px 0px 0px 0px;
     border-style: solid;
     border-color: #A3A9B2;
+}
+
+.collapse-button.dark-theme:last-of-type {
+    border-width: 1px 0px 1px 0px;
 }
 
 .collapse-button.dark-theme:hover {
@@ -445,6 +449,7 @@ input[class="rating-radio-button"]:focus + svg {
 
 .active.collapse-button.dark-theme {
     background-color: rgb(30, 37, 47);
+    border-width: 1px 0px 1px 0px;
 }
 
 .collapse-content.dark-theme {
