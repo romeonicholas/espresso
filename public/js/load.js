@@ -12,6 +12,7 @@ const darkModeElementsByClass = [
   ".text-input",
   ".submit-button",
   ".landing-quote-figure",
+  ".landing-photo",
 ]
 
 if (localStorage.prefersDarkMode == "true") {

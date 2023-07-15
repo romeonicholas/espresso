@@ -503,6 +503,10 @@ a.dark-theme:active {
     border-color: #2E373E;
 }
 
+.landing-photo.dark-theme {
+    filter: brightness(.8) contrast(1.2);
+}
+
 @media only screen and (min-width: 800px) {
     .hidden-mobile {
         display: inline-block;
