@@ -280,8 +280,8 @@ input:checked+.slider:before {
     background-color: #ECD38F;
 }
 
-.dashboard-date {
-    text-align: left;
+.end-col {
+    width: 55px;
 }
 
 .dashboard-section-header {
