@@ -28,6 +28,7 @@
                       </div>
                     </div>
                   </th>
+                  <th class="end-col">Edit</th>
                   <th class="end-col">Delete</th>
                 </tr>
               </thead>
@@ -35,19 +36,20 @@
                 <% user.shots.forEach(shot => { %>
                   <tr>
                     <td><a class="link" href="/shots/<%= shot._id %>">-></a></td>
-                    <td class="dashboard-date"><%= shot.date.toLocaleString("en-US", { dateStyle: "short", timeStyle: "short"}) %></td>
+                    <td class="dashboard-date"><%= shot.date.toLocaleString("en-US", { dateStyle: "short" }) %></td>
                     <td><%= shot.aromaticsRating %></td>
                     <td><%= shot.bodyRating %></td>
                     <td><%= shot.acidityRating %></td>
                     <td><%= shot.sweetnessRating %></td>
                     <td><%= shot.aftertasteRating %></td>
-                    <td><a class="link" href='/shots/<%= shot.id %>/delete'>[x]</a></td>
+                    <td><a class="link" href='/shots/<%= shot.id %>/edit'>&#x270E;</a></td>
+                    <td><a class="link" href='/shots/<%= shot.id %>/delete'>X</a></td>
                   </tr>
                 <% }) %>
               </tbody>
               <tfoot>
                 <tr>
-                  <td colspan="8">
+                  <td colspan="9">
                     <a class="link" href="/users/me/shots">See entire shot history</a>
                   </td>
                 </tr>
@@ -79,7 +81,7 @@
                   <tr>
                     <td><%- bean.brand %></a></td>
                     <td><%- bean.name %></td>
-                    <td><a class="link" href='/users/me/beans/<%= bean.id %>/delete'>[x]</a></td>
+                    <td><a class="link" href='/users/me/beans/<%= bean.id %>/delete'>X</a></td>
                   </tr>
                 <% }) %>
               </tbody>
@@ -110,7 +112,7 @@
                   <tr>
                     <td><%- machine.brand %></a></td>
                     <td><%- machine.name %></td>
-                    <td><a class="link" href='/users/me/machines/<%= machine.id %>/delete'>[x]</a></td>
+                    <td><a class="link" href='/users/me/machines/<%= machine.id %>/delete'>X</a></td>
                   </tr>
                 <% }) %>
               </tbody>
@@ -141,7 +143,7 @@
                   <tr>
                     <td><%- grinder.brand %></a></td>
                     <td><%- grinder.name %></td>
-                    <td><a class="link" href='/users/me/grinders/<%= grinder.id %>/delete'>[x]</a></td>
+                    <td><a class="link" href='/users/me/grinders/<%= grinder.id %>/delete'>X</a></td>
                   </tr>
                 <% }) %>
               </tbody>
