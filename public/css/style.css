@@ -479,22 +479,22 @@ input[class="rating-radio-button"]:focus + svg {
 
 a.dark-theme:link {
     color:#A3A9B2;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 a.dark-theme:visited {
     color:#A3A9B2;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 a.dark-theme:hover {
     color:rgb(200,200,200);
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 a.dark-theme:active {
     color:rgb(200,200,200);
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .text-input.dark-theme {
