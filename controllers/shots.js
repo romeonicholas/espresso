@@ -104,10 +104,18 @@ router.get("/:id", authenticateToken, async (request, response) => {
       .populate("bean")
       .populate("machine")
       .populate("grinder")
-      .exec()
+      .populate("user")
+      .lean()
+
     if (!shot) throw new Error("Shot not found.")
 
-    response.render("shots/show", { pageTitle: "Shot Details", shot: shot })
+    const isOwner = shot.user._id.equals(response.locals.id)
+
+    response.render("shots/show", {
+      pageTitle: "Shot Details",
+      shot: shot,
+      isOwner: isOwner,
+    })
   } catch (error) {
     console.error(error)
     response.status(404).send("Shot could not be found")
