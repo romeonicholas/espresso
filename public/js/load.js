@@ -13,7 +13,6 @@ const darkModeElementsByClass = [
   ".submit-button",
   ".landing-quote-figure",
 ]
-// ".header, .footer, .aside, .aside-quote, .menu, .main, .collapse-button, .subheader, .link, .collapse-content, .text-input, .submit-button, .landing-quote-figure"
 
 if (localStorage.prefersDarkMode == "true") {
   document.querySelectorAll(darkModeElementsByClass).forEach((element) => {
