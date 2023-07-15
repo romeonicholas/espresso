@@ -1,9 +1,10 @@
+const darkModeElementsByClass =
+  ".header, .footer, .aside, .aside-quote, .menu, .main, .collapse-button, .subheader, .link, .collapse-content, .submit-button"
+
 if (localStorage.prefersDarkMode == "true") {
-  document
-    .querySelectorAll(".header, .footer, .aside, .menu, .main")
-    .forEach((element) => {
-      element.classList.toggle("dark-theme")
-    })
+  document.querySelectorAll(darkModeElementsByClass).forEach((element) => {
+    element.classList.toggle("dark-theme")
+  })
 
   document.querySelector(".check").checked = true
 }
@@ -11,11 +12,9 @@ if (localStorage.prefersDarkMode == "true") {
 const darkModeButton = document.querySelector(".slider")
 
 darkModeButton.addEventListener("click", () => {
-  document
-    .querySelectorAll(".header, .footer, .aside, .menu, .main")
-    .forEach((element) => {
-      element.classList.toggle("dark-theme")
-    })
+  document.querySelectorAll(darkModeElementsByClass).forEach((element) => {
+    element.classList.toggle("dark-theme")
+  })
 
   localStorage.prefersDarkMode =
     localStorage.prefersDarkMode == "true" ? "false" : "true"

@@ -13,22 +13,22 @@ body {
     margin: 0;
 }
 
-a:link {
+a.link:link {
     color:#B9901D;
     text-decoration: none;
 }
 
-a:visited {
+a.link:visited {
     color:#6E5511;
     text-decoration: none;
 }
 
-a:hover {
+a.link:hover {
     color:#6E5511;
     text-decoration: underline;
 }
 
-a:active {
+a.link:active {
     color:#B9901D;
     text-decoration: underline;
 }
@@ -241,7 +241,7 @@ input:checked+.slider:before {
     height: 100%;
 }
 
-.main h2 {
+.subheader {
     color: #937031;
 }
 
@@ -260,10 +260,6 @@ input:checked+.slider:before {
     border-top: 1px solid #222;
     margin: -17px 0 0 0;
     padding: 0;
-}
-
-.main p {
-    color: #222;
 }
 
 .center {
@@ -340,6 +336,7 @@ input[class="rating-radio-button"]:focus + svg {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+
 .aside a:link {
     color:#222;
     text-decoration: underline;
@@ -386,29 +383,104 @@ input[class="rating-radio-button"]:focus + svg {
 /* DARK THEME */
 
 .header.dark-theme {
-    background-color: #3b2b15;
-    color: rgb(224, 213, 213);
+    background-color: rgb(25,31, 39);
+    color:rgb(233,182,135);
+    box-shadow: none;
 }
 
-.menu.dark-theme li {
-    background-color: #3b2b15;
-    color: rgb(224, 213, 213);
-}
-
-.main.dark-theme {
-    background-color: darkslategrey;
-    color: #eaded6;
+.subheader.dark-theme {
+    color:rgb(220,220,220)
 }
 
 .aside.dark-theme {
-    background-color: #513928;
-    color: #faf8f6;
-    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+    background-color: rgb(25,31, 39);
+    color: rgb(150,158,168);
+    box-shadow: none;
+}
+
+.aside.dark-theme a {
+    color:white;
+}
+
+.aside-quote.dark-theme {
+    background-color: rgb(25,31, 39);
+    color: rgb(150,158,168);
+    box-shadow: none;
+}
+
+.menu.dark-theme li {
+    background-color: rgb(38,46,52);
+    color: rgb(150,158,168);
+    box-shadow: none;
+}
+
+.menu li:hover {
+    background-color:rgb(46, 55, 62);
+}
+
+.main.dark-theme {
+    background-color: rgb(22, 24, 27);
+    color: rgb(150,158,168);
+    box-shadow: none;
+}
+
+.collapse-button.dark-theme {
+    background-color: rgb(25,31, 39);
+    color: rgb(150,158,168);
+    border-color: rgb(38,46,52);
+}
+
+.collapse-button.dark-theme:hover {
+    background-color: rgb(30, 37, 47);
+    color: rgb(150,158,168);
+}
+
+.collapse-content.dark-theme {
+    background-color: rgb(38,46,52);
+    color: rgb(150,158,168);
 }
 
 .footer.dark-theme {
-    background-color: #513928;
-    color: #faf8f6;
+    background-color: rgb(22, 24, 27);
+    color: rgb(150,158,168);
+}
+
+a.dark-theme:link {
+    color:rgb(150,158,168);
+    text-decoration: none;
+}
+
+a.dark-theme:visited {
+    color:rgb(150,158,168);
+    text-decoration: none;
+}
+
+a.dark-theme:hover {
+    color:rgb(200,200,200);
+    text-decoration: underline;
+}
+
+a.dark-theme:active {
+    color:rgb(200,200,200);
+    text-decoration: underline;
+}
+
+.submit-button.dark-theme {
+    outline: rgb(250, 203, 159);
+    background-color: rgb(233,182,135);
+    color: #222;
+    border-color: rgb(250, 203, 159);
+}
+
+.active,
+.submit-button.dark-theme:hover {
+    background-color: rgb(185, 139, 102);
+    color: #fff;
+}
+
+.landing-quote-figure {
+    background:rgb(35,35,35);
+    border-color: rgb(63, 77, 88);
 }
 
 @media only screen and (min-width: 800px) {
