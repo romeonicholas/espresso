@@ -1,20 +1,39 @@
 <%- include('../includes/row-opening') %>
   <%- include('../includes/nav') %>
   <div class="center col-6 col-s-9">
-    <a href="/shots/new">New Shot</a>
     <h2>Latest Shots</h2>
-    <% shots.forEach(shot => { %>
-      <ul>
-        <li><%= shot.date %>: <a href='/shots/<%= shot.id%>'><%= shot.id%></a></li>
-        <li>Input: <%= shot.grindsWeight %>, Output: <%= shot.shotsWeight %></li>
-        <% if (shot.shotsWeight >= (shot.grindsWeight * 2)) { %>
-          <li>[Long shot]</li>
-        <% } else { %>
-          <li>[Ristretto]</li>
-        <% } %>
-      </ul>
-    <% }) %>
-    </ul>
+
+    <table class="dashboard-table">
+      <thead class="shots-table-head">
+        <tr>
+          <th>User</th>
+          <th>Date</th>
+          <th colspan="5">
+            <div class="ratings-info">
+              Ratings
+              <div class="ratings-info-text">Aromatics/Body/Acidity
+                <div>Sweetness/Aftertaste</div>
+              </div>
+            </div>
+          <th class="end-col">Details</th>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% shots.forEach(shot => { %>
+          <tr>
+            <td><%= shot.user.username || `-` %></td>
+            <td class="dashboard-date"><%= shot.date.toLocaleString("en-US", { dateStyle: "short" }) %></td>
+            <td><%= shot.aromaticsRating || `-` %></td>
+            <td><%= shot.bodyRating || `-` %></td>
+            <td><%= shot.acidityRating || `-` %></td>
+            <td><%= shot.sweetnessRating || `-` %></td>
+            <td><%= shot.aftertasteRating || `-` %></td>
+            <td><a class="link" href="/shots/<%= shot._id %>">-></a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
   </div>
   <%- include('../includes/aside-quote') %>
 <%- include('../includes/row-close') %>

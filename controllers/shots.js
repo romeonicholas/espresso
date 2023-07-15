@@ -8,7 +8,10 @@ const router = Router()
 
 router.get("/", authenticateToken, async (request, response) => {
   try {
-    const shots = await Shot.find({}).exec()
+    const shots = await Shot.find({})
+      .limit(50)
+      .populate({ path: "user", fields: "username" })
+      .lean()
     response.render("shots/index", { shots: shots })
   } catch (error) {
     console.error(error)
