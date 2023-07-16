@@ -4,16 +4,16 @@ const { Schema } = mongoose
 
 const shotSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now, required: true },
-  grindsWeightGrams: { type: Number, required: true },
-  shotsWeightGrams: { type: Number, required: true },
-  durationSeconds: { type: Number, required: true },
-  comments: { type: String },
-  favorite: { type: Boolean },
   user: { type: Schema.Types.ObjectId, ref: "User", required: true },
   bean: { type: Schema.Types.ObjectId, ref: "Bean", required: true },
-  beanRoastDate: { type: Date },
   machine: { type: Schema.Types.ObjectId, ref: "Machine", required: true },
-  grinder: { type: Schema.Types.ObjectId, ref: "Grinder" },
+  grinder: { type: Schema.Types.ObjectId, ref: "Grinder", required: true },
+  grinderSetting: { type: Number },
+  grindsWeightGrams: { type: Number },
+  durationSeconds: { type: Number },
+  shotsWeightGrams: { type: Number },
+  comments: { type: String },
+  favorite: { type: Boolean },
   bodyRating: {
     type: Schema.Types.Number,
     min: 1,
