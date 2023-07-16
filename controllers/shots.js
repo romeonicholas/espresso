@@ -142,6 +142,42 @@ router.get("/:id/edit", authenticateToken, async (request, response) => {
   }
 })
 
+router.post("/:id", authenticateToken, async (request, response) => {
+  try {
+    const shot = await Shot.findById(request.params.id)
+
+    if (shot.user.equals(response.locals.id) || response.locals.isAdmin) {
+      await Shot.replaceOne(
+        { _id: shot._id },
+        {
+          _id: shot._id,
+          user: shot.user._id,
+          bean: request.body.beanId,
+          machine: request.body.machineId,
+          grinder: request.body.grinderId,
+          grinderSetting: request.body.grinderSetting,
+          grindsWeightGrams: request.body.grindsWeightGrams,
+          durationSeconds: request.body.durationSeconds,
+          shotsWeightGrams: request.body.shotsWeightGrams,
+          bodyRating: request.body.bodyRating,
+          acidityRating: request.body.acidityRating,
+          aromaticsRating: request.body.aromaticsRating,
+          sweetnessRating: request.body.sweetnessRating,
+          aftertasteRating: request.body.aftertasteRating,
+          comments: request.body.comments,
+        }
+      )
+
+      response.redirect(`/shots/${shot._id}`)
+    } else {
+      response.redirect("shots/me")
+    }
+  } catch (error) {
+    console.error(error)
+    response.send("This shot failed to be created.")
+  }
+})
+
 router.get("/:id/delete", authenticateToken, async (request, response) => {
   try {
     const shot = await Shot.findById(request.params.id)
