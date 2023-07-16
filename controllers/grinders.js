@@ -5,6 +5,16 @@ import { authenticateToken } from "../middlewares/authenticateToken.js"
 
 const router = Router()
 
+router.get("/", authenticateToken, async (request, response) => {
+  const grinders = await Grinder.find({ isPublished: true })
+    .sort({ brand: 1, name: 1 })
+    .lean()
+  response.render("shared/index", {
+    pageTitle: "All Grinders",
+    resources: grinders,
+  })
+})
+
 router.get("/new", authenticateToken, async (request, response) => {
   response.render("grinders/new", { pageTitle: "Submit Grinder" })
 })
