@@ -4,7 +4,7 @@
     <h2 class="subheader">Shot Details</h2>
     
     <header class="dashboard-section-header">
-      <h3 >By <%= shot.user.username %></h3>
+      <h3 >By <%= shot.user.username %> - <%= shot.date.toLocaleString("en-US", { dateStyle: "short", timeStyle: "short"}) %></h3>
       <% if (isOwner) { %>
         <span class="header-links">
           <a class="link" href="/shots/<%= shot._id.toString() %>/edit">Edit</a>&nbsp;&nbsp;&nbsp;
@@ -13,27 +13,35 @@
       <% } %>
     </header>
     <div class="section-underline"></div>
+    <p><strong>Comments:</strong> <%- shot.comments || `-` %></p>
+    <br />
 
-    <h4>Preparation</h4>
+
+    <h4>Equipment</h4>
     <div class="section-underline"></div>
 
-    <p><strong>Date:</strong> <%= shot.date.toLocaleString("en-US", { dateStyle: "short", timeStyle: "short"}) %></p>
     <p><strong>Beans:</strong> <%- shot.bean.brand + ' ' + shot.bean.name%></p>
     <p><strong>Machine:</strong> <%- shot.machine.brand + ' ' + shot.machine.name%></p>
     <p><strong>Grinder:</strong> <%- shot.grinder.brand + ' ' + shot.grinder.name%></p>
-    <p><strong>Weight of grinds:</strong> <%= shot.grindsWeightGrams %> grams</p>
-    <p><strong>Weight of shots:</strong> <%= shot.shotsWeightGrams %> grams</p>
+    <br />
+
+    <h4>Preparation and Output</h4>
+    <div class="section-underline"></div>
+
+    <p><strong>Grinder setting:</strong> <%= shot.grindsWeightGrams || `-` %></p>
+    <p><strong>Weight of grinds:</strong> <%= shot.grindsWeightGrams || `-` %> grams</p>
+    <p><strong>Shot duration:</strong> <%= shot.durationSeconds || `-` %> seconds</p>
+    <p><strong>Weight of shots:</strong> <%= shot.shotsWeightGrams || `-` %> grams</p>
     <br />
 
     <h4>Results</h4>
     <div class="section-underline"></div>
 
-    <p><strong>Aromatics:</strong> <%= shot.aromaticsRating %></p>
-    <p><strong>Body:</strong> <%= shot.bodyRating %></p>
-    <p><strong>Acidity:</strong> <%= shot.acidityRating %></p>
-    <p><strong>Sweetness:</strong> <%= shot.sweetnessRating %></p>
-    <p><strong>Aftertaste:</strong> <%= shot.aftertasteRating %></p>
-    <p><strong>Comments:</strong> <%- shot.comments %></p>
+    <p><strong>Aromatics:</strong> <%= shot.aromaticsRating || `-` %></p>
+    <p><strong>Body:</strong> <%= shot.bodyRating || `-` %></p>
+    <p><strong>Acidity:</strong> <%= shot.acidityRating || `-` %></p>
+    <p><strong>Sweetness:</strong> <%= shot.sweetnessRating || `-` %></p>
+    <p><strong>Aftertaste:</strong> <%= shot.aftertasteRating || `-` %></p>
 
   </div>
   <%- include('../includes/aside-quote') %>
