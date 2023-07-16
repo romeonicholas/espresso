@@ -13,7 +13,9 @@
       <% } %>
     </header>
     <div class="section-underline"></div>
-    <p><strong>Comments:</strong> <%- shot.comments || `-` %></p>
+    <% if (shot.comments) { %>
+      <p><strong>Comments:</strong> <%- shot.comments %></p>
+    <% } %>
     <br />
 
 
@@ -25,23 +27,46 @@
     <p><strong>Grinder:</strong> <%- shot.grinder.brand + ' ' + shot.grinder.name%></p>
     <br />
 
-    <h4>Preparation and Output</h4>
-    <div class="section-underline"></div>
+    <% if (shot.grinderSetting || shot.grindsWeightGrams || shot.durationSeconds || shot.shotsWeightGrams) { %>
+      <h4>Preparation and Output</h4>
+      <div class="section-underline"></div>
+    <% } %>
 
-    <p><strong>Grinder setting:</strong> <%= shot.grindsWeightGrams || `-` %></p>
-    <p><strong>Weight of grinds:</strong> <%= shot.grindsWeightGrams || `-` %> grams</p>
-    <p><strong>Shot duration:</strong> <%= shot.durationSeconds || `-` %> seconds</p>
-    <p><strong>Weight of shots:</strong> <%= shot.shotsWeightGrams || `-` %> grams</p>
+    <% if (shot.grinderSetting) { %>
+      <p><strong>Grinder setting:</strong> <%= shot.grinderSetting %></p>
+    <% } %>
+    <% if (shot.grindsWeightGrams) { %>
+      <p><strong>Weight of grinds:</strong> <%= shot.grindsWeightGrams %> grams</p>
+    <% } %>
+    <% if (shot.durationSeconds) { %>
+      <p><strong>Shot duration:</strong> <%= shot.durationSeconds %> seconds</p>
+    <% } %>
+    <% if (shot.shotsWeightGrams) { %>
+      <p><strong>Weight of shots:</strong> <%= shot.shotsWeightGrams %> grams</p>
+    <% } %>
+
     <br />
 
+    <% if (shot.aromaticsRating || shot.bodyRating || shot.acidityRating || shot.sweetnessRating || shot.aftertasteRating) { %>
     <h4>Results</h4>
     <div class="section-underline"></div>
+    <% } %>
 
-    <p><strong>Aromatics:</strong> <%= shot.aromaticsRating || `-` %></p>
-    <p><strong>Body:</strong> <%= shot.bodyRating || `-` %></p>
-    <p><strong>Acidity:</strong> <%= shot.acidityRating || `-` %></p>
-    <p><strong>Sweetness:</strong> <%= shot.sweetnessRating || `-` %></p>
-    <p><strong>Aftertaste:</strong> <%= shot.aftertasteRating || `-` %></p>
+    <% if (shot.aromaticsRating) { %>
+      <p><strong>Aromatics:</strong> <%= shot.aromaticsRating %></p>
+    <% } %>
+    <% if (shot.bodyRating) { %>
+      <p><strong>Body:</strong> <%= shot.bodyRating %></p>
+    <% } %>
+    <% if (shot.acidityRating) { %>
+      <p><strong>Acidity:</strong> <%= shot.acidityRating %></p>
+    <% } %>
+    <% if (shot.sweetnessRating) { %>
+      <p><strong>Sweetness:</strong> <%= shot.sweetnessRating %></p>
+    <% } %>    
+    <% if (shot.aftertasteRating) { %>
+      <p><strong>Aftertaste:</strong> <%= shot.aftertasteRating %></p>
+    <% } %> 
 
   </div>
   <%- include('../includes/aside-quote') %>

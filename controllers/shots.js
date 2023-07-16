@@ -66,21 +66,21 @@ router.post(
       validationResult(request).throw()
 
       const shot = new Shot({
-        grindsWeightGrams: request.body.grindsWeightGrams,
-        shotsWeightGrams: request.body.shotsWeightGrams,
-        durationSeconds: request.body.durationSeconds,
         user: response.locals.id,
         bean: request.body.beanId,
-        beanRoastDate: request.body.roastDate,
         machine: request.body.machineId,
         grinder: request.body.grinderId,
-        comments: request.body.comments,
-        favorite: request.body.favorite === "true" ? "true" : "false",
+        grinderSetting: request.body.grinderSetting,
+        grindsWeightGrams: request.body.grindsWeightGrams,
+        durationSeconds: request.body.durationSeconds,
+        shotsWeightGrams: request.body.shotsWeightGrams,
         bodyRating: request.body.bodyRating,
         acidityRating: request.body.acidityRating,
         aromaticsRating: request.body.aromaticsRating,
         sweetnessRating: request.body.sweetnessRating,
         aftertasteRating: request.body.aftertasteRating,
+        comments: request.body.comments,
+        // favorite: request.body.favorite === "true" ? "true" : "false",
       })
       await shot.save()
 
