@@ -7,8 +7,8 @@
       <h3 >By <%= shot.user.username %></h3>
       <% if (isOwner) { %>
         <span class="header-links">
-          <a class="link" href="/shots/<%= shot.id %>/edit">Edit</a>&nbsp;&nbsp;&nbsp;
-          <a class="link" href="/shots/<%= shot.id %>/delete">Delete</a>
+          <a class="link" href="/shots/<%= shot._id.toString() %>/edit">Edit</a>&nbsp;&nbsp;&nbsp;
+          <a class="link" href="/shots/<%= shot._id.toString() %>/delete">Delete</a>
         </span>
       <% } %>
     </header>
