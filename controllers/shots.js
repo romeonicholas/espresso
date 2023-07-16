@@ -10,6 +10,7 @@ router.get("/", authenticateToken, async (request, response) => {
   try {
     const shots = await Shot.find({})
       .limit(50)
+      .sort({ date: -1 })
       .populate({ path: "user", fields: "username" })
       .lean()
     response.render("shots/index", { shots: shots })
