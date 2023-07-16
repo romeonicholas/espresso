@@ -60,9 +60,6 @@ router.get("/new", authenticateToken, async (request, response) => {
 router.post(
   "/",
   authenticateToken,
-  body("grindsWeightGrams").isInt(),
-  body("shotsWeightGrams").isInt(),
-  body("durationSeconds").isInt(),
   body("comments").isString().isLength({ max: 256 }).trim().escape(),
   async (request, response) => {
     try {
