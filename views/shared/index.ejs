@@ -1,0 +1,30 @@
+<%- include('../includes/row-opening') %>
+  <%- include('../includes/nav') %>
+  <div class="center col-6 col-s-9">
+    <h2><%= pageTitle %></h2>
+
+    <table class="dashboard-table">
+      <thead class="shots-table-head">
+        <tr>
+          <th>Brand</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let lastBrand = "" %>
+        <% resources.forEach(resource => { %>
+          <% let currentBrand = resource.brand %>
+          <% if (currentBrand !== lastBrand) { %>
+            <tr class="table-brand-spacer"><td></td><td></td></tr>
+          <% } %>
+          <% lastBrand = currentBrand %>
+          <tr>
+            <td><%- resource.brand %></td>
+            <td><%- resource.name %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <%- include('../includes/aside-quote') %>
+<%- include('../includes/row-close') %>

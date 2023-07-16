@@ -19,6 +19,7 @@ const darkModeElementsByClass = [
   ".section-underline",
   ".shots-table-head",
   ".ratings-info",
+  ".table-brand-spacer",
 ]
 
 if (localStorage.prefersDarkMode == "true") {

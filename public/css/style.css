@@ -292,6 +292,14 @@ input:checked+.slider:before {
     width: 100%;
 }
 
+.table-brand-spacer {
+    background-color: #937031;
+}
+
+.table-brand-spacer:first-of-type {
+    display: none;
+}
+
 .section-underline {
     display: block;
     height: 1px;
@@ -582,6 +590,10 @@ a.dark-theme:active {
 
 .shots-table-head.dark-theme {
     background-color: #1B1F22;
+}
+
+.table-brand-spacer.dark-theme {
+    background-color: #E9B686;
 }
 
 .new-shot-link.dark-theme:link {

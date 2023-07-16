@@ -5,6 +5,13 @@ import { authenticateToken } from "../middlewares/authenticateToken.js"
 
 const router = Router()
 
+router.get("/", authenticateToken, async (request, response) => {
+  const beans = await Bean.find({ isPublished: true })
+    .sort({ brand: 1, name: 1 })
+    .lean()
+  response.render("shared/index", { pageTitle: "All Beans", resources: beans })
+})
+
 router.get("/new", authenticateToken, async (request, response) => {
   response.render("beans/new", { pageTitle: "Submit Beans" })
 })
