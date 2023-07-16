@@ -20,6 +20,8 @@ const darkModeElementsByClass = [
   ".shots-table-head",
   ".ratings-info",
   ".table-brand-spacer",
+  ".rating-radio-button",
+  ".scores",
 ]
 
 if (localStorage.prefersDarkMode == "true") {
