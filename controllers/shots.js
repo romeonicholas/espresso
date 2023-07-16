@@ -44,8 +44,6 @@ router.get("/new", authenticateToken, async (request, response) => {
           }
         : await Shot.findById(user.shots[user.shots.length - 1])
 
-    console.log(shot)
-
     response.render("shots/new", {
       pageTitle: "New Shots",
       user: user,

@@ -455,6 +455,15 @@ input[class="rating-radio-button"]:focus + svg {
 .ratings-info:hover .ratings-info-text {
     visibility: visible;
 }
+
+.required-input {
+    color: red;
+}
+
+.user-inputs {
+    font-size: 18px;
+}
+
 /* DARK THEME */
 
 .header.dark-theme {
