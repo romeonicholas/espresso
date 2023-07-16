@@ -121,12 +121,21 @@ router.get("/:id", authenticateToken, async (request, response) => {
 router.get("/:id/edit", authenticateToken, async (request, response) => {
   try {
     const shot = await Shot.findById(request.params.id)
-      .populate("bean")
       .populate("machine")
       .populate("grinder")
-      .exec()
+      .lean()
 
-    response.render("shots/edit", { pageTitle: "Edit Shot", shot: shot })
+    if (shot.user.equals(response.locals.id) || response.locals.isAdmin) {
+      const user = await User.findById(response.locals.id)
+        .populate("machines")
+        .populate("beans")
+        .populate("grinders")
+        .lean()
+
+      response.render("shots/edit", { user: user, shot: shot })
+    } else {
+      response.redirect("/users/me")
+    }
   } catch (error) {
     console.error(error)
     response.status(404).send("Shot could not be found")
