@@ -1,0 +1,20 @@
+<%- include('../includes/row-opening') %>
+  <%- include('../includes/nav') %>
+  <div class="center col-6 col-s-9">
+    <h2 class="subheader">Submit <%= resourceType %></h2>
+    <p>Submit beans for admin review. If they're approved, you'll be able to add them from <a class="link" href="/users/me/<%= resourceType %>/new">here</a>.</p>
+
+    <form action="<%= url %>" method="POST">
+        <label for="brand">Brand of <%= resourceType %></label><br />
+        <input class="text-input" type="text" name="brand" required />
+        <br /><br />
+        <label for="brand">Name of <%= resourceType %></label><br />
+        <input class="text-input" type="text" name="name" required />
+        
+        <br /><br />
+
+        <button class="submit-button">Submit</button>
+    </form>
+  </div>
+  <%- include('../includes/aside-quote') %>
+<%- include('../includes/row-close') %>
