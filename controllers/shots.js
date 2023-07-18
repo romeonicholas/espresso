@@ -16,7 +16,7 @@ router.get("/", authenticateToken, async (request, response) => {
     response.render("shots/index", { shots: shots })
   } catch (error) {
     console.error(error)
-    response.render("shots/index", { shots: [] })
+    response.send("Could not load shots")
   }
 })
 
