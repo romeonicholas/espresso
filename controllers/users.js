@@ -82,23 +82,21 @@ router.get(
       machines: Machine,
       grinders: Grinder,
     }
-    const schema = schemasFromResourceType[`${resourceType}`]
+    const schema = schemasFromResourceType[resourceType]
 
     try {
       const user = await User.findById(response.locals.id)
       const newResources = await schema
-        .find({ isPublished: true, _id: { $nin: user[`${resourceType}`] } })
+        .find({ isPublished: true, _id: { $nin: user[resourceType] } })
         .sort({ brand: 1 })
         .lean()
 
       const resourceMap = new Map()
       newResources.forEach((resource) => {
         if (!resourceMap.has(resource.brand)) {
-          resourceMap.set(`${resource.brand}`, [[resource.name, resource._id]])
+          resourceMap.set(resource.brand, [[resource.name, resource._id]])
         } else {
-          resourceMap
-            .get(`${resource.brand}`)
-            .push([resource.name, resource._id])
+          resourceMap.get(resource.brand).push([resource.name, resource._id])
         }
       })
 
@@ -130,7 +128,7 @@ router.post(
       const resourceType = request.params.resourceType.toLowerCase()
 
       const user = await User.findById(response.locals.id).exec()
-      user[`${resourceType}`].addToSet(request.body.resourceId)
+      user[resourceType].addToSet(request.body.resourceId)
       await user.save()
 
       response.redirect("./")
