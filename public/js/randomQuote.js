@@ -25,6 +25,21 @@ const quotes = [
     "Fran Drescher",
     "",
   ],
+  [
+    "As long as there was coffee in the world, how bad could things be?",
+    "Cassandra Clare",
+    "City of Ashes",
+  ],
+  [
+    "Ah coffee. The sweet balm by which we shall accomplish today&#8217;s tasks.",
+    "Holly Black",
+    "Ironside",
+  ],
+  [
+    "If it wasn&#8217;t for coffee, I&#8217;d have no discernible personality at all.",
+    "David Letterman",
+    "",
+  ],
 ]
 
 const quoteIndex = Math.floor(Math.random() * (quotes.length - 1))
