@@ -193,24 +193,32 @@ router.post(
     try {
       validationResult(request).throw()
 
-      bcrypt.hash(request.body.password, 10, async function (err, hash) {
-        const user = new User({
-          username: request.body.username,
-          hashedPassword: hash,
-        })
-        await user.save()
-        const token = JSONWebToken.sign(
-          { id: user._id, username: user.username },
-          SECRET_JWT_CODE,
-          {
-            expiresIn: JWT_EXPIRES_IN,
-          }
-        )
+      let existingUser = await User.findOne({ username: request.body.username })
+        .select("username")
+        .lean()
 
-        response
-          .cookie("access_token", token, { httpOnly: true })
-          .redirect("/users/me")
-      })
+      if (existingUser) {
+        response.send("Username is already taken, please go back and try again")
+      } else {
+        bcrypt.hash(request.body.password, 10, async function (err, hash) {
+          const user = new User({
+            username: request.body.username,
+            hashedPassword: hash,
+          })
+          await user.save()
+          const token = JSONWebToken.sign(
+            { id: user._id, username: user.username },
+            SECRET_JWT_CODE,
+            {
+              expiresIn: JWT_EXPIRES_IN,
+            }
+          )
+
+          response
+            .cookie("access_token", token, { httpOnly: true })
+            .redirect("/users/me")
+        })
+      }
     } catch (error) {
       console.error(error)
       response.send("User failed to be created")
