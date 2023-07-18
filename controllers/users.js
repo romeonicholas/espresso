@@ -42,9 +42,6 @@ router.get("/me", authenticateToken, async (request, response) => {
 
 router.get("/me/shots", authenticateToken, async (request, response) => {
   try {
-    console.log(response.locals)
-    const shots = await Shot.find({ user: response.locals.id }).exec()
-    console.log(shots)
     const user = await User.findById(response.locals.id)
       .populate({ path: "shots", options: { sort: { date: -1 } } })
       .exec()
