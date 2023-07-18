@@ -16,7 +16,11 @@ router.get("/", authenticateToken, async (request, response) => {
 })
 
 router.get("/new", authenticateToken, async (request, response) => {
-  response.render("grinders/new", { pageTitle: "Submit Grinder" })
+  response.render("shared/new", {
+    pageTitle: "Submit Grinder For Review",
+    resourceType: "Grinder",
+    url: "/grinders",
+  })
 })
 
 router.get("/:id", authenticateToken, async (request, response) => {

@@ -16,7 +16,11 @@ router.get("/", authenticateToken, async (request, response) => {
 })
 
 router.get("/new", authenticateToken, (request, response) => {
-  response.render("machines/new", { pageTitle: "Submit Machine" })
+  response.render("shared/new", {
+    pageTitle: "Submit Machine For Review",
+    resourceType: "Machine",
+    url: "/machines",
+  })
 })
 
 router.post(
