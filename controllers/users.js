@@ -18,7 +18,11 @@ router.get("/", authenticateToken, (request, response) => {
 })
 
 router.get("/new", checkLoginStatus, (request, response) => {
-  response.render("users/new", { pageTitle: "Sign Up" })
+  if (response.locals.username) {
+    response.redirect("/users/me")
+  } else {
+    response.render("users/new", { pageTitle: "Sign Up" })
+  }
 })
 
 router.get("/me", authenticateToken, async (request, response) => {
