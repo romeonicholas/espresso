@@ -258,7 +258,7 @@ router.post(
               .cookie("access_token", token, { httpOnly: true })
               .redirect("/users/me")
           } else {
-            response.redirect("/")
+            response.redirect("/users/login")
           }
         }
       )
