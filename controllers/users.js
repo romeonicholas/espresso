@@ -1,6 +1,5 @@
 import { Router } from "express"
 import { User } from "../models/user.js"
-import { Shot } from "../models/shot.js"
 import { Bean } from "../models/bean.js"
 import { Machine } from "../models/machine.js"
 import { Grinder } from "../models/grinder.js"
