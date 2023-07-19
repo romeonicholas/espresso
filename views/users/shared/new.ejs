@@ -3,22 +3,26 @@
   <div class="center col-6 col-s-9">
     <h2>Add <%= resourceType %> to My Account</h2>
     <form action="<%= url %>" method="POST">
-
-        <label for="resourceBrand">Select brand:</label>
-        <select name="resourceBrand" class="primary-selector" required><br />
-        <% resourceMap.forEach( (value, key) => { %>
-            <option data-varieties="<%- value %>" value="<%= key %>"><%- key %></option>
-        <% }) %>
-        </select><br /><br />
-
-        <label for="resourceId">Select variety:</label>
-        <select name="resourceId" class="secondary-selector" required><br />
-          <% resourceMap.values().next().value.forEach( (value) => { %>
-            <option value="<%= value[1] %>"><%- value[0] %></option>
+        <% if (resourceMap.length) { %>
+          <label for="resourceBrand">Select brand:</label>
+          <select name="resourceBrand" class="primary-selector" required><br />
+          <% resourceMap.forEach( (value, key) => { %>
+              <option data-varieties="<%- value %>" value="<%= key %>"><%- key %></option>
           <% }) %>
-        </select><br /><br />
-        
-        <button>Submit</button>
+          </select><br /><br />
+
+          <label for="resourceId">Select variety:</label>
+          <select name="resourceId" class="secondary-selector" required><br />
+            <% resourceMap.values().next().value.forEach( (value) => { %>
+              <option value="<%= value[1] %>"><%- value[0] %></option>
+            <% }) %>
+          </select><br /><br />
+          
+          <button>Submit</button>
+        <% } else { %>
+          <p>There are no approved <%= resourceType.toLowerCase() %> to be added to your account.</p>
+          <p>You can submit <%= resourceType.toLowerCase() %> for approval <a href="/<%= resourceType %>/new" class="link">here</a>.</p>
+        <% } %>
 
     </form>
   </div>
