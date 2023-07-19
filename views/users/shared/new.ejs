@@ -21,7 +21,7 @@
           <button>Submit</button>
         <% } else { %>
           <p>There are no approved <%= resourceType.toLowerCase() %> to be added to your account.</p>
-          <p>You can submit <%= resourceType.toLowerCase() %> for approval <a href="/<%= resourceType %>/new" class="link">here</a>.</p>
+          <p>You can submit <%= resourceType.toLowerCase() %> for approval <a href="/<%= resourceType.toLowerCase() %>/new" class="link">here</a>.</p>
         <% } %>
 
     </form>
