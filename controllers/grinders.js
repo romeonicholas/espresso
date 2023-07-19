@@ -44,13 +44,26 @@ router.post(
     try {
       validationResult(request).throw()
 
-      const grinder = new Grinder({
+      const existingGrinder = await Grinder.findOne({
         brand: request.body.brand,
         name: request.body.name,
       })
-      await grinder.save()
+        .select(["brand", "name"])
+        .lean()
 
-      response.redirect(`grinders/${grinder._id.toString()}`)
+      if (existingGrinder) {
+        response.send(
+          "A grinder with this name already exists (if you can't see it, it may be waiting for admin review)"
+        )
+      } else {
+        const grinder = new Grinder({
+          brand: request.body.brand,
+          name: request.body.name,
+        })
+        await grinder.save()
+
+        response.render("shared/success")
+      }
     } catch (error) {
       console.log(error)
       response.send("This grinder failed to be created.")

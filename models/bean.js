@@ -6,6 +6,6 @@ const beanSchema = new mongoose.Schema({
   isPublished: { type: Boolean, default: false, required: true },
 })
 
-beanSchema.index({ brand: 1, name: 1 }, {})
+beanSchema.index({ brand: 1, name: 1 }, { unique: true })
 
 export const Bean = mongoose.model("Bean", beanSchema)

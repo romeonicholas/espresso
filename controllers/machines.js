@@ -32,13 +32,26 @@ router.post(
     try {
       validationResult(request).throw()
 
-      const machine = new Machine({
+      const existingMachine = await Machine.findOne({
         brand: request.body.brand,
         name: request.body.name,
       })
-      await machine.save()
+        .select(["brand", "name"])
+        .lean()
 
-      response.redirect(`machines/${machine._id.toString()}`)
+      if (existingMachine) {
+        response.send(
+          "A machine with this name already exists (if you can't see it, it may be waiting for admin review)"
+        )
+      } else {
+        const machine = new Machine({
+          brand: request.body.brand,
+          name: request.body.name,
+        })
+        await machine.save()
+
+        response.render("shared/success")
+      }
     } catch (error) {
       console.log(error)
       response.send("This machine failed to be created.")

@@ -40,14 +40,26 @@ router.post(
   async (request, response) => {
     try {
       validationResult(request).throw()
-
-      const bean = new Bean({
+      const existingBeans = await Bean.findOne({
         brand: request.body.brand,
         name: request.body.name,
       })
-      await bean.save()
+        .select(["brand", "name"])
+        .lean()
 
-      response.redirect(`beans/${bean._id.toString()}`)
+      if (existingBeans) {
+        response.send(
+          "Beans with this name already exist (if you can't see them, they may be waiting for admin review)"
+        )
+      } else {
+        const bean = new Bean({
+          brand: request.body.brand,
+          name: request.body.name,
+        })
+        await bean.save()
+
+        response.render("shared/success")
+      }
     } catch (error) {
       console.log(error)
       response.send("These beans failed to be created.")
