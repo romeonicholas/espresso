@@ -15,6 +15,7 @@ import grindersRoutes from "./controllers/grinders.js"
 import beansRoutes from "./controllers/beans.js"
 import usersRoutes from "./controllers/users.js"
 import adminRoutes from "./controllers/admin.js"
+import searchRoutes from "./controllers/search.js"
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -35,6 +36,7 @@ app.use("/grinders", grindersRoutes)
 app.use("/beans", beansRoutes)
 app.use("/users", usersRoutes)
 app.use("/admin", adminRoutes)
+app.use("/search", searchRoutes)
 
 app.listen(PORT, () => {
   console.log(`👋 Started espresso server on port ${PORT}`)
