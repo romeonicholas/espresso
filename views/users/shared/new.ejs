@@ -3,7 +3,7 @@
   <div class="center col-6 col-s-9">
     <h2>Add <%= resourceType %> to My Account</h2>
     <form action="<%= url %>" method="POST">
-        <% if (resourceMap.length) { %>
+        <% if (resourceMap.size) { %>
           <label for="resourceBrand">Select brand:</label>
           <select name="resourceBrand" class="primary-selector" required><br />
           <% resourceMap.forEach( (value, key) => { %>
