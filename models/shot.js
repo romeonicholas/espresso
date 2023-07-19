@@ -61,4 +61,6 @@ const shotSchema = new mongoose.Schema({
   },
 })
 
+shotSchema.index({ comments: "text" })
+
 export const Shot = mongoose.model("Shot", shotSchema)
