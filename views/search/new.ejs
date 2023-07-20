@@ -1,0 +1,18 @@
+<%- include('../includes/row-opening') %>
+  <%- include('../includes/nav') %>
+  <div class="center col-6 col-s-9">
+    <h2 class="subheader">Search</h2>
+    <p>Search within shot comments.</p>
+
+    <form action="results" method="GET" id="searchForm">
+        <label for="terms">Search terms</label><br />
+        <input class="text-input" type="text" name="terms" required />
+
+        <br /><br />
+
+        <button class="submit-button">Submit</button>
+    </form>
+  </div>
+  <%- include('../includes/aside-quote') %>
+<%- include('../includes/row-close') %>
+

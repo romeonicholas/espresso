@@ -1,0 +1,25 @@
+<%- include('../includes/row-opening') %>
+  <%- include('../includes/nav') %>
+  <div class="center col-6 col-s-9">
+    <h2 class="subheader">Search Results</h2>
+    <p>Found the following:</p>
+
+    <% if (results) { %>
+        <% results.forEach((result) => { %>
+            <p><%= result.user.username %></p>
+
+            <p><%= result.bean.brand + result.bean.name %></p>
+            <p><%= result.machine.brand + result.machine.name %></p>
+            <p><%= result.grinder.brand + result.grinder.name %></p>
+
+            <p><%= result.comments %></p>
+
+        <% }) %>
+        <br />
+    <% } else { %>
+    <p>Nothing found</p>
+    <% } %>
+
+  </div>
+  <%- include('../includes/aside-quote') %>
+<%- include('../includes/row-close') %>
