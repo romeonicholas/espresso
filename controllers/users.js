@@ -237,7 +237,10 @@ router.post(
       const user = await User.findOne({
         username: request.body.username,
       }).exec()
-      if (!user) throw new Error("User not found.")
+      if (!user)
+        throw new Error(
+          "Username or password were incorrect, or not found. Please go back and try again."
+        )
 
       bcrypt.compare(
         request.body.password,
@@ -256,13 +259,19 @@ router.post(
               .cookie("access_token", token, { httpOnly: true })
               .redirect("/users/me")
           } else {
-            response.redirect("/users/login")
+            throw new Error(
+              "Username or password were incorrect, or not found. Please go back and try again."
+            )
           }
         }
       )
-    } catch (error) {
-      console.error(error)
-      response.status(404).send("User could not be found")
+    } catch (err) {
+      console.error(err)
+      response
+        .status(404)
+        .send(
+          "Username or password were incorrect, or not found. Please go back and try again."
+        )
     }
   }
 )
