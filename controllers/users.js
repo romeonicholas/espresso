@@ -195,6 +195,7 @@ router.post(
       let existingUser = await User.findOne({ username: request.body.username })
         .select("username")
         .lean()
+        .exec()
 
       if (existingUser) {
         response.send("Username is already taken, please go back and try again")
@@ -241,7 +242,9 @@ router.post(
     try {
       const user = await User.findOne({
         username: request.body.username,
-      }).exec()
+      })
+        .lean()
+        .exec()
       if (!user)
         throw new Error(
           "Username or password were incorrect, or not found. Please go back and try again."
