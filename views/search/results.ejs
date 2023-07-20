@@ -4,15 +4,26 @@
     <h2 class="subheader">Search Results</h2>
     <p>Found the following:</p>
 
-    <% if (results) { %>
+    <% if (results.length) { %>
         <% results.forEach((result) => { %>
-            <p><%= result.user.username %></p>
+            <div>
+              <span>
+                User:
+                <%= result.user.username %> on <%= result.date.toLocaleString("en-US", { dateStyle: "short" }) %>
+              </span> <br />
+              <span>
+                Setup:
+                <%- result.bean.brand + ' ' + result.bean.name %> /
+                <%- result.machine.brand + ' ' + result.machine.name %> /
+                <%- result.grinder.brand + ' ' + result.grinder.name %>
+              </span> <br />
+              <span>
+                Comments:
+                <%- result.comments %>
+              </span>
+          </div>
+          <br />
 
-            <p><%= result.bean.brand + result.bean.name %></p>
-            <p><%= result.machine.brand + result.machine.name %></p>
-            <p><%= result.grinder.brand + result.grinder.name %></p>
-
-            <p><%= result.comments %></p>
 
         <% }) %>
         <br />
