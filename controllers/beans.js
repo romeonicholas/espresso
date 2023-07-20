@@ -9,10 +9,11 @@ router.get("/", authenticateToken, async (request, response) => {
   const beans = await Bean.find({ isPublished: true })
     .sort({ brand: 1, name: 1 })
     .lean()
+    .exec()
   response.render("shared/index", { pageTitle: "All Beans", resources: beans })
 })
 
-router.get("/new", authenticateToken, async (request, response) => {
+router.get("/new", authenticateToken, (request, response) => {
   response.render("shared/new", {
     pageTitle: "Submit Beans For Review",
     resourceType: "Beans",
@@ -22,7 +23,7 @@ router.get("/new", authenticateToken, async (request, response) => {
 
 router.get("/:id", authenticateToken, async (request, response) => {
   try {
-    const bean = await Bean.findById(request.params.id).exec()
+    const bean = await Bean.findById(request.params.id).lean().exec()
     if (!bean) throw new Error("Beans not found.")
 
     response.render("beans/show", { bean: bean })
@@ -46,6 +47,7 @@ router.post(
       })
         .select(["brand", "name"])
         .lean()
+        .exec()
 
       if (existingBeans) {
         response.send(

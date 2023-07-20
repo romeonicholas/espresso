@@ -13,6 +13,7 @@ router.get("/", authenticateToken, async (request, response) => {
       .sort({ date: -1 })
       .populate({ path: "user", fields: "username" })
       .lean()
+      .exec()
     response.render("shots/index", { shots: shots })
   } catch (error) {
     console.error(error)
@@ -26,6 +27,7 @@ router.get("/new", authenticateToken, async (request, response) => {
       .populate("machines")
       .populate("beans")
       .populate("grinders")
+      .lean()
       .exec()
 
     if (!user.machines.length || !user.beans.length || !user.grinders.length) {
@@ -43,6 +45,8 @@ router.get("/new", authenticateToken, async (request, response) => {
             durationSeconds: 0,
           }
         : await Shot.findById(user.shots[user.shots.length - 1])
+            .lean()
+            .exec()
 
     response.render("shots/new", {
       pageTitle: "New Shots",
@@ -102,6 +106,7 @@ router.get("/:id", authenticateToken, async (request, response) => {
       .populate("grinder")
       .populate("user")
       .lean()
+      .exec()
 
     if (!shot) throw new Error("Shot not found.")
 
@@ -124,6 +129,7 @@ router.get("/:id/edit", authenticateToken, async (request, response) => {
       .populate("machine")
       .populate("grinder")
       .lean()
+      .exec()
 
     if (shot.user.equals(response.locals.id) || response.locals.isAdmin) {
       const user = await User.findById(response.locals.id)
@@ -131,6 +137,7 @@ router.get("/:id/edit", authenticateToken, async (request, response) => {
         .populate("beans")
         .populate("grinders")
         .lean()
+        .exec()
 
       response.render("shots/edit", { user: user, shot: shot })
     } else {
@@ -144,7 +151,7 @@ router.get("/:id/edit", authenticateToken, async (request, response) => {
 
 router.post("/:id", authenticateToken, async (request, response) => {
   try {
-    const shot = await Shot.findById(request.params.id)
+    const shot = await Shot.findById(request.params.id).exec()
 
     if (shot.user.equals(response.locals.id) || response.locals.isAdmin) {
       await Shot.replaceOne(
@@ -180,15 +187,21 @@ router.post("/:id", authenticateToken, async (request, response) => {
 
 router.get("/:id/delete", authenticateToken, async (request, response) => {
   try {
-    const shot = await Shot.findById(request.params.id)
-    const user = await User.findById(response.locals.id)
+    const [shot, user] = await Promise.all([
+      Shot.findById(request.params.id).exec(),
+      User.findById(response.locals.id).exec(),
+    ])
+    // const shot = await Shot.findById(request.params.id).exec()
+    // const user = await User.findById(response.locals.id).exec()
 
     if (shot.user.equals(response.locals.id) || response.locals.isAdmin) {
       let updatedShotsList = user.shots.filter(
         (shot) => shot._id.toString() !== request.params.id
       )
-      await user.set("shots", updatedShotsList).save()
-      await shot.deleteOne()
+      await Promise.all([
+        user.set("shots", updatedShotsList).save(),
+        shot.deleteOne(),
+      ])
 
       response.redirect("/users/me")
     } else {
@@ -196,7 +209,7 @@ router.get("/:id/delete", authenticateToken, async (request, response) => {
     }
   } catch (error) {
     console.error(error)
-    response.status(404).send("Shout could not be deleted.")
+    response.status(404).send("Shot could not be deleted.")
   }
 })
 

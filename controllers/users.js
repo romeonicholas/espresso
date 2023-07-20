@@ -31,6 +31,7 @@ router.get("/me", authenticateToken, async (request, response) => {
       .populate("beans")
       .populate("grinders")
       .populate({ path: "shots", options: { sort: { date: -1 }, limit: 5 } })
+      .lean()
       .exec()
     response.render("users/me", { pageTitle: "Dashboard", user: user })
   } catch (error) {
@@ -43,6 +44,7 @@ router.get("/me/shots", authenticateToken, async (request, response) => {
   try {
     const user = await User.findById(response.locals.id)
       .populate({ path: "shots", options: { sort: { date: -1 } } })
+      .lean()
       .exec()
     response.render("users/shots/index", {
       pageTitle: "My Shot History",
@@ -58,6 +60,7 @@ router.get("/me/machines", authenticateToken, async (request, response) => {
   try {
     const user = await User.findById(response.locals.id)
       .populate("machines")
+      .lean()
       .exec()
     response.send(user.machines)
   } catch (error) {
@@ -81,11 +84,12 @@ router.get(
     const schema = schemasFromResourceType[resourceType]
 
     try {
-      const user = await User.findById(response.locals.id)
+      const user = await User.findById(response.locals.id).lean().exec()
       const newResources = await schema
         .find({ isPublished: true, _id: { $nin: user[resourceType] } })
         .sort({ brand: 1 })
         .lean()
+        .exec()
 
       const resourceMap = new Map()
       newResources.forEach((resource) => {
@@ -100,6 +104,7 @@ router.get(
         .charAt(0)
         .toUpperCase()
         .concat("", resourceType.slice(1))
+
       response.render("users/shared/new", {
         pageTitle: `Add ${upperCaseResource}`,
         resourceType: upperCaseResource,

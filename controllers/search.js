@@ -4,7 +4,7 @@ import { authenticateToken } from "../middlewares/authenticateToken.js"
 
 const router = Router()
 
-router.get("/new", authenticateToken, async (request, response) => {
+router.get("/new", authenticateToken, (request, response) => {
   response.render("search/new")
 })
 
@@ -18,6 +18,8 @@ router.get("/results", authenticateToken, async (request, response) => {
     .populate("bean")
     .populate("grinder")
     .populate("user")
+    .lean()
+    .exec()
 
   response.render("search/results", { results: results })
 })

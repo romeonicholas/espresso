@@ -9,13 +9,14 @@ router.get("/", authenticateToken, async (request, response) => {
   const grinders = await Grinder.find({ isPublished: true })
     .sort({ brand: 1, name: 1 })
     .lean()
+    .exec()
   response.render("shared/index", {
     pageTitle: "All Grinders",
     resources: grinders,
   })
 })
 
-router.get("/new", authenticateToken, async (request, response) => {
+router.get("/new", authenticateToken, (request, response) => {
   response.render("shared/new", {
     pageTitle: "Submit Grinder For Review",
     resourceType: "Grinder",
@@ -25,7 +26,7 @@ router.get("/new", authenticateToken, async (request, response) => {
 
 router.get("/:id", authenticateToken, async (request, response) => {
   try {
-    const grinder = await Grinder.findById(request.params.id).exec()
+    const grinder = await Grinder.findById(request.params.id).lean().exec()
     if (!grinder) throw new Error("Grinder not found.")
 
     response.render("grinders/show", { grinder: grinder })
@@ -50,6 +51,7 @@ router.post(
       })
         .select(["brand", "name"])
         .lean()
+        .exec()
 
       if (existingGrinder) {
         response.send(

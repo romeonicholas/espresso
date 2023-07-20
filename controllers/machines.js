@@ -9,6 +9,7 @@ router.get("/", authenticateToken, async (request, response) => {
   const machines = await Machine.find({ isPublished: true })
     .sort({ brand: 1, name: 1 })
     .lean()
+    .exec()
   response.render("shared/index", {
     pageTitle: "All Machines",
     resources: machines,
@@ -38,6 +39,7 @@ router.post(
       })
         .select(["brand", "name"])
         .lean()
+        .exec()
 
       if (existingMachine) {
         response.send(
@@ -61,7 +63,7 @@ router.post(
 
 router.get("/:id", authenticateToken, async (request, response) => {
   try {
-    const machine = await Machine.findById(request.params.id).exec()
+    const machine = await Machine.findById(request.params.id).lean().exec()
     if (!machine) throw new Error("Machine not found.")
 
     response.render("machines/show", { machine: machine })

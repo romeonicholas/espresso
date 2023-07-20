@@ -3,7 +3,7 @@ import { checkLoginStatus } from "../middlewares/checkLoginStatus.js"
 
 const router = Router()
 
-router.get("/", checkLoginStatus, async (request, response) => {
+router.get("/", checkLoginStatus, (request, response) => {
   try {
     response.render("index", {
       pageTitle: "Home",
