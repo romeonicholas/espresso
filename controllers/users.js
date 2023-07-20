@@ -259,9 +259,11 @@ router.post(
               .cookie("access_token", token, { httpOnly: true })
               .redirect("/users/me")
           } else {
-            throw new Error(
-              "Username or password were incorrect, or not found. Please go back and try again."
-            )
+            response
+              .status(404)
+              .send(
+                "Username or password were incorrect, or not found. Please go back and try again."
+              )
           }
         }
       )
