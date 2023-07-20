@@ -221,7 +221,11 @@ router.post(
 )
 
 router.get("/login", checkLoginStatus, (request, response) => {
-  response.render("users/login", { pageTitle: "Log In" })
+  if (response.locals.username) {
+    response.redirect("/users/me")
+  } else {
+    response.render("users/login", { pageTitle: "Log In" })
+  }
 })
 
 router.post(
