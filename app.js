@@ -2,6 +2,8 @@ import express from "express"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
 import helmet from "helmet"
+import favicon from "serve-favicon"
+import path from "path"
 import { dirname } from "path"
 import { fileURLToPath } from "url"
 
@@ -22,6 +24,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const app = express()
 app.set("view engine", "ejs")
 app.use("/assets", express.static(__dirname + "/public"))
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")))
 app.use(express.urlencoded({ extended: true }))
 if (process.env.NODE_ENV === "dev") {
   app.use(morgan("tiny"))
