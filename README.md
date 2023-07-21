@@ -1,10 +1,10 @@
 
 # Your Best Shots
 
-Your Best Shots is a website designed to help you dial in your morning (or afternoon, or night) espresso pulls. Just create an account, add your espresso machine, grinder, and beans to your personal dashboard; and start building your history of shots. By keeping track of things like the weight of your coffee grinds pre-pull and the weight of your shots post-pull, you'll be able inch closer and closer to your ideal shot without having to memorize every minute change you make every time you have to make an adjustment. 
+[Your Best Shots](https://yourbestshots.dev) is a website designed to help you dial in your morning (or afternoon, or night) espresso pulls. Just create an account, add your espresso machine, grinder, and beans to your personal dashboard, and start building your history of shots. By keeping track of things like how your grind settings impacts the resulting espresso, you'll have a better idea of how to achieve your perfect pull.
 
 ## Features
-* Normal users can:
+* Users can:
   * Sign up and sign in
   * Add and remove espresso machines, grinders, beans, and shots to and from their accounts
   * Edit their shots
@@ -14,10 +14,10 @@ Your Best Shots is a website designed to help you dial in your morning (or after
 * Admins can:
   * Edit (make public) or delete (remove from review queue) user-submitted machines, grinders, and beans
 * Everyone can:
-  * Enjoy the dark mode toggle!
+  * Enjoy the dark mode toggle! (Contrast is still a bit wonky on dark mode)
 
 ## Try it out now
-The live site is hosted by Google Cloud at https://espresso-389812.ey.r.appspot.com.
+The live site is available at [yourbestshots.dev ](https://yourbestshots.dev)
 
 ## Run it locally
 
