@@ -191,8 +191,6 @@ router.get("/:id/delete", authenticateToken, async (request, response) => {
       Shot.findById(request.params.id).exec(),
       User.findById(response.locals.id).exec(),
     ])
-    // const shot = await Shot.findById(request.params.id).exec()
-    // const user = await User.findById(response.locals.id).exec()
 
     if (shot.user.equals(response.locals.id) || response.locals.isAdmin) {
       let updatedShotsList = user.shots.filter(
