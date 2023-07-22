@@ -36,7 +36,11 @@ router.get("/me", authenticateToken, async (request, response) => {
     response.render("users/me", { pageTitle: "Dashboard", user: user })
   } catch (error) {
     console.error(error)
-    response.send("An error ocurred while loading the dashboard.")
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while loading the dashboard.",
+      pageTitle: "Error",
+    })
   }
 })
 
@@ -52,7 +56,11 @@ router.get("/me/shots", authenticateToken, async (request, response) => {
     })
   } catch (error) {
     console.error(error)
-    response.send("An error ocurred.")
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while getting your shot history.",
+      pageTitle: "Error",
+    })
   }
 })
 
@@ -113,7 +121,11 @@ router.get(
       })
     } catch (error) {
       console.error(error)
-      response.send("An error ocurred.")
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage: "An error ocurred while accessing your resources.",
+        pageTitle: "Error",
+      })
     }
   }
 )
@@ -135,7 +147,11 @@ router.post(
       response.redirect("./")
     } catch (error) {
       console.error(error)
-      response.send("Resource failed to be added to your account")
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage: "An error ocurred while updating your resources.",
+        pageTitle: "Error",
+      })
     }
   }
 )
@@ -163,7 +179,11 @@ router.get(
       }
     } catch (error) {
       console.error(error)
-      response.send("Resource could not be deleted")
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage: "An error ocurred while deleting your resource.",
+        pageTitle: "Error",
+      })
     }
   }
 )
@@ -198,9 +218,13 @@ router.post(
         .exec()
 
       if (existingUser) {
-        response.send("Username is already taken, please go back and try again")
+        response.render("error/error", {
+          errorCode: "409",
+          errorMessage: "A user with that username already exists.",
+          pageTitle: "Error",
+        })
       } else {
-        bcrypt.hash(request.body.password, 10, async function (err, hash) {
+        bcrypt.hash(request.body.password, 10, async function (error, hash) {
           const user = new User({
             username: request.body.username,
             hashedPassword: hash,
@@ -221,7 +245,11 @@ router.post(
       }
     } catch (error) {
       console.error(error)
-      response.send("User failed to be created")
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage: "An error ocurred while creating your account",
+        pageTitle: "Error",
+      })
     }
   }
 )
@@ -246,14 +274,17 @@ router.post(
         .lean()
         .exec()
       if (!user)
-        throw new Error(
-          "Username or password were incorrect, or not found. Please go back and try again."
-        )
+        response.render("errors/error", {
+          errorCode: "404",
+          errorMessage:
+            "Your username or password were not found, or don't exist.",
+          pageTitle: "Error",
+        })
 
       bcrypt.compare(
         request.body.password,
         user.hashedPassword,
-        function (err, result) {
+        function (error, result) {
           if (result === true) {
             const token = JSONWebToken.sign(
               { id: user._id, username: user.username, isAdmin: user.isAdmin },
@@ -267,21 +298,22 @@ router.post(
               .cookie("access_token", token, { httpOnly: true })
               .redirect("/users/me")
           } else {
-            response
-              .status(404)
-              .send(
-                "Username or password were incorrect, or not found. Please go back and try again."
-              )
+            response.render("error/error", {
+              errorCode: "404",
+              errorMessage:
+                "Your username was not found, or your password does not match.",
+              pageTitle: "Error",
+            })
           }
         }
       )
-    } catch (err) {
-      console.error(err)
-      response
-        .status(404)
-        .send(
-          "Username or password were incorrect, or not found. Please go back and try again."
-        )
+    } catch (error) {
+      console.error(error)
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage: "An error ocurred while creating your account.",
+        pageTitle: "Error",
+      })
     }
   }
 )
