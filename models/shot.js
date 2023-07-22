@@ -8,55 +8,115 @@ const shotSchema = new mongoose.Schema({
   bean: { type: Schema.Types.ObjectId, ref: "Bean", required: true },
   machine: { type: Schema.Types.ObjectId, ref: "Machine", required: true },
   grinder: { type: Schema.Types.ObjectId, ref: "Grinder", required: true },
-  grinderSetting: { type: Number },
-  grindsWeightGrams: { type: Number },
-  durationSeconds: { type: Number },
-  shotsWeightGrams: { type: Number },
-  comments: { type: String },
-  favorite: { type: Boolean },
-  bodyRating: {
-    type: Schema.Types.Number,
-    min: 1,
-    max: 5,
+  grinderSetting: {
+    type: Number,
+    min: 0,
+    max: 100,
+    get: (v) => Math.round(v),
+    set: (v) => Math.round(v),
     validate: {
       validator: Number.isInteger,
-      message: "Ratings must be an integer.",
+      message: "Weight of shot must be an integer.",
     },
   },
-  aromaticsRating: {
-    type: Schema.Types.Number,
-    min: 1,
-    max: 5,
+  grindsWeightGrams: {
+    type: Number,
+    min: 0,
+    max: 100,
+    get: (v) => Math.round(v),
+    set: (v) => Math.round(v),
     validate: {
       validator: Number.isInteger,
-      message: "Ratings must be an integer.",
+      message: "Weight of shot must be an integer.",
     },
   },
-  acidityRating: {
-    type: Schema.Types.Number,
-    min: 1,
-    max: 5,
+  durationSeconds: {
+    type: Number,
+    min: 0,
+    max: 100,
+    get: (v) => Math.round(v),
+    set: (v) => Math.round(v),
     validate: {
       validator: Number.isInteger,
-      message: "Ratings must be an integer.",
+      message: "Weight of shot must be an integer.",
     },
   },
-  sweetnessRating: {
-    type: Schema.Types.Number,
-    min: 1,
-    max: 5,
+  shotsWeightGrams: {
+    type: Number,
+    min: 0,
+    max: 100,
+    get: (v) => Math.round(v),
+    set: (v) => Math.round(v),
     validate: {
       validator: Number.isInteger,
-      message: "Ratings must be an integer.",
+      message: "Weight of shot must be an integer.",
     },
   },
-  aftertasteRating: {
-    type: Schema.Types.Number,
-    min: 1,
-    max: 5,
+  comments: {
+    type: String,
     validate: {
-      validator: Number.isInteger,
-      message: "Ratings must be an integer.",
+      validator: (v) => {
+        return !v.includes("$")
+      },
+      message: "Message cannot contain dollar sign",
+    },
+    favorite: {
+      type: Boolean,
+    },
+    bodyRating: {
+      type: Number,
+      min: 1,
+      max: 5,
+      get: (v) => Math.round(v),
+      set: (v) => Math.round(v),
+      validate: {
+        validator: Number.isInteger,
+        message: "Ratings must be an integer.",
+      },
+    },
+    aromaticsRating: {
+      type: Number,
+      min: 1,
+      max: 5,
+      get: (v) => Math.round(v),
+      set: (v) => Math.round(v),
+      validate: {
+        validator: Number.isInteger,
+        message: "Ratings must be an integer.",
+      },
+    },
+    acidityRating: {
+      type: Number,
+      min: 1,
+      max: 5,
+      get: (v) => Math.round(v),
+      set: (v) => Math.round(v),
+      validate: {
+        validator: Number.isInteger,
+        message: "Ratings must be an integer.",
+      },
+    },
+    sweetnessRating: {
+      type: Number,
+      min: 1,
+      max: 5,
+      get: (v) => Math.round(v),
+      set: (v) => Math.round(v),
+      validate: {
+        validator: Number.isInteger,
+        message: "Ratings must be an integer.",
+      },
+    },
+    aftertasteRating: {
+      type: Schema.Types.Number,
+      min: 1,
+      max: 5,
+      get: (v) => Math.round(v),
+      set: (v) => Math.round(v),
+      validate: {
+        validator: Number.isInteger,
+        message: "Ratings must be an integer.",
+      },
     },
   },
 })
