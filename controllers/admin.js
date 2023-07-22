@@ -27,7 +27,11 @@ router.get("/unpublished", authenticateToken, async (request, response) => {
     })
   } catch (error) {
     console.error(error)
-    response.send("Failed to get unpublished resources")
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while getting the unpublished resources.",
+      pageTitle: "Error",
+    })
   }
 })
 
@@ -60,7 +64,12 @@ router.post(
       response.redirect("/admin/unpublished")
     } catch (error) {
       console.error(error)
-      response.send("Failed to publish resources")
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage:
+          "An error ocurred while updating the unpublished resources.",
+        pageTitle: "Error",
+      })
     }
   }
 )
@@ -91,7 +100,12 @@ router.post(
       response.redirect("/admin/unpublished")
     } catch (error) {
       console.error(error)
-      response.send("Failed to delete resources")
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage:
+          "An error ocurred while deleting the unpublished resources.",
+        pageTitle: "Error",
+      })
     }
   }
 )
