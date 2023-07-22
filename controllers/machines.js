@@ -6,14 +6,23 @@ import { authenticateToken } from "../middlewares/authenticateToken.js"
 const router = Router()
 
 router.get("/", authenticateToken, async (request, response) => {
-  const machines = await Machine.find({ isPublished: true })
-    .sort({ brand: 1, name: 1 })
-    .lean()
-    .exec()
-  response.render("shared/index", {
-    pageTitle: "All Machines",
-    resources: machines,
-  })
+  try {
+    const machines = await Machine.find({ isPublished: true })
+      .sort({ brand: 1, name: 1 })
+      .lean()
+      .exec()
+    response.render("shared/index", {
+      pageTitle: "All Machines",
+      resources: machines,
+    })
+  } catch (error) {
+    console.error(error)
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while performing your search.",
+      pageTitle: "Error",
+    })
+  }
 })
 
 router.get("/new", authenticateToken, (request, response) => {
@@ -42,9 +51,12 @@ router.post(
         .exec()
 
       if (existingMachine) {
-        response.send(
-          "A machine with this name already exists (if you can't see it, it may be waiting for admin review)"
-        )
+        response.render("error/error", {
+          errorCode: "500",
+          errorMessage:
+            "A machine with this name already exists (if you can't see it, it may be in the publishing queue)",
+          pageTitle: "Error",
+        })
       } else {
         const machine = new Machine({
           brand: request.body.brand,
@@ -55,8 +67,12 @@ router.post(
         response.render("shared/success", { pageTitle: "Machine Submitted" })
       }
     } catch (error) {
-      console.log(error)
-      response.send("This machine failed to be created.")
+      console.error(error)
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage: "An error ocurred while adding this machine.",
+        pageTitle: "Error",
+      })
     }
   }
 )
