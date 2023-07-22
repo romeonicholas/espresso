@@ -6,6 +6,7 @@ import favicon from "serve-favicon"
 import path from "path"
 import { dirname } from "path"
 import { fileURLToPath } from "url"
+import mongoSanitize from "express-mongo-sanitize"
 
 import { PORT } from "./config/app.js"
 import "./config/database.js"
@@ -31,6 +32,7 @@ if (process.env.NODE_ENV === "dev") {
 }
 app.use(cookieParser())
 app.use(helmet())
+app.use(mongoSanitize())
 
 app.use(simpleRoutes)
 app.use("/shots", shotsRoutes)
