@@ -62,63 +62,63 @@ const shotSchema = new mongoose.Schema({
       },
       message: "Message cannot contain dollar sign",
     },
-    favorite: {
-      type: Boolean,
+  },
+  favorite: {
+    type: Boolean,
+  },
+  bodyRating: {
+    type: Number,
+    min: 1,
+    max: 5,
+    get: (v) => Math.round(v),
+    set: (v) => Math.round(v),
+    validate: {
+      validator: Number.isInteger,
+      message: "Ratings must be an integer.",
     },
-    bodyRating: {
-      type: Number,
-      min: 1,
-      max: 5,
-      get: (v) => Math.round(v),
-      set: (v) => Math.round(v),
-      validate: {
-        validator: Number.isInteger,
-        message: "Ratings must be an integer.",
-      },
+  },
+  aromaticsRating: {
+    type: Number,
+    min: 1,
+    max: 5,
+    get: (v) => Math.round(v),
+    set: (v) => Math.round(v),
+    validate: {
+      validator: Number.isInteger,
+      message: "Ratings must be an integer.",
     },
-    aromaticsRating: {
-      type: Number,
-      min: 1,
-      max: 5,
-      get: (v) => Math.round(v),
-      set: (v) => Math.round(v),
-      validate: {
-        validator: Number.isInteger,
-        message: "Ratings must be an integer.",
-      },
+  },
+  acidityRating: {
+    type: Number,
+    min: 1,
+    max: 5,
+    get: (v) => Math.round(v),
+    set: (v) => Math.round(v),
+    validate: {
+      validator: Number.isInteger,
+      message: "Ratings must be an integer.",
     },
-    acidityRating: {
-      type: Number,
-      min: 1,
-      max: 5,
-      get: (v) => Math.round(v),
-      set: (v) => Math.round(v),
-      validate: {
-        validator: Number.isInteger,
-        message: "Ratings must be an integer.",
-      },
+  },
+  sweetnessRating: {
+    type: Number,
+    min: 1,
+    max: 5,
+    get: (v) => Math.round(v),
+    set: (v) => Math.round(v),
+    validate: {
+      validator: Number.isInteger,
+      message: "Ratings must be an integer.",
     },
-    sweetnessRating: {
-      type: Number,
-      min: 1,
-      max: 5,
-      get: (v) => Math.round(v),
-      set: (v) => Math.round(v),
-      validate: {
-        validator: Number.isInteger,
-        message: "Ratings must be an integer.",
-      },
-    },
-    aftertasteRating: {
-      type: Schema.Types.Number,
-      min: 1,
-      max: 5,
-      get: (v) => Math.round(v),
-      set: (v) => Math.round(v),
-      validate: {
-        validator: Number.isInteger,
-        message: "Ratings must be an integer.",
-      },
+  },
+  aftertasteRating: {
+    type: Schema.Types.Number,
+    min: 1,
+    max: 5,
+    get: (v) => Math.round(v),
+    set: (v) => Math.round(v),
+    validate: {
+      validator: Number.isInteger,
+      message: "Ratings must be an integer.",
     },
   },
 })
