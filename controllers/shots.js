@@ -20,7 +20,11 @@ router.get("/", authenticateToken, async (request, response) => {
     })
   } catch (error) {
     console.error(error)
-    response.send("Could not load shots")
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while loading the global dashboard.",
+      pageTitle: "Error",
+    })
   }
 })
 
@@ -58,7 +62,11 @@ router.get("/new", authenticateToken, async (request, response) => {
     })
   } catch (error) {
     console.error(error)
-    response.status(404).send("Could not create new shot")
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while accessing your resources.",
+      pageTitle: "Error",
+    })
   }
 })
 
@@ -96,7 +104,11 @@ router.post(
       response.redirect(`shots/${shot.id}`)
     } catch (error) {
       console.error(error)
-      response.send("This shot failed to be created.")
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage: "An error ocurred while saving your shots.",
+        pageTitle: "Error",
+      })
     }
   }
 )
@@ -122,7 +134,11 @@ router.get("/:id", authenticateToken, async (request, response) => {
     })
   } catch (error) {
     console.error(error)
-    response.status(404).send("Shot could not be found")
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while accessing this shot.",
+      pageTitle: "Error",
+    })
   }
 })
 
@@ -152,7 +168,11 @@ router.get("/:id/edit", authenticateToken, async (request, response) => {
     }
   } catch (error) {
     console.error(error)
-    response.status(404).send("Shot could not be found")
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while accessing this shot.",
+      pageTitle: "Error",
+    })
   }
 })
 
@@ -188,7 +208,11 @@ router.post("/:id", authenticateToken, async (request, response) => {
     }
   } catch (error) {
     console.error(error)
-    response.send("This shot failed to be created.")
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while updating this shot.",
+      pageTitle: "Error",
+    })
   }
 })
 
@@ -210,11 +234,19 @@ router.get("/:id/delete", authenticateToken, async (request, response) => {
 
       response.redirect("/users/me")
     } else {
-      response.status(403).send("Access denied")
+      response.render("error/error", {
+        errorCode: "403",
+        errorMessage: "You are not authorized to delete this shot.",
+        pageTitle: "Error",
+      })
     }
   } catch (error) {
     console.error(error)
-    response.status(404).send("Shot could not be deleted.")
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while deleting this shot.",
+      pageTitle: "Error",
+    })
   }
 })
 
@@ -229,7 +261,11 @@ router.post("/:id", authenticateToken, async (request, response) => {
     response.redirect(`/shots/${shot.id}`)
   } catch (error) {
     console.error(error)
-    response.status(404).send("Shot could not be found")
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while updating this shot.",
+      pageTitle: "Error",
+    })
   }
 })
 

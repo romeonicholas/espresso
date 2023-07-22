@@ -4,14 +4,9 @@ import { checkLoginStatus } from "../middlewares/checkLoginStatus.js"
 const router = Router()
 
 router.get("/", checkLoginStatus, (request, response) => {
-  try {
-    response.render("index", {
-      pageTitle: "Home",
-    })
-  } catch (error) {
-    console.error(error)
-    response.redirect("/error")
-  }
+  response.render("index", {
+    pageTitle: "Home",
+  })
 })
 
 // router.get("/development", checkLoginStatus, (request, response) => {
