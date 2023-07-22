@@ -5,7 +5,7 @@ import { authenticateToken } from "../middlewares/authenticateToken.js"
 const router = Router()
 
 router.get("/new", authenticateToken, (request, response) => {
-  response.render("search/new")
+  response.render("search/new", { pageTitle: "Search" })
 })
 
 router.get("/results", authenticateToken, async (request, response) => {
@@ -24,6 +24,7 @@ router.get("/results", authenticateToken, async (request, response) => {
   response.render("search/results", {
     results: results,
     searchTerms: request.query.terms,
+    pageTitle: "Search Results",
   })
 })
 

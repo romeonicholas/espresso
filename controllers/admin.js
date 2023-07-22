@@ -23,6 +23,7 @@ router.get("/unpublished", authenticateToken, async (request, response) => {
       unpublishedBeans: unpublishedResources[0],
       unpublishedMachines: unpublishedResources[1],
       unpublishedGrinders: unpublishedResources[2],
+      pageTitle: "ADMIN PUBLISHING",
     })
   } catch (error) {
     console.error(error)

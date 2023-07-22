@@ -1,9 +1,12 @@
-<%- include('../includes/row-opening') %>
-    <%- include('../includes/nav') %>
-      <div class="center col-6 col-s-9">
-        <h2>D'ohppio!</h2>
-        <h3>Something went wrong</h3>
-        <p>A specific message will probably go here</p>
-      </div>
-    <%- include('../includes/aside-quote') %>
-<%- include('../includes/row-close') %>
+<%- include('../includes/row-opening') %> <%- include('../includes/nav') %>
+<div class="center col-6 col-s-9">
+  <h2>Error <%= errorCode %></h2>
+
+  <p><%= errorMessage %></p>
+  <p>
+    Please go back and try again (or maybe don't if you were doing something you
+    shouldn't have?)
+  </p>
+</div>
+<%- include('../includes/aside-quote') %> <%- include('../includes/row-close')
+%>

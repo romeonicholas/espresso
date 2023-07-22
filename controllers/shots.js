@@ -14,7 +14,10 @@ router.get("/", authenticateToken, async (request, response) => {
       .populate({ path: "user", fields: "username" })
       .lean()
       .exec()
-    response.render("shots/index", { shots: shots })
+    response.render("shots/index", {
+      shots: shots,
+      pageTitle: "Global Dashboard",
+    })
   } catch (error) {
     console.error(error)
     response.send("Could not load shots")
@@ -139,7 +142,11 @@ router.get("/:id/edit", authenticateToken, async (request, response) => {
         .lean()
         .exec()
 
-      response.render("shots/edit", { user: user, shot: shot })
+      response.render("shots/edit", {
+        user: user,
+        shot: shot,
+        pageTitle: "Edit Shots",
+      })
     } else {
       response.redirect("/users/me")
     }

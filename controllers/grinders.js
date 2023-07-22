@@ -24,17 +24,17 @@ router.get("/new", authenticateToken, (request, response) => {
   })
 })
 
-router.get("/:id", authenticateToken, async (request, response) => {
-  try {
-    const grinder = await Grinder.findById(request.params.id).lean().exec()
-    if (!grinder) throw new Error("Grinder not found.")
+// router.get("/:id", authenticateToken, async (request, response) => {
+//   try {
+//     const grinder = await Grinder.findById(request.params.id).lean().exec()
+//     if (!grinder) throw new Error("Grinder not found.")
 
-    response.render("grinders/show", { grinder: grinder })
-  } catch (error) {
-    console.error(error)
-    response.status(404).send("Grinder could not be found")
-  }
-})
+//     response.render("grinders/show", { grinder: grinder })
+//   } catch (error) {
+//     console.error(error)
+//     response.status(404).send("Grinder could not be found")
+//   }
+// })
 
 router.post(
   "/",
@@ -64,7 +64,7 @@ router.post(
         })
         await grinder.save()
 
-        response.render("shared/success")
+        response.render("shared/success", { pageTitle: "Grinder Submitted" })
       }
     } catch (error) {
       console.log(error)

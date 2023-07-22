@@ -12,9 +12,9 @@ import JSONWebToken from "jsonwebtoken"
 
 const router = Router()
 
-router.get("/", authenticateToken, (request, response) => {
-  response.render("users/")
-})
+// router.get("/", authenticateToken, (request, response) => {
+//   response.render("users/", { pageTitle: "Users" })
+// })
 
 router.get("/new", checkLoginStatus, (request, response) => {
   if (response.locals.username) {
@@ -56,18 +56,18 @@ router.get("/me/shots", authenticateToken, async (request, response) => {
   }
 })
 
-router.get("/me/machines", authenticateToken, async (request, response) => {
-  try {
-    const user = await User.findById(response.locals.id)
-      .populate("machines")
-      .lean()
-      .exec()
-    response.send(user.machines)
-  } catch (error) {
-    console.error(error)
-    response.send("An error ocurred.")
-  }
-})
+// router.get("/me/machines", authenticateToken, async (request, response) => {
+//   try {
+//     const user = await User.findById(response.locals.id)
+//       .populate("machines")
+//       .lean()
+//       .exec()
+//     response.send(user.machines)
+//   } catch (error) {
+//     console.error(error)
+//     response.send("An error ocurred.")
+//   }
+// })
 
 router.get(
   "/me/:resourceType/new",

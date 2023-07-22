@@ -21,17 +21,17 @@ router.get("/new", authenticateToken, (request, response) => {
   })
 })
 
-router.get("/:id", authenticateToken, async (request, response) => {
-  try {
-    const bean = await Bean.findById(request.params.id).lean().exec()
-    if (!bean) throw new Error("Beans not found.")
+// router.get("/:id", authenticateToken, async (request, response) => {
+//   try {
+//     const bean = await Bean.findById(request.params.id).lean().exec()
+//     if (!bean) throw new Error("Beans not found.")
 
-    response.render("beans/show", { bean: bean })
-  } catch (error) {
-    console.error(error)
-    response.status(404).send("Beans could not be found")
-  }
-})
+//     response.render("beans/show", { bean: bean })
+//   } catch (error) {
+//     console.error(error)
+//     response.status(404).send("Beans could not be found")
+//   }
+// })
 
 router.post(
   "/",
@@ -60,7 +60,7 @@ router.post(
         })
         await bean.save()
 
-        response.render("shared/success")
+        response.render("shared/success", { pageTitle: "Beans Submitted" })
       }
     } catch (error) {
       console.log(error)
