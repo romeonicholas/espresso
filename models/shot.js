@@ -16,7 +16,7 @@ const shotSchema = new mongoose.Schema({
     set: (v) => Math.round(v),
     validate: {
       validator: Number.isInteger,
-      message: "Weight of shot must be an integer.",
+      message: "Grinder setting must be an integer.",
     },
   },
   grindsWeightGrams: {
@@ -27,7 +27,7 @@ const shotSchema = new mongoose.Schema({
     set: (v) => Math.round(v),
     validate: {
       validator: Number.isInteger,
-      message: "Weight of shot must be an integer.",
+      message: "Weight of grinds must be an integer.",
     },
   },
   durationSeconds: {
@@ -38,7 +38,7 @@ const shotSchema = new mongoose.Schema({
     set: (v) => Math.round(v),
     validate: {
       validator: Number.isInteger,
-      message: "Weight of shot must be an integer.",
+      message: "Duration must be an integer.",
     },
   },
   shotsWeightGrams: {
@@ -54,6 +54,8 @@ const shotSchema = new mongoose.Schema({
   },
   comments: {
     type: String,
+    trim: true,
+    maxLength: 300,
     validate: {
       validator: (v) => {
         return !v.includes("$")
