@@ -8,10 +8,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
+    lowercase: true,
     validate: {
-      validator: function (v) {
-        return /^[a-zA-Z0-9]{4,16}$/.test(v)
+      validator: (v) => {
+        return /^[a-z0-9]{4,16}$/.test(v)
       },
+      message:
+        "Username can only be a-z or 0-9 characters, with a length between 4 and 16.",
     },
   },
   hashedPassword: { type: String, required: true },

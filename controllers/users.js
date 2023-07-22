@@ -172,7 +172,7 @@ router.post(
   "/",
   body("username")
     .custom(async (value) => {
-      const usernameRegex = /^[a-zA-Z0-9]{4,16}$/
+      const usernameRegex = /^[a-z0-9]{4,16}$/
       if (!usernameRegex.test(value)) {
         throw new Error("Username does not meet requirements.")
       }

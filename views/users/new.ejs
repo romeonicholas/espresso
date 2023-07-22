@@ -1,29 +1,48 @@
-<%- include('../includes/row-opening') %>
-  <%- include('../includes/nav') %>
-  <div class="center col-6 col-s-9">
-    <h2 class="subheader">Create An Account</h2>
-    <form action="/users" method="POST">
-      <input class="text-input" type="text" id="username" name="username" autocomplete="username" pattern="^[a-zA-Z0-9]{4,16}$" required /><br />
-      <label for="username"><strong>Username</strong></label>
-      <p class="sign-up-req"><i>Must contain 4-16 characters (any a-z, A-Z, 0-9)</i></p>
-      <span></span><br />
-      
-      <input class="text-input" type="password" id="password" name="password" autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" required/><br />
-      <label for="password"><strong>Password</strong></label>
-      <p class="sign-up-req"><i>Must contain 8-64 characters and one or more:</i></p>
-      <ul class="sign-up-req">
-        <li><i>uppercase letter (A-Z)</i></li>
-        <li><i>lowercase letter (a-z)</i></li>
-        <li><i>and Number (0-9)</i></li>
-      </ul>
+<%- include('../includes/row-opening') %> <%- include('../includes/nav') %>
+<div class="center col-6 col-s-9">
+  <h2 class="subheader">Create An Account</h2>
+  <form action="/users" method="POST">
+    <input
+      class="text-input"
+      type="text"
+      id="username"
+      name="username"
+      autocomplete="username"
+      pattern="^[a-z0-9]{4,16}$"
+      required
+    /><br />
+    <label for="username"><strong>Username</strong></label>
+    <p class="sign-up-req">
+      <i>Must contain 4-16 characters (any a-z, 0-9)</i>
+    </p>
+    <span></span><br />
 
-      <!-- Requires additional code to confirm match -->
-      <!-- <label for="confirm-password">Confirm Password:</label><br/>
+    <input
+      class="text-input"
+      type="password"
+      id="password"
+      name="password"
+      autocomplete="new-password"
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}"
+      required
+    /><br />
+    <label for="password"><strong>Password</strong></label>
+    <p class="sign-up-req">
+      <i>Must contain 8-64 characters and one or more:</i>
+    </p>
+    <ul class="sign-up-req">
+      <li><i>uppercase letter (A-Z)</i></li>
+      <li><i>lowercase letter (a-z)</i></li>
+      <li><i>and Number (0-9)</i></li>
+    </ul>
+
+    <!-- Requires additional code to confirm match -->
+    <!-- <label for="confirm-password">Confirm Password:</label><br/>
       <input type="password" name="confirm-password" autocomplete="new-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,64}" required/><br />
       <span></span> <br /> -->
-      <br /><br />
-      <button class="submit-button">Submit</button>
-    </form>
-  </div>
-  <%- include('../includes/aside-quote') %>
-<%- include('../includes/row-close') %>
+    <br /><br />
+    <button class="submit-button">Submit</button>
+  </form>
+</div>
+<%- include('../includes/aside-quote') %> <%- include('../includes/row-close')
+%>
