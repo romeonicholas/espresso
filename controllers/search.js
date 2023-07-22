@@ -21,7 +21,10 @@ router.get("/results", authenticateToken, async (request, response) => {
     .lean()
     .exec()
 
-  response.render("search/results", { results: results })
+  response.render("search/results", {
+    results: results,
+    searchTerms: request.query.terms,
+  })
 })
 
 export default router

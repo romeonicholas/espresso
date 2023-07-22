@@ -1,39 +1,37 @@
-<%- include('../includes/row-opening') %>
-  <%- include('../includes/nav') %>
-  <div class="center col-6 col-s-9">
-    <h2 class="subheader">Search Results</h2>
+<%- include('../includes/row-opening') %> <%- include('../includes/nav') %>
+<div class="center col-6 col-s-9">
+  <h2 class="subheader">Search Results</h2>
 
-    <h3>Found the following:</h3>
-    <div class="section-underline"></div>
+  <h3>Found the following for "<%= searchTerms %>":</h3>
+  <div class="section-underline"></div>
+  <br />
+
+  <% if (results.length) { %> <% results.forEach((result) => { %>
+  <div>
+    <span>
+      By <%= result.user.username %> on <%= result.date.toLocaleString("en-US",
+      { dateStyle: "short" }) %> (<a
+        href="/shots/<%= result._id %>"
+        class="link"
+        >shot details</a
+      >)
+    </span>
     <br />
-
-    <% if (results.length) { %>
-        <% results.forEach((result) => { %>
-            <div>
-              <span>
-                User:
-                <%= result.user.username %> on <%= result.date.toLocaleString("en-US", { dateStyle: "short" }) %>
-              </span> <br />
-              <span>
-                Setup:
-                <%- result.bean.brand + ' ' + result.bean.name %> /
-                <%- result.machine.brand + ' ' + result.machine.name %> /
-                <%- result.grinder.brand + ' ' + result.grinder.name %>
-              </span> <br />
-              <span>
-                Comments:
-                <%- result.comments %>
-              </span>
-          </div>
-          <br />
-
-
-        <% }) %>
-        <br />
-    <% } else { %>
-    <p>Nothing found</p>
-    <% } %>
-
+    <span>
+      Setup: <%- result.bean.brand + ' ' + result.bean.name %> / <%-
+      result.machine.brand + ' ' + result.machine.name %> / <%-
+      result.grinder.brand + ' ' + result.grinder.name %>
+    </span>
+    <br />
+    <span> <strong>Comments: </strong><%- result.comments %> </span>
   </div>
-  <%- include('../includes/aside-quote') %>
-<%- include('../includes/row-close') %>
+  <br />
+
+  <% }) %>
+  <br />
+  <% } else { %>
+  <p>Nothing found</p>
+  <% } %>
+</div>
+<%- include('../includes/aside-quote') %> <%- include('../includes/row-close')
+%>
