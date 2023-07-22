@@ -6,14 +6,23 @@ import { authenticateToken } from "../middlewares/authenticateToken.js"
 const router = Router()
 
 router.get("/", authenticateToken, async (request, response) => {
-  const grinders = await Grinder.find({ isPublished: true })
-    .sort({ brand: 1, name: 1 })
-    .lean()
-    .exec()
-  response.render("shared/index", {
-    pageTitle: "All Grinders",
-    resources: grinders,
-  })
+  try {
+    const grinders = await Grinder.find({ isPublished: true })
+      .sort({ brand: 1, name: 1 })
+      .lean()
+      .exec()
+    response.render("shared/index", {
+      pageTitle: "All Grinders",
+      resources: grinders,
+    })
+  } catch (error) {
+    console.error(error)
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while retrieving all grinders.",
+      pageTitle: "Error",
+    })
+  }
 })
 
 router.get("/new", authenticateToken, (request, response) => {
@@ -54,9 +63,12 @@ router.post(
         .exec()
 
       if (existingGrinder) {
-        response.send(
-          "A grinder with this name already exists (if you can't see it, it may be waiting for admin review)"
-        )
+        response.render("error/error", {
+          errorCode: "500",
+          errorMessage:
+            "A grinder with this name already exists (if you can't see it, it may be waiting for admin review)",
+          pageTitle: "Error",
+        })
       } else {
         const grinder = new Grinder({
           brand: request.body.brand,
@@ -67,8 +79,12 @@ router.post(
         response.render("shared/success", { pageTitle: "Grinder Submitted" })
       }
     } catch (error) {
-      console.log(error)
-      response.send("This grinder failed to be created.")
+      console.error(error)
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage: "An error ocurred while adding this grinder.",
+        pageTitle: "Error",
+      })
     }
   }
 )

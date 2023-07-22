@@ -6,11 +6,23 @@ import { authenticateToken } from "../middlewares/authenticateToken.js"
 const router = Router()
 
 router.get("/", authenticateToken, async (request, response) => {
-  const beans = await Bean.find({ isPublished: true })
-    .sort({ brand: 1, name: 1 })
-    .lean()
-    .exec()
-  response.render("shared/index", { pageTitle: "All Beans", resources: beans })
+  try {
+    const beans = await Bean.find({ isPublished: true })
+      .sort({ brand: 1, name: 1 })
+      .lean()
+      .exec()
+    response.render("shared/index", {
+      pageTitle: "All Beans",
+      resources: beans,
+    })
+  } catch (error) {
+    console.error(error)
+    response.render("error/error", {
+      errorCode: "500",
+      errorMessage: "An error ocurred while retrieving all beans.",
+      pageTitle: "Error",
+    })
+  }
 })
 
 router.get("/new", authenticateToken, (request, response) => {
@@ -50,9 +62,12 @@ router.post(
         .exec()
 
       if (existingBeans) {
-        response.send(
-          "Beans with this name already exist (if you can't see them, they may be waiting for admin review)"
-        )
+        response.render("error/error", {
+          errorCode: "500",
+          errorMessage:
+            "Beans with this name already exist (if you can't see them, they may be waiting for admin review)",
+          pageTitle: "Error",
+        })
       } else {
         const bean = new Bean({
           brand: request.body.brand,
@@ -63,8 +78,12 @@ router.post(
         response.render("shared/success", { pageTitle: "Beans Submitted" })
       }
     } catch (error) {
-      console.log(error)
-      response.send("These beans failed to be created.")
+      console.error(error)
+      response.render("error/error", {
+        errorCode: "500",
+        errorMessage: "An error ocurred while adding these beans.",
+        pageTitle: "Error",
+      })
     }
   }
 )
