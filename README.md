@@ -1,6 +1,8 @@
 
 # Your Best Shots
 
+https://github.com/romeonicholas/espresso/assets/79602065/a14fe01c-e336-4814-a7d1-781f2f8f0823
+
 [Your Best Shots](https://yourbestshots.dev) is a website designed to help you dial in your morning (or afternoon, or night) espresso pulls. Just create an account, add your espresso machine, grinder, and beans to your personal dashboard, and start building your history of shots. By keeping track of things like how your grind settings impacts the resulting espresso, you'll have a better idea of how to achieve your perfect pull.
 
 ## Features
