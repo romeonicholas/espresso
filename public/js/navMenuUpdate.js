@@ -1,63 +1,47 @@
 const collapseButtons = document.querySelectorAll(".collapse-button")
-let belowNarrowestBreakpoint = window.matchMedia("(max-width:720px)").matches
+const isBelowBreak = () => window.matchMedia("(max-width:720px)").matches
+let beganBelowBreak = isBelowBreak()
 
-collapseButtons.forEach((collapseButton) => {
-  collapseButton.addEventListener("click", () => {
-    collapseButton.classList.toggle("active")
-
-    let collapsibleContent = collapseButton.nextElementSibling
-    let arrow = collapseButton.childNodes[1]
-
-    if (collapsibleContent.style.maxHeight) {
-      collapsibleContent.style.maxHeight = null
-      arrow.innerText = `⇣`
-    } else {
-      collapsibleContent.style.maxHeight = `${collapsibleContent.scrollHeight}px`
-      arrow.innerText = `⇡`
-    }
-  })
-})
-
-const deactivateNav = (collapseButtons) => {
+const collapseNav = (collapseButtons) => {
   collapseButtons.forEach((collapseButton) => {
     collapseButton.classList.remove("active")
 
-    let collapsibleContent = collapseButton.nextElementSibling
-    collapsibleContent.style.maxHeight = null
-
-    let arrow = collapseButton.childNodes[1]
-    arrow.innerText = `⇣`
+    let content = collapseButton.nextElementSibling
+    content.style.maxHeight = null
+    collapseButton.childNodes[1].innerText = `⇣`
   })
 }
 
-const activateNav = (collapseButtons) => {
+const expandNav = (collapseButtons) => {
   collapseButtons.forEach((collapseButton) => {
     collapseButton.classList.add("active")
 
-    let collapsibleContent = collapseButton.nextElementSibling
-    collapsibleContent.style.maxHeight = `${collapsibleContent.scrollHeight}px`
-
-    let arrow = collapseButton.childNodes[1]
-    arrow.innerText = `⇡`
+    let content = collapseButton.nextElementSibling
+    content.style.maxHeight = `${content.scrollHeight}px`
+    collapseButton.childNodes[1].innerText = `⇡`
   })
 }
 
-if (window.matchMedia("(min-width:720px)").matches) {
-  activateNav(collapseButtons)
+window.onload = () => {
+  collapseButtons.forEach((collapseButton) => {
+    collapseButton.addEventListener("click", () => {
+      collapseButton.classList.contains("active")
+        ? collapseNav([collapseButton])
+        : expandNav([collapseButton])
+    })
+  })
+
+  if (!isBelowBreak()) {
+    expandNav(collapseButtons)
+  }
 }
 
 window.addEventListener("resize", () => {
-  if (
-    belowNarrowestBreakpoint &&
-    window.matchMedia("(min-width:720px)").matches
-  ) {
-    belowNarrowestBreakpoint = false
-    activateNav(collapseButtons)
-  } else if (
-    !belowNarrowestBreakpoint &&
-    window.matchMedia("(max-width:719px)").matches
-  ) {
-    belowNarrowestBreakpoint = true
-    deactivateNav(collapseButtons)
+  if (beganBelowBreak && !isBelowBreak()) {
+    beganBelowBreak = false
+    expandNav(collapseButtons)
+  } else if (!beganBelowBreak && isBelowBreak()) {
+    beganBelowBreak = true
+    collapseNav(collapseButtons)
   }
 })
