@@ -17,6 +17,8 @@ collapseButtons.forEach((collapseButton) => {
   })
 })
 
+let belowNarrowestBreakpoint = window.matchMedia("(max-width:720px)").matches
+
 if (window.matchMedia("(min-width:720px)").matches) {
   collapseButtons.forEach((collapseButton) => {
     collapseButton.classList.add("active")
@@ -30,7 +32,12 @@ if (window.matchMedia("(min-width:720px)").matches) {
 }
 
 window.addEventListener("resize", () => {
-  if (window.matchMedia("(min-width:720px)").matches) {
+  if (
+    belowNarrowestBreakpoint &&
+    window.matchMedia("(min-width:720px)").matches
+  ) {
+    belowNarrowestBreakpoint = false
+
     collapseButtons.forEach((collapseButton) => {
       collapseButton.classList.add("active")
 
@@ -40,9 +47,11 @@ window.addEventListener("resize", () => {
       let arrow = collapseButton.childNodes[1]
       arrow.innerText = `⇡`
     })
-  }
-
-  if (window.matchMedia("(max-width:719px)").matches) {
+  } else if (
+    !belowNarrowestBreakpoint &&
+    window.matchMedia("(max-width:719px)").matches
+  ) {
+    belowNarrowestBreakpoint = true
     collapseButtons.forEach((collapseButton) => {
       collapseButton.classList.remove("active")
 
