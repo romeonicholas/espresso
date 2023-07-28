@@ -1,4 +1,5 @@
 const collapseButtons = document.querySelectorAll(".collapse-button")
+let belowNarrowestBreakpoint = window.matchMedia("(max-width:720px)").matches
 
 collapseButtons.forEach((collapseButton) => {
   collapseButton.addEventListener("click", () => {
@@ -17,9 +18,19 @@ collapseButtons.forEach((collapseButton) => {
   })
 })
 
-let belowNarrowestBreakpoint = window.matchMedia("(max-width:720px)").matches
+const deactivateNav = (collapseButtons) => {
+  collapseButtons.forEach((collapseButton) => {
+    collapseButton.classList.remove("active")
 
-if (window.matchMedia("(min-width:720px)").matches) {
+    let collapsibleContent = collapseButton.nextElementSibling
+    collapsibleContent.style.maxHeight = null
+
+    let arrow = collapseButton.childNodes[1]
+    arrow.innerText = `⇣`
+  })
+}
+
+const activateNav = (collapseButtons) => {
   collapseButtons.forEach((collapseButton) => {
     collapseButton.classList.add("active")
 
@@ -31,35 +42,22 @@ if (window.matchMedia("(min-width:720px)").matches) {
   })
 }
 
+if (window.matchMedia("(min-width:720px)").matches) {
+  activateNav(collapseButtons)
+}
+
 window.addEventListener("resize", () => {
   if (
     belowNarrowestBreakpoint &&
     window.matchMedia("(min-width:720px)").matches
   ) {
     belowNarrowestBreakpoint = false
-
-    collapseButtons.forEach((collapseButton) => {
-      collapseButton.classList.add("active")
-
-      let collapsibleContent = collapseButton.nextElementSibling
-      collapsibleContent.style.maxHeight = `${collapsibleContent.scrollHeight}px`
-
-      let arrow = collapseButton.childNodes[1]
-      arrow.innerText = `⇡`
-    })
+    activateNav(collapseButtons)
   } else if (
     !belowNarrowestBreakpoint &&
     window.matchMedia("(max-width:719px)").matches
   ) {
     belowNarrowestBreakpoint = true
-    collapseButtons.forEach((collapseButton) => {
-      collapseButton.classList.remove("active")
-
-      let collapsibleContent = collapseButton.nextElementSibling
-      collapsibleContent.style.maxHeight = null
-
-      let arrow = collapseButton.childNodes[1]
-      arrow.innerText = `⇣`
-    })
+    deactivateNav(collapseButtons)
   }
 })
