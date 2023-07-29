@@ -22,6 +22,8 @@ const darkModeElementsByClass = [
   ".table-brand-spacer",
   ".rating-radio-button",
   ".scores",
+  ".col-left",
+  ".spillover"
 ]
 
 if (localStorage.prefersDarkMode == "true") {

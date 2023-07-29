@@ -1,4 +1,7 @@
 <div class="col-left menu">
+    <% if (typeof username == 'undefined') { %>
+        <div class="nav-replacer">&nbsp;</div>
+    <% } else { %>
     <nav>
         <button class="collapse-button">
             <span class="arrow">&#8675;</span>
@@ -30,4 +33,5 @@
             <li><a class="link" href="/grinders/new">New Grinder</a></li>
         </ul>
     </nav>
+    <% } %>
 </div>
