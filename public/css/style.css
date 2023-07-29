@@ -59,10 +59,10 @@ body {
 
 .aside-quote {
   background-color: #b9901d;
-  padding: 15px;
+  padding: 15px 0px 15px 0px;
   color: #000000;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
@@ -74,7 +74,7 @@ body {
   display: table-cell;
   background-color: #222;
   color: #fff;
-  font-size: 12px;
+  font-size: 14px;
   height: 40px;
   text-align: center;
   vertical-align: middle;
@@ -105,10 +105,7 @@ a.link:active {
 /* LANDING PAGE */
 
 .landing-quote-figure {
-  margin: 10px 0px 10px 0px;
-  background: #fff;
-  border: 0.2rem outset #b9901d;
-  border-radius: 10px;
+  margin: 10px 15px 10px 15px;
 }
 
 .landing-quote {
@@ -138,7 +135,7 @@ a.link:active {
 }
 
 .header h1 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .header h1 a {
@@ -242,7 +239,7 @@ input:checked + .slider:before {
   width: 100%;
   text-align: left;
   outline: none;
-  font-size: 15px;
+  font-size: 16px;
   background-color: #b9901d;
   color: #000000;
   border-style: solid;
@@ -257,7 +254,7 @@ input:checked + .slider:before {
 }
 
 .collapse-content {
-  font-size: 15px;
+  font-size: 16px;
   padding: 0 10px;
   max-height: 0;
   overflow: hidden;
@@ -377,7 +374,7 @@ td {
   width: 100%;
   text-align: center;
   outline: #222;
-  font-size: 15px;
+  font-size: 16px;
   background-color: #b9901d;
   color: #222;
   border-style: solid;
