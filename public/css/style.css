@@ -150,6 +150,7 @@ a.link:active {
 .switch {
   position: relative;
   display: inline-block;
+  padding-top: 6px;
   width: 30px;
   height: 17px;
 }
@@ -208,8 +209,22 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.nav-icon {
+.nav-icon-container {
   display: inline-block;
+  margin-right: 5px;
+}
+
+.nav-icon {
+  fill: #b9901d;
+  margin: 5px 5px 5px 0px;
+}
+
+.nav-icon:hover {
+  fill: #6e5511;
+}
+
+.reverse {
+  transform: rotate(180deg);
 }
 
 /* SIDE NAV */
@@ -669,8 +684,12 @@ a.dark-theme:active {
     display: inline-block;
   }
 
-  .nav-icon {
+  .nav-icon-container {
     display: none;
+  }
+
+  .switch {
+    padding-top: 0px;
   }
 
   .header h1 {
