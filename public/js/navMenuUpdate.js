@@ -1,5 +1,5 @@
 const collapseButtons = document.querySelectorAll(".collapse-button")
-const isBelowBreak = () => window.matchMedia("(max-width:720px)").matches
+const isBelowBreak = () => window.matchMedia("(max-width:600px)").matches
 let beganBelowBreak = isBelowBreak()
 
 const collapseNav = (collapseButtons) => {
