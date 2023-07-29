@@ -68,10 +68,6 @@ img {
   max-height: 500px;
 }
 
-.hidden-mobile {
-  display: none;
-}
-
 .header {
   position: relative;
   display: flex;
@@ -639,6 +635,14 @@ a.dark-theme:active {
   float: left;
 }
 
+.col-right {
+  display: none;
+}
+
+.hidden-mobile {
+  display: none;
+}
+
 @media only screen and (min-width: 600px) {
   .col-left {
     width: 25%
@@ -646,6 +650,14 @@ a.dark-theme:active {
 
   .col-center {
     width: 75%;
+  }
+
+  .col-right {
+    display: none;
+  }
+
+  .hidden-mobile {
+    display: inline-block;
   }
 
   .header h1 {
@@ -711,12 +723,10 @@ a.dark-theme:active {
   }
 
   .col-right {
-    width: 25%
-  }
-
-  .hidden-mobile {
+    width: 25%;
     display: inline-block;
   }
+
 }
 
 @media only screen and (min-width: 1200px) {
