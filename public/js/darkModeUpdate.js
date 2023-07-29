@@ -23,7 +23,8 @@ const darkModeElementsByClass = [
   ".rating-radio-button",
   ".scores",
   ".col-left",
-  ".spillover"
+  ".spillover",
+  ".nav-icon"
 ]
 
 if (localStorage.prefersDarkMode == "true") {

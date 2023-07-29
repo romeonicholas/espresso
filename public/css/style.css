@@ -642,6 +642,13 @@ a.dark-theme:active {
   background-color:#16181b;
 }
 
+.nav-icon.dark-theme {
+  fill: #e9b686;
+}
+.nav-icon.dark-theme:hover {
+  fill: #ffac5f;
+}
+
 /* RESPONSIVE SIZING */
 
 [class*="col-"] {
