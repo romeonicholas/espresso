@@ -23,6 +23,10 @@ const expandNav = (collapseButtons) => {
 }
 
 window.onload = () => {
+  if (!isBelowBreak()) {
+    expandNav(collapseButtons)
+  }
+
   collapseButtons.forEach((collapseButton) => {
     collapseButton.addEventListener("click", () => {
       collapseButton.classList.contains("active")
@@ -30,10 +34,8 @@ window.onload = () => {
         : expandNav([collapseButton])
     })
   })
-
-  if (!isBelowBreak()) {
-    expandNav(collapseButtons)
-  }
+  
+  setTimeout(() => { document.body.classList.remove("preload"), 1000 })
 }
 
 window.addEventListener("resize", () => {
