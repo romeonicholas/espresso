@@ -640,6 +640,10 @@ a.dark-theme:active {
 }
 
 @media only screen and (min-width: 600px) {
+  .col-left {
+    width: 25%
+  }
+
   .col-center {
     width: 75%;
   }
@@ -704,6 +708,10 @@ a.dark-theme:active {
 @media only screen and (min-width: 820px) {
   .col-center {
     width: 50%;
+  }
+
+  .col-right {
+    width: 25%
   }
 
   .hidden-mobile {
