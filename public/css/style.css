@@ -4,6 +4,7 @@
 
 html {
   height: 100%;
+  font-family: "Lucida Sans", sans-serif;
 }
 
 body {
@@ -65,10 +66,6 @@ a.link:active {
 img {
   max-width: 100%;
   max-height: 500px;
-}
-
-html {
-  font-family: "Lucida Sans", sans-serif;
 }
 
 .hidden-mobile {
@@ -711,5 +708,17 @@ a.dark-theme:active {
 
   .hidden-mobile {
     display: inline-block;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  body {
+    width: 1200px;
+    margin: 0 auto;
+  }
+
+  html {
+    background-image: url("../coffeebackground.jpeg");
+    background-size: contain;
   }
 }
