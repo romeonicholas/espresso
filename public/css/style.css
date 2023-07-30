@@ -57,6 +57,16 @@ body {
   padding: 0px 15px 30px 15px;
 }
 
+.footer {
+  display: table-cell;
+  background-color: #222;
+  color: #fff;
+  font-size: 14px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+}
+
 /* ASIDE */
 
 .aside-header {
@@ -80,14 +90,25 @@ body {
   margin: 0px;
 }
 
-.footer {
-  display: table-cell;
-  background-color: #222;
-  color: #fff;
-  font-size: 14px;
-  height: 40px;
-  text-align: center;
-  vertical-align: middle;
+a.aside-link:link {
+  color: #000;
+  text-decoration: underline;
+}
+
+a.aside-link:visited {
+  color: #3b3b3b;
+  text-decoration: none;
+}
+
+a.aside-link:hover {
+  color: #000;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+a.aside-link:active {
+  color: #3b3b3b;
+  text-decoration: none;
 }
 
 /* LINKS */
