@@ -309,6 +309,7 @@ input:checked + .slider:before {
 
 .dashboard-table {
   width: 100%;
+  table-layout: fixed;
   border-spacing: 0px;
   margin: 15px 0px 15px 0px;
 }
@@ -326,6 +327,10 @@ td {
 
 .shots-table-head {
   background-color: #ecd38f;
+}
+
+.text-col {
+  width: calc((100% - 55px) / 2) 
 }
 
 .end-col {
