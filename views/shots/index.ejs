@@ -22,7 +22,7 @@
       <tbody>
         <% shots.forEach(shot => { %>
           <tr>
-            <td><%= shot.user.username || `-` %></td>
+            <td class="username"><%= shot.user.username || `-` %></td>
             <td><%= shot.date.toLocaleString("en-US", { dateStyle: "short" }) %></td>
             <td><%= shot.aromaticsRating || `-` %></td>
             <td><%= shot.bodyRating || `-` %></td>
@@ -35,5 +35,7 @@
       </tbody>
     </table>
   </div>
+  <script src="/assets/js/shortenNames.js" async></script>
   <%- include('../includes/aside-quote') %>
 <%- include('../includes/row-close') %>
+
