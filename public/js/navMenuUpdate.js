@@ -27,7 +27,7 @@ const expandNav = (collapseButtons) => {
   })
 }
 
-window.onload = () => {
+window.addEventListener("load", () => {
   if (!isBelowBreak()) {
     expandNav(collapseButtons)
     leftColumn.style.height = `${getDocumentHeight()}px`
@@ -44,7 +44,7 @@ window.onload = () => {
   setTimeout(() => {
     document.body.classList.remove("preload"), 1000
   })
-}
+})
 
 window.addEventListener("resize", () => {
   if (beganBelowBreak && !isBelowBreak()) {

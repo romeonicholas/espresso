@@ -42,8 +42,10 @@ const quotes = [
   ],
 ]
 
-const quoteIndex = Math.floor(Math.random() * quotes.length)
-document.querySelector(".quote-text").innerHTML = quotes[quoteIndex][0]
-document.querySelector(
-  ".quote-author"
-).innerHTML = `-${quotes[quoteIndex][1]} <cite>${quotes[quoteIndex][2]}</cite>`
+window.addEventListener("load", () => {
+  const quoteIndex = Math.floor(Math.random() * quotes.length)
+  document.querySelector(".quote-text").innerHTML = quotes[quoteIndex][0]
+  document.querySelector(
+    ".quote-author"
+  ).innerHTML = `-${quotes[quoteIndex][1]} <cite>${quotes[quoteIndex][2]}</cite>`
+})

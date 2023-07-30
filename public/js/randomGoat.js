@@ -61,11 +61,13 @@ const goats = [
   ],
 ]
 
-const goatIndex = Math.floor(Math.random() * goats.length)
-document.querySelector(
-  ".goat-text"
-).innerHTML = `${goats[goatIndex][0]} (${goats[goatIndex][1]})`
+window.addEventListener("load", () => {
+  const goatIndex = Math.floor(Math.random() * goats.length)
+  document.querySelector(
+    ".goat-text"
+  ).innerHTML = `${goats[goatIndex][0]} (${goats[goatIndex][1]})`
 
-let goatLink = document.querySelector(".goat-link")
-goatLink.href = goats[goatIndex][2]
-goatLink.textContent = goats[goatIndex][3]
+  let goatLink = document.querySelector(".goat-link")
+  goatLink.href = goats[goatIndex][2]
+  goatLink.textContent = goats[goatIndex][3]
+})

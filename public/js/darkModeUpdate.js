@@ -29,21 +29,23 @@ const darkModeElementsByClass = [
   ".nav-icon",
 ]
 
-if (localStorage.prefersDarkMode == "true") {
-  document.querySelectorAll(darkModeElementsByClass).forEach((element) => {
-    element.classList.toggle("dark-theme")
+window.addEventListener("load", () => {
+  if (localStorage.prefersDarkMode == "true") {
+    document.querySelectorAll(darkModeElementsByClass).forEach((element) => {
+      element.classList.toggle("dark-theme")
+    })
+
+    document.querySelector(".check").checked = true
+  }
+
+  const darkModeButton = document.querySelector(".slider")
+
+  darkModeButton.addEventListener("click", () => {
+    document.querySelectorAll(darkModeElementsByClass).forEach((element) => {
+      element.classList.toggle("dark-theme")
+    })
+
+    localStorage.prefersDarkMode =
+      localStorage.prefersDarkMode == "true" ? "false" : "true"
   })
-
-  document.querySelector(".check").checked = true
-}
-
-const darkModeButton = document.querySelector(".slider")
-
-darkModeButton.addEventListener("click", () => {
-  document.querySelectorAll(darkModeElementsByClass).forEach((element) => {
-    element.classList.toggle("dark-theme")
-  })
-
-  localStorage.prefersDarkMode =
-    localStorage.prefersDarkMode == "true" ? "false" : "true"
 })

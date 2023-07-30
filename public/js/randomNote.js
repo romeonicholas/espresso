@@ -8,5 +8,7 @@ const notes = [
   "Start with a 25 second extraction time, and lengthen or shorten from there.",
 ]
 
-const noteIndex = Math.floor(Math.random() * notes.length)
-document.querySelector(".note-text").innerHTML = notes[noteIndex]
+window.addEventListener("load", () => {
+  const noteIndex = Math.floor(Math.random() * notes.length)
+  document.querySelector(".note-text").innerHTML = notes[noteIndex]
+})
