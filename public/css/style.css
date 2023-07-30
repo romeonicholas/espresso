@@ -40,6 +40,10 @@ body {
   height: 100%;
 }
 
+.main-text {
+  font-size: 18px;
+}
+
 .subheader {
   color: #937031;
 }
@@ -438,7 +442,8 @@ td {
   width: 100%;
   text-align: center;
   outline: #222;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
   background-color: #b9901d;
   color: #222;
   border-style: solid;

@@ -8,7 +8,7 @@
 
   <% if (results.length) { %> <% results.forEach((result) => { %>
   <div>
-    <span>
+    <span class="main-text">
       By <%= result.user.username %> on <%= result.date.toLocaleString("en-US",
       { dateStyle: "short" }) %> (<a
         href="/shots/<%= result._id %>"
@@ -17,20 +17,20 @@
       >)
     </span>
     <br />
-    <span>
+    <span class="main-text">
       Setup: <%- result.bean.brand + ' ' + result.bean.name %> / <%-
       result.machine.brand + ' ' + result.machine.name %> / <%-
       result.grinder.brand + ' ' + result.grinder.name %>
     </span>
     <br />
-    <span> <strong>Comments: </strong><%- result.comments %> </span>
+    <span class="main-text"> <strong>Comments: </strong><%- result.comments %> </span>
   </div>
   <br />
 
   <% }) %>
   <br />
   <% } else { %>
-  <p>Nothing found</p>
+  <p class="main-text">Nothing found</p>
   <% } %>
 </div>
 <%- include('../includes/aside-quote') %> <%- include('../includes/row-close')
