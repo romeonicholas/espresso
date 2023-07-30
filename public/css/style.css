@@ -90,6 +90,11 @@ body {
   margin: 0px;
 }
 
+.goat-text, .goat-link {
+  margin:0px;
+  padding:0px;
+}
+
 a.aside-link:link {
   color: #000;
   text-decoration: underline;
