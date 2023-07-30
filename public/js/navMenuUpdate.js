@@ -1,6 +1,6 @@
-const collapseButtons = document.querySelectorAll('.collapse-button')
-const leftColumn = document.querySelector('.col-left')
-const isBelowBreak = () => window.matchMedia('(max-width:600px)').matches
+const collapseButtons = document.querySelectorAll(".collapse-button")
+const leftColumn = document.querySelector(".col-left")
+const isBelowBreak = () => window.matchMedia("(max-width:600px)").matches
 let beganBelowBreak = isBelowBreak()
 
 const getDocumentHeight = () => {
@@ -9,7 +9,7 @@ const getDocumentHeight = () => {
 
 const collapseNav = (collapseButtons) => {
   collapseButtons.forEach((collapseButton) => {
-    collapseButton.classList.remove('active')
+    collapseButton.classList.remove("active")
 
     let content = collapseButton.nextElementSibling
     content.style.maxHeight = null
@@ -19,7 +19,7 @@ const collapseNav = (collapseButtons) => {
 
 const expandNav = (collapseButtons) => {
   collapseButtons.forEach((collapseButton) => {
-    collapseButton.classList.add('active')
+    collapseButton.classList.add("active")
 
     let content = collapseButton.nextElementSibling
     content.style.maxHeight = `${content.scrollHeight}px`
@@ -34,19 +34,19 @@ window.onload = () => {
   }
 
   collapseButtons.forEach((collapseButton) => {
-    collapseButton.addEventListener('click', () => {
-      collapseButton.classList.contains('active')
+    collapseButton.addEventListener("click", () => {
+      collapseButton.classList.contains("active")
         ? collapseNav([collapseButton])
         : expandNav([collapseButton])
     })
   })
 
   setTimeout(() => {
-    document.body.classList.remove('preload'), 1000
+    document.body.classList.remove("preload"), 1000
   })
 }
 
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   if (beganBelowBreak && !isBelowBreak()) {
     beganBelowBreak = false
     expandNav(collapseButtons)
