@@ -57,6 +57,16 @@ body {
   padding: 0px 15px 30px 15px;
 }
 
+/* ASIDE */
+
+.aside-header {
+  text-align: right;
+  margin: 20px 0px 0px 0px;
+  padding-right: 5px;
+  background-color: #d1ad49;
+  color: #4c4a4a
+}
+
 .aside-quote {
   background-color: #b9901d;
   padding: 15px 0px 15px 0px;
