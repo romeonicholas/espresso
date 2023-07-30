@@ -375,6 +375,7 @@ td {
 }
 
 .text-col {
+  width: -webkit-calc((100% - 55px) / 2);
   width: calc((100% - 55px) / 2);
 }
 
