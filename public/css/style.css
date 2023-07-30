@@ -674,13 +674,14 @@ a.dark-theme:active {
 
 .col-left {
   background-image: url("../coffeebackground.png");
-  background-size: cover;
+  background-size:cover;
+  min-height: 40px;
 }
 
 @media only screen and (min-width: 600px) {
   .col-left {
     width: 25%;
-    height: 100%;
+    max-height: none;
   }
 
   .col-center {
