@@ -49,6 +49,7 @@ body {
 }
 
 .subheader {
+  font-size: 1.7rem;
   color: #937031;
 }
 
@@ -311,7 +312,7 @@ input:checked + .slider:before {
   width: 100%;
   text-align: left;
   outline: none;
-  font-size: 16px;
+  font-size: 1rem;
   background-color: #b9901d;
   color: #000000;
   border-style: solid;
@@ -795,7 +796,15 @@ input + svg {
   }
 
   .header h1 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+  }
+
+  .subheader {
+    font-size: 2.3rem;
+  }
+
+  .collapse-button {
+    font-size: 1.2rem;
   }
 
   .user-inputs {
