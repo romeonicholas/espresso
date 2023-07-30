@@ -374,11 +374,6 @@ td {
   background-color: #ecd38f;
 }
 
-.text-col {
-  min-width: calc((100% - 55px) / 2);
-  width: calc((100% - 55px) / 2);
-}
-
 .dashboard-date {
   width: 70px;
 }
