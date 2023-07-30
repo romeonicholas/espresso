@@ -5,7 +5,7 @@
       <h2 class="subheader">Add Shots</h2>
 
       <form action="/shots" method="POST">
-        <fieldset>
+        <fieldset class="fieldset">
           <legend><strong>Equipment</strong></legend>
 
           <div>
@@ -62,7 +62,7 @@
 
         <br />
 
-        <fieldset>
+        <fieldset class="fieldset">
           <legend><strong>Preparation and Output</strong></legend>
           <div>
             <label for="grinderSetting">Grinder Setting</label>
@@ -91,7 +91,7 @@
         
         <br />
 
-        <fieldset>
+        <fieldset class="fieldset">
           <legend><strong>Results</strong></legend>
 
           <legend>Aromatics</legend>
@@ -289,13 +289,12 @@
             </label>
           </div>
 
+          <br />
+
           <div>
             <label for="comments">Comments</label>
           </div>
-          <input class="user-inputs" type="text" id="comments" name="comments" /><br /><br />
-
-          <!-- <label for="favorite">Mark this shot as a favorite: </label>
-          <input class="user-inputs" type="checkbox" name="favorite" value="true" /><br /><br /> -->
+          <input class="user-inputs" type="text" id="comments" name="comments" /><br />
         </fieldset>
         
         <br />
