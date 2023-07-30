@@ -373,6 +373,14 @@ td {
   width: calc((100% - 55px) / 2) 
 }
 
+.dashboard-date {
+  width: 70px;
+}
+
+.dashboard-user {
+  width: 30%;
+}
+
 .end-col {
   width: 55px;
 }

@@ -18,8 +18,8 @@
             <table class="dashboard-table">
               <thead class="shots-table-head">
                 <tr>
-                  <th class="end-col">Details</th>
-                  <th>Date</th>
+                  <th class="end-col">Info</th>
+                  <th class="dashboard-date">Date</th>
                   <th colspan="5">
                     <div class="ratings-info">
                       Ratings
@@ -36,7 +36,7 @@
                 <% user.shots.forEach(shot => { %>
                   <tr>
                     <td><a class="link" href="/shots/<%= shot._id %>">-></a></td>
-                    <td class="dashboard-date"><%= shot.date.toLocaleString("en-US", { dateStyle: "short" }) %></td>
+                    <td><%= shot.date.toLocaleString("en-US", { dateStyle: "short" }) %></td>
                     <td><%= shot.aromaticsRating || `-` %></td>
                     <td><%= shot.bodyRating || `-` %></td>
                     <td><%= shot.acidityRating || `-` %></td>
