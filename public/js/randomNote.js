@@ -1,5 +1,5 @@
 const notes = [
-  "Use 14-18 grams of coffee beans for a doble, or 7-9 grams for a single.",
+  "Use 14-18 grams of coffee beans for a double, or 7-9 grams for a single.",
   "Use good water! Spring water is best, but distilled water works too.",
   "Distribute your grounds evenly in the filter basket, only lightly tap the portafilter.",
   "Lock the portafilter onto the brew head of your machine to create a tight seal.",
