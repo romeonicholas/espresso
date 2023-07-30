@@ -44,6 +44,10 @@ body {
   font-size: 18px;
 }
 
+.centered-text {
+  text-align: center;
+}
+
 .subheader {
   color: #937031;
 }

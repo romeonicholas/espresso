@@ -10,8 +10,8 @@
       
         <div>  
           <% if (!user.beans.length || !user.machines.length || !user.grinders.length) { %>
-            <p><strong>You can't record a shot without equipment!</strong></p>
-            <p>Add at least one variety of <a class="link" href="/users/me/beans/new">beans</a>, one <a class="link" href="/users/me/machines/new">machine</a>, and one <a class="link" href="/users/me/grinders/new">grinder</a> to your account, then try again.</p>
+            <p class="main-text centered-text"><strong>You can't record a shot without equipment!</strong></p>
+            <p class="main-text">Add at least one variety of <a class="link" href="/users/me/beans/new">beans</a>, one <a class="link" href="/users/me/machines/new">machine</a>, and one <a class="link" href="/users/me/grinders/new">grinder</a> to your account, then try again.</p>
           <% } %>
 
           <% if (user.shots.length) { %>
@@ -58,7 +58,7 @@
               <% } %>
             </table>
           <% } else { %>
-            <p>You don't have any shots yet :(</p>
+            <p class="main-text">You haven't added any shots yet!</p>
           <% } %>
         </div>
       
@@ -89,7 +89,7 @@
               </tbody>
             </table>
           <% } else { %>
-            <p>You haven't added any beans yet!</p>
+            <p class="main-text">You haven't added any beans yet!</p>
           <% } %>
         </div>
 
@@ -120,7 +120,7 @@
               </tbody>
             </table>
           <% } else { %>
-            <p>You haven't added any machines yet!</p>
+            <p class="main-text">You haven't added any machines yet!</p>
           <% } %>
         </div>
 
@@ -151,7 +151,7 @@
               </tbody>
             </table>
           <% } else { %>
-            <p>You haven't added any machines yet!</p>
+            <p class="main-text">You haven't added any grinders yet!</p>
           <% } %>
         </div>
     </div>
