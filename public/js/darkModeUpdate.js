@@ -3,6 +3,8 @@ const darkModeElementsByClass = [
   ".footer",
   ".aside",
   ".aside-quote",
+  ".aside-header",
+  ".goat-link",
   ".menu",
   ".main",
   ".collapse-button",
@@ -24,7 +26,7 @@ const darkModeElementsByClass = [
   ".scores",
   ".col-left",
   ".spillover",
-  ".nav-icon"
+  ".nav-icon",
 ]
 
 if (localStorage.prefersDarkMode == "true") {

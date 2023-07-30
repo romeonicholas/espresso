@@ -99,23 +99,23 @@ body {
   padding:0px;
 }
 
-a.aside-link:link {
+.goat-link:link {
   color: #000;
   text-decoration: underline;
 }
 
-a.aside-link:visited {
+.goat-link:visited {
   color: #3b3b3b;
   text-decoration: none;
 }
 
-a.aside-link:hover {
+.goat-link:hover {
   color: #000;
   font-weight: bold;
   text-decoration: underline;
 }
 
-a.aside-link:active {
+.goat-link:active {
   color: #3b3b3b;
   text-decoration: none;
 }
@@ -544,6 +544,31 @@ input + svg {
   box-shadow: none;
 }
 
+.aside-header.dark-theme {
+  background-color: #2e373e;
+  color: #a3a9b2;
+}
+
+.goat-link.dark-theme:link {
+  color: #a3a9b2;
+  text-decoration: underline;
+}
+
+.goat-link.dark-theme:visited {
+  color: #a3a9b2;
+  text-decoration: underline;
+}
+
+.goat-link.dark-theme:hover {
+  color: rgb(200, 200, 200);
+  text-decoration: none;
+}
+
+.goat-link.dark-theme:active {
+  color: rgb(200, 200, 200);
+  text-decoration: none;
+}
+
 .menu.dark-theme li {
   background-color: #1b1f22;
   color: #a3a9b2;
@@ -591,22 +616,22 @@ input + svg {
   color: #a3a9b2;
 }
 
-a.dark-theme:link {
+.link.dark-theme:link {
   color: #a3a9b2;
   text-decoration: underline;
 }
 
-a.dark-theme:visited {
+.link.dark-theme:visited {
   color: #a3a9b2;
   text-decoration: underline;
 }
 
-a.dark-theme:hover {
+.link.dark-theme:hover {
   color: rgb(200, 200, 200);
   text-decoration: none;
 }
 
-a.dark-theme:active {
+.link.dark-theme:active {
   color: rgb(200, 200, 200);
   text-decoration: none;
 }

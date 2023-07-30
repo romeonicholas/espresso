@@ -65,6 +65,7 @@ const goatIndex = Math.floor(Math.random() * goats.length)
 document.querySelector(
   ".goat-text"
 ).innerHTML = `${goats[goatIndex][0]} (${goats[goatIndex][1]})`
-document.querySelector(
-  ".goat-link"
-).innerHTML = `<a href="${goats[goatIndex][2]}" class="aside-link">${goats[goatIndex][3]}</a>`
+
+let goatLink = document.querySelector(".goat-link")
+goatLink.href = goats[goatIndex][2]
+goatLink.textContent = goats[goatIndex][3]
