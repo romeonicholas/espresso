@@ -401,7 +401,6 @@ td {
 
 .table-brand-spacer {
   background-color: #674F22;
-  height: 2px;
 }
 
 .table-brand-spacer:first-of-type {
@@ -607,8 +606,8 @@ input + svg {
 }
 
 .collapse-button.dark-theme {
-  background-color: #1b1f22;
-  color: #a3a9b2;
+  background-color: #28303E;
+  color: #D1D5D7;
   border-width: 1px 0px 0px 0px;
   border-style: solid;
   border-color: #a3a9b2;
@@ -619,11 +618,11 @@ input + svg {
 }
 
 .collapse-button.dark-theme:hover {
-  background-color: rgb(30, 37, 47);
+  background-color: #2e373e;
 }
 
 .active.collapse-button.dark-theme {
-  background-color: rgb(30, 37, 47);
+  background-color: #2e373e;
   border-width: 1px 0px 1px 0px;
 }
 
@@ -638,23 +637,21 @@ input + svg {
 }
 
 .link.dark-theme:link {
-  color: #a3a9b2;
-  text-decoration: underline;
+  color: #D1D5D7;
 }
 
 .link.dark-theme:visited {
   color: #a3a9b2;
-  text-decoration: underline;
 }
 
 .link.dark-theme:hover {
   color: rgb(200, 200, 200);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .link.dark-theme:active {
   color: rgb(200, 200, 200);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .text-input.dark-theme {
