@@ -50,7 +50,7 @@ body {
 
 .subheader {
   font-size: 1.7rem;
-  color: #937031;
+  color: #674F22;
 }
 
 .section-underline {
@@ -81,14 +81,14 @@ body {
 .aside-header {
   text-align: right;
   margin: 20px 0px 0px 0px;
-  padding-right: 10px;
-  background-color: #d1ad49;
-  color: #4c4a4a;
+  padding: 5px 10px 5px 0px;
+  background-color: #6E5511;
+  color: #F7F6F1;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .aside-quote {
-  background-color: #b9901d;
+  background-color: #f1dfac;
   padding: 15px 0px 15px 0px;
   color: #000000;
   text-align: center;
@@ -133,7 +133,7 @@ body {
 /* LINKS */
 
 a.link:link {
-  color: #b9901d;
+  color: #6E5511;
   text-decoration: none;
 }
 
@@ -148,7 +148,7 @@ a.link:hover {
 }
 
 a.link:active {
-  color: #b9901d;
+  color: #6E5511;
   text-decoration: underline;
 }
 
@@ -269,7 +269,7 @@ input:checked + .slider:before {
 }
 
 .nav-icon {
-  fill: #b9901d;
+  fill: #6E5511;
   margin: 5px 5px 5px 0px;
 }
 
@@ -303,7 +303,7 @@ input:checked + .slider:before {
 }
 
 .menu li:hover {
-  background-color: #eaded6;
+  background-color: #E7CD7E;
 }
 
 .collapse-button {
@@ -313,7 +313,7 @@ input:checked + .slider:before {
   text-align: left;
   outline: none;
   font-size: 1rem;
-  background-color: #b9901d;
+  background-color: #6E5511;
   color: #000000;
   border-style: solid;
   border-width: 0px 0px 1px 0px;
@@ -331,7 +331,7 @@ input:checked + .slider:before {
   padding: 0 10px;
   max-height: 0;
   overflow: hidden;
-  background-color: #ecd38f;
+  background-color: #f1dfac;
   transition: max-height 0.2s ease-out;
 }
 
@@ -340,12 +340,12 @@ input:checked + .slider:before {
 }
 
 .new-shot-link:link {
-  color: #b9901d;
+  color: #6E5511;
   font-weight: bold;
 }
 
 .new-shot-link:hover {
-  color: #b9901d;
+  color: #6E5511;
   font-weight: normal;
 }
 
@@ -400,7 +400,8 @@ td {
 }
 
 .table-brand-spacer {
-  background-color: #937031;
+  background-color: #674F22;
+  height: 2px;
 }
 
 .table-brand-spacer:first-of-type {
@@ -463,7 +464,7 @@ td {
   outline: #222;
   font-size: 18px;
   font-weight: bold;
-  background-color: #b9901d;
+  background-color: #B9901D;
   color: #222;
   border-style: solid;
   border-width: 0px 0px 1px 0px;
@@ -519,8 +520,8 @@ input + svg {
 .rating-radio-button:hover + svg,
 .rating-radio-button:checked + svg,
 .rating-radio-button:focus + svg {
-  fill: #b9901d;
-  outline: 2px solid #b9901d;
+  fill: #6E5511;
+  outline: 2px solid #6E5511;
 }
 
 .required-input {
