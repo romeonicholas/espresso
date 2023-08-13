@@ -276,7 +276,7 @@ router.post(
         .lean()
         .exec()
       if (!user)
-        response.render("errors/error", {
+        response.render("error/error", {
           errorCode: "404",
           errorMessage:
             "Your username or password were not found, or don't exist.",
