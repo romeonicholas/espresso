@@ -6,27 +6,12 @@ import { Grinder } from "../models/grinder.js"
 import { SECRET_JWT_CODE, JWT_EXPIRES_IN } from "../config/app.js"
 import { authenticateToken } from "../middlewares/authenticateToken.js"
 import { checkLoginStatus } from "../middlewares/checkLoginStatus.js"
+import { loginRateLimiter } from "../middlewares/loginRateLimiter.js"
 import { body, validationResult } from "express-validator"
 import bcrypt from "bcrypt"
 import JSONWebToken from "jsonwebtoken"
-import rateLimit from "express-rate-limit"
 
 const router = Router()
-
-const passwordAttemptLimiter = rateLimit({
-  windowMs: 60 * 1000,
-  max: 5,
-  message: async (request, response) => {
-    response.render("error/error", {
-      errorCode: "429",
-      errorMessage:
-        "Too many failed attempts to log in, please wait a minute before trying again.",
-      pageTitle: "Error",
-    })
-  },
-  standardHeaders: true,
-  legacyHeaders: false,
-})
 
 // router.get("/", authenticateToken, (request, response) => {
 //   response.render("users/", { pageTitle: "Users" })
@@ -280,7 +265,7 @@ router.get("/login", checkLoginStatus, (request, response) => {
 
 router.post(
   "/login",
-  passwordAttemptLimiter,
+  loginRateLimiter,
   body("username").isString().trim().escape(),
   body("password").isString().trim().escape(),
   async (request, response) => {
