@@ -1,5 +1,6 @@
 import express from "express"
 import morgan from "morgan"
+import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
 import helmet from "helmet"
 import favicon from "serve-favicon"
@@ -30,9 +31,17 @@ app.use(express.urlencoded({ extended: true }))
 if (process.env.NODE_ENV === "dev") {
   app.use(morgan("tiny"))
 }
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(helmet())
-app.use(mongoSanitize())
+app.use(
+  mongoSanitize({
+    onSanitize: ({ req, key }) => {
+      console.warn(`This request[${key}] is sanitized`, req)
+    },
+  })
+)
 
 app.use(simpleRoutes)
 app.use("/shots", shotsRoutes)
