@@ -8,6 +8,7 @@ import { authenticateToken } from "../middlewares/authenticateToken.js"
 import { checkLoginStatus } from "../middlewares/checkLoginStatus.js"
 import { loginRateLimiter } from "../middlewares/loginRateLimiter.js"
 import { body, validationResult } from "express-validator"
+import mongoose from "mongoose"
 import bcrypt from "bcrypt"
 import JSONWebToken from "jsonwebtoken"
 
@@ -136,23 +137,34 @@ router.post(
   authenticateToken,
   body("resourceId").isString().isLength({ min: 24, max: 24 }).trim().escape(),
   async (request, response) => {
+    validationResult(request).throw()
+    const resourceType = request.params.resourceType.toLowerCase()
+    const session = await mongoose.startSession()
+    session.startTransaction()
+
     try {
-      validationResult(request).throw()
-
-      const resourceType = request.params.resourceType.toLowerCase()
-
       const user = await User.findById(response.locals.id).exec()
-      user[resourceType].addToSet(request.body.resourceId)
-      await user.save()
+      const machine = await Machine.findById(request.body.resourceId).exec()
 
+      user[resourceType].addToSet(request.body.resourceId)
+      machine.users.addToSet(user._id)
+
+      await user.save()
+      await machine.save()
+
+      await session.commitTransaction()
       response.redirect("./")
     } catch (error) {
       console.error(error)
+      await session.abortTransaction()
+
       response.render("error/error", {
         errorCode: "500",
         errorMessage: "An error ocurred while updating your resources.",
         pageTitle: "Error",
       })
+    } finally {
+      session.endSession()
     }
   }
 )
