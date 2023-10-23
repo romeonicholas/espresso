@@ -77,16 +77,16 @@ router.post(
   }
 )
 
-// router.get("/:id", authenticateToken, async (request, response) => {
-//   try {
-//     const machine = await Machine.findById(request.params.id).lean().exec()
-//     if (!machine) throw new Error("Machine not found.")
+router.get("/:id", authenticateToken, async (request, response) => {
+  try {
+    const machine = await Machine.findById(request.params.id).lean().exec()
+    if (!machine) throw new Error("Machine not found.")
 
-//     response.render("machines/show", { machine: machine })
-//   } catch (error) {
-//     console.error(error)
-//     response.status(404).send("Machine could not be found")
-//   }
-// })
+    response.send(machine)
+  } catch (error) {
+    console.error(error)
+    response.status(404).send("Machine could not be found")
+  }
+})
 
 export default router
