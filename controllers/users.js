@@ -173,9 +173,11 @@ router.get(
   "/me/:resource/:id/delete",
   authenticateToken,
   async (request, response) => {
-    try {
-      const resource = request.params.resource
+    const resource = request.params.resource.toLowerCase()
+    const session = await mongoose.startSession()
+    session.startTransaction()
 
+    try {
       if (
         resource !== "beans" &&
         resource !== "machines" &&
@@ -184,19 +186,32 @@ router.get(
         response.status(404).send("Page not found")
       } else {
         const user = await User.findById(response.locals.id)
+
+        if (resource == "machines") {
+          const machine = await Machine.findById(request.params.id)
+          await machine.users.pull(user._id)
+          await machine.save()
+        }
+
         let updatedResource = user[resource].filter(
           (resource) => resource._id.toString() !== request.params.id
         )
         await user.set(resource, updatedResource).save()
+
+        await session.commitTransaction()
         response.redirect("/users/me")
       }
     } catch (error) {
       console.error(error)
+      await session.abortTransaction()
+
       response.render("error/error", {
         errorCode: "500",
         errorMessage: "An error ocurred while deleting your resource.",
         pageTitle: "Error",
       })
+    } finally {
+      session.endSession()
     }
   }
 )
