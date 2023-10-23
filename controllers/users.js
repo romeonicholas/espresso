@@ -186,17 +186,14 @@ router.get(
         response.status(404).send("Page not found")
       } else {
         const user = await User.findById(response.locals.id)
+        user[resource].pull(request.params.id)
+        await user.save()
 
         if (resource == "machines") {
           const machine = await Machine.findById(request.params.id)
           await machine.users.pull(user._id)
           await machine.save()
         }
-
-        let updatedResource = user[resource].filter(
-          (resource) => resource._id.toString() !== request.params.id
-        )
-        await user.set(resource, updatedResource).save()
 
         await session.commitTransaction()
         response.redirect("/users/me")
