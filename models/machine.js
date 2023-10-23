@@ -1,5 +1,7 @@
 import mongoose from "mongoose"
 
+const { Schema } = mongoose
+
 const machineSchema = new mongoose.Schema({
   brand: {
     type: String,
@@ -26,6 +28,7 @@ const machineSchema = new mongoose.Schema({
     },
   },
   isPublished: { type: Boolean, default: false, required: true },
+  users: [{ type: Schema.Types.ObjectId, ref: "User" }],
 })
 
 machineSchema.index({ brand: 1, name: 1 }, { unique: true })
