@@ -79,7 +79,10 @@ router.post(
 
 router.get("/:id", authenticateToken, async (request, response) => {
   try {
-    const machine = await Machine.findById(request.params.id).lean().exec()
+    const machine = await Machine.findById(request.params.id)
+      .populate({ path: "users", select: "username" })
+      .lean()
+      .exec()
     if (!machine) throw new Error("Machine not found.")
 
     response.send(machine)
